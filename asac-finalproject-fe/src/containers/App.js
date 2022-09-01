@@ -1,11 +1,10 @@
 import "./App.css";
+import Login from "../containers/authentication/login";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <p>Welcome to ASAC application!</p>
-      </header>
+      <Login />
     </div>
   );
 }
