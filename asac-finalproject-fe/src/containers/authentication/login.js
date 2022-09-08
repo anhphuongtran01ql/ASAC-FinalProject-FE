@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import "./login.scss";
 import ParticleBackground from "../../components/particles";
-import { Button } from "bootstrap";
 
 class Login extends Component {
   constructor(props) {
@@ -14,11 +13,27 @@ class Login extends Component {
         <div className="login-background">
           <div className="login-container">
             <div className="login-content row">
-              <div className="col-12 text-center login-text">Sign In With</div>
+              <div className="col-12 text-center login-text">Sign In</div>
 
-              <div className="col-12 social-login">
-                <i className="fab fa-google-plus-g google"></i>
-                <i className="fab fa-facebook-f facebook"></i>
+              <div className="col-12 login-social">
+                <div class="d-grid gap-2">
+                  <button class="btn btn-outline-secondary" type="button">
+                    <span class="input-group login-group-icon">
+                      <img
+                        class="google-icon"
+                        src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
+                        alt="Google icon"
+                      />
+                      Sign in with Google
+                    </span>
+                  </button>
+                  <button class="btn btn-outline-secondary" type="button">
+                    <span class="input-group login-group-icon">
+                      <i class="fab fa-facebook-square facebook"></i>
+                      Sign in with Facebook
+                    </span>
+                  </button>
+                </div>
               </div>
 
               {/* Login form */}
@@ -28,32 +43,23 @@ class Login extends Component {
                   <span class="input-group-text">
                     <i className="fas fa-user"></i>
                   </span>
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Please enter your username"
-                  />
+                  <input type="text" className="form-control" />
                 </div>
               </div>
 
               <div className="col-12 form-group login-input">
-                <label className="label-login">Password</label>
+                <label className="label-login">
+                  Password
+                  <a className="forgot-password" href={"#"}>
+                    Forgot password?
+                  </a>
+                </label>
                 <div class="input-group mb-3">
                   <span class="input-group-text">
                     <i className="fas fa-lock"></i>
                   </span>
-                  <input
-                    type="password"
-                    className="form-control"
-                    placeholder="Please enter your password"
-                  />
+                  <input type="password" className="form-control" />
                 </div>
-              </div>
-
-              <div className="col-12 text-end">
-                <a href={"#"} style={{ textDecoration: "none", fontSize: "12px", fontWeight: 600 }}>
-                  Forgot password?
-                </a>
               </div>
 
               <div className="col-12 form-group">
@@ -65,7 +71,7 @@ class Login extends Component {
               <div className="col-12 text-center">
                 <span className="text-other-login">
                   Have not account yet?{" "}
-                  <a href={"#"} style={{ textDecoration: "none" }}>
+                  <a className="text-other-login" href={"#"}>
                     Sign Up
                   </a>
                 </span>
