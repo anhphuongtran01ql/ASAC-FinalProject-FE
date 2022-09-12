@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import "./login.scss";
 import ParticleBackground from "../../components/particles";
 
+import handleLogin from "../../services/userServices";
+
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -9,6 +11,7 @@ class Login extends Component {
     this.state = {
       username: "",
       password: "",
+      errorMessage: "",
     };
   }
 
@@ -20,8 +23,29 @@ class Login extends Component {
     this.setState({ password: event.target.value });
   };
 
-  handleLogin = () => {
-    console.log(this.state);
+  handleLogin = async () => {
+    this.setState({
+      errorMessage: "",
+    });
+    try {
+      // console.log(this.state);
+      let data = await handleLogin(this.state.username, this.state.password);
+      console.log("data", data);
+      if (data && data.errorCode !== 0) {
+        this.setState({ errorMessage: data.message });
+      }
+      if (data && data.errorCode === 0) {
+        console.log("Login success");
+      }
+    } catch (e) {
+      if (e.response) {
+        if (e.response.data) {
+          this.setState({
+            errorMessage: e.response.data.message,
+          });
+        }
+      }
+    }
   };
 
   render() {
@@ -92,6 +116,10 @@ class Login extends Component {
                     }}
                   />
                 </div>
+              </div>
+
+              <div className="col-12" style={{ color: "red", fontSize: "12px", textAlign: "center" }}>
+                {this.state.errorMessage}
               </div>
 
               <div className="col-12 form-group">
