@@ -5,7 +5,25 @@ import ParticleBackground from "../../components/particles";
 class Login extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      username: "",
+      password: "",
+    };
   }
+
+  handleOnChangeUsername = (event) => {
+    this.setState({ username: event.target.value });
+  };
+
+  handleOnChangePassword = (event) => {
+    this.setState({ password: event.target.value });
+  };
+
+  handleLogin = () => {
+    console.log(this.state);
+  };
+
   render() {
     return (
       <>
@@ -43,7 +61,14 @@ class Login extends Component {
                   <span class="input-group-text">
                     <i className="fas fa-user"></i>
                   </span>
-                  <input type="text" className="form-control" />
+                  <input
+                    type="text"
+                    className="form-control"
+                    value={this.state.username}
+                    onChange={(event) => {
+                      this.handleOnChangeUsername(event);
+                    }}
+                  />
                 </div>
               </div>
 
@@ -58,12 +83,25 @@ class Login extends Component {
                   <span class="input-group-text">
                     <i className="fas fa-lock"></i>
                   </span>
-                  <input type="password" className="form-control" />
+                  <input
+                    type="password"
+                    className="form-control"
+                    value={this.state.password}
+                    onChange={(event) => {
+                      this.handleOnChangePassword(event);
+                    }}
+                  />
                 </div>
               </div>
 
               <div className="col-12 form-group">
-                <button type="submit" className="btn-login">
+                <button
+                  type="submit"
+                  className="btn-login"
+                  onClick={(event) => {
+                    this.handleLogin(event);
+                  }}
+                >
                   Login
                 </button>
               </div>
