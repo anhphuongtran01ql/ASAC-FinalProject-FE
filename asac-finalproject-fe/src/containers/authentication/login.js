@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./login.scss";
 import ParticleBackground from "../../components/particles";
 
-import handleLogin from "../../services/userServices";
+// import handleLogin from "../../services/userServices";
 
 class Login extends Component {
   constructor(props) {
@@ -15,38 +15,38 @@ class Login extends Component {
     };
   }
 
-  handleOnChangeUsername = (event) => {
-    this.setState({ username: event.target.value });
-  };
+  // handleOnChangeUsername = (event) => {
+  //   this.setState({ username: event.target.value });
+  // };
 
-  handleOnChangePassword = (event) => {
-    this.setState({ password: event.target.value });
-  };
+  // handleOnChangePassword = (event) => {
+  //   this.setState({ password: event.target.value });
+  // };
 
-  handleLogin = async () => {
-    this.setState({
-      errorMessage: "",
-    });
-    try {
-      // console.log(this.state);
-      let data = await handleLogin(this.state.username, this.state.password);
-      console.log("data", data);
-      if (data && data.errorCode !== 0) {
-        this.setState({ errorMessage: data.message });
-      }
-      if (data && data.errorCode === 0) {
-        console.log("Login success");
-      }
-    } catch (e) {
-      if (e.response) {
-        if (e.response.data) {
-          this.setState({
-            errorMessage: e.response.data.message,
-          });
-        }
-      }
-    }
-  };
+  // handleLogin = async () => {
+  //   this.setState({
+  //     errorMessage: "",
+  //   });
+  //   try {
+  //     // console.log(this.state);
+  //     let data = await handleLogin(this.state.username, this.state.password);
+  //     console.log("data", data);
+  //     if (data && data.errorCode !== 0) {
+  //       this.setState({ errorMessage: data.message });
+  //     }
+  //     if (data && data.errorCode === 0) {
+  //       console.log("Login success");
+  //     }
+  //   } catch (e) {
+  //     if (e.response) {
+  //       if (e.response.data) {
+  //         this.setState({
+  //           errorMessage: e.response.data.message,
+  //         });
+  //       }
+  //     }
+  //   }
+  // };
 
   render() {
     return (
@@ -126,9 +126,9 @@ class Login extends Component {
                 <button
                   type="submit"
                   className="btn-login"
-                  onClick={(event) => {
-                    this.handleLogin(event);
-                  }}
+                  // onClick={(event) => {
+                  //   this.handleLogin(event);
+                  // }}
                 >
                   Login
                 </button>
