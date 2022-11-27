@@ -1,0 +1,60 @@
+.table-name-container {
+    margin: 10px 0 30px 5px;
+}
+
+.table-name-text {
+    margin: 0;
+    font-size: 30px;
+}
+
+.ant-col.table-name-col {
+    align-items: center;
+    display: flex;
+}
+
+.ant-table-thead>tr>th {
+    color: white !important;
+    background: #001529 !important;
+    justify-content: center !important;
+}
+
+th.ant-table-cell {
+    text-align: center !important;
+}
+
+td.ant-table-cell {
+    text-align: center !important;
+}
+
+.button-group>div {
+    display: inline;
+}
+
+.button-group>button {
+    padding: 4px 5px;
+}
+
+/* button details */
+button.ant-btn.ant-btn-link.button-detail {
+    padding-right: 20px;
+}
+
+button.ant-btn.ant-btn-link.button-edit {
+    padding-right: 20px;
+}
+
+.doctor-info-container {
+    padding: 20px;
+}
+
+/* doctor info */
+.ant-descriptions-bordered .ant-descriptions-item-label {
+    background-color: rgb(211, 211, 211);
+    text-align: center;
+    width: 20%;
+}
+
+.ant-descriptions-bordered .ant-descriptions-item-content:last-child {
+    border-right: none;
+    background: white;
+}
