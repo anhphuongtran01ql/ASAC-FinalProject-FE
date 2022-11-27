@@ -1,0 +1,84 @@
+.container {
+    margin-left: 30px;
+    height: 100vh;
+}
+
+.title-result {
+    font-weight: bold;
+    font-size: 20px;
+}
+.search  {
+    border-radius: 90px;
+    margin-bottom: 30px;
+}
+
+.content-container {
+    margin-top: 20px;
+}
+
+.avatar-container {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+
+}
+
+.doctor-name {
+    font-size: 27px;
+    font-weight: bold;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.choose-time{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.choose-time>Button {
+    flex: 1 0 21%;
+}
+
+.address-title{
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.address-title>span{
+    font-weight: normal;
+    font-size: 14px;
+}
+
+.schedule-order {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.vertical-divider {
+   height: 7.9em;
+}
+.more-info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.title-more-info {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.container-doctor-detail{
+   display: flex;
+    justify-content: center;
+}
+
+.schedule-container {
+    margin: 20px 0;
+}

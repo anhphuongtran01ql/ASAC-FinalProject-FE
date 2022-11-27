@@ -18,6 +18,9 @@ function SiderComponent() {
           <Menu.Item key="/login" icon={<HomeOutlined />}>
             <Link to="/login">Login</Link>
           </Menu.Item>
+          <Menu.Item key="/doctor" icon={<HomeOutlined />}>
+            <Link to="/doctor">Doctor</Link>
+          </Menu.Item>
         </Menu>
       </Sider>
     </>
