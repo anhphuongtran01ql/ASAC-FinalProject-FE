@@ -40,8 +40,11 @@
     margin-top: 10px;
 }
 
-.choose-time>Button {
+.link {
     flex: 1 0 21%;
+}
+.link>Button {
+   width: 100%;
 }
 
 .address-title{

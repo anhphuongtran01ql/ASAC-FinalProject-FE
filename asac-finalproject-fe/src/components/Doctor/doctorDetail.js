@@ -1,7 +1,7 @@
 import './doctor.css';
 
 import React from 'react';
-import {Route, useParams} from 'react-router-dom';
+import {Link, Route, useParams} from 'react-router-dom';
 import {Breadcrumb, Button, Dropdown, Menu, Space, Avatar, Divider} from 'antd';
 import {ScheduleOutlined, DownOutlined, HomeOutlined} from '@ant-design/icons';
 import {doctor, scheduleInfo, time} from "../DATA/doctor/doctorData";
@@ -88,7 +88,9 @@ const DoctorDetail = () => {
                     <div>
                         <div className="choose-time">
                             {time.map((item, index) =>
-                                <Button key={index} onClick={scheduleClick}>{item.content}</Button>
+                                <Link key={index} className="link" to={`/booking/${id}`}>
+                                    <Button  onClick={scheduleClick}>{item.content}</Button>
+                                </Link>
                             )}
                         </div>
                         <div>Choose and book a schedule (booking fee 0đ)</div>
