@@ -67,7 +67,7 @@ const Doctor = () => {
                 itemLayout="horizontal"
                 dataSource={data}
                 renderItem={(item) => (
-                    <List.Item>
+                    <List.Item className='doctor-list'>
                         <List.Item.Meta
                             avatar={<Avatar src={item.avatar} />}
                             title={<Link to={`/doctor/${item.id}`}>{item.name}</Link>}

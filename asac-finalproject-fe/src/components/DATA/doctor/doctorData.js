@@ -40,9 +40,9 @@ const time = [
     {
         content: "17:00 - 17:30"
     },
-    {
-        content: "17:45 - 18:15"
-    }
+    // {
+    //     content: "17:45 - 18:15"
+    // }
 ]
 
 export {doctor, scheduleInfo, time}

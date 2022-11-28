@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
-import {Route, useParams} from 'react-router-dom';
-import {Button, Input, Radio, Layout} from 'antd';
+import {useParams, useLocation} from 'react-router-dom';
+import {Button, Input, Radio, Layout, InputNumber} from 'antd';
+import {doctor} from '../DATA/doctor/doctorData';
 import {
     UserOutlined,
     CalendarOutlined,
@@ -11,8 +12,17 @@ import {
 import './booking.css';
 
 const { Content } = Layout;
+
+function useQuery() {
+    const { search } = useLocation();
+
+    return React.useMemo(() => new URLSearchParams(search), [search]);
+}
 const Booking = () => {
     const {id} = useParams();
+    const query = useQuery();
+    console.log('id',id)
+    console.log('time',query.get("time"))
     const [gender, setGender] = useState(0);
 
     const priceData = {
@@ -35,10 +45,21 @@ const Booking = () => {
     const handleSubmit = () => {
 
     }
+    const onChange = (value) => {
+        console.log('changed', value);
+    };
     return (
         <div>
             <div>
-
+                <div>
+                    BOOK YOUR SCHEDULE
+                </div>
+                <div className="booking-doctor-title">
+                    {doctor.name}
+                </div>
+                <div>
+                    {query.get("time")} - {}
+                </div>
             </div>
             <div className="container-doctor-detail">
                 <div className="booking-create-container">
@@ -59,16 +80,18 @@ const Booking = () => {
                         </Content>
 
                     </div>
-                    <Input placeholder="default size" prefix={<UserOutlined/>}/>
+                    <Input placeholder="Name" style={{
+                        width:'100%'
+                    }} prefix={<UserOutlined/>}/>
                     <Radio.Group onChange={radioOnchange} value={gender}>
                         {genderData.map((item, index) =>
                             <Radio key={index} value={item.value}>{item.name}</Radio>)
                         }
                     </Radio.Group>
-                    <Input placeholder="default size" prefix={<PhoneOutlined/>}/>
-                    <Input placeholder="default size" prefix={<CalendarOutlined/>}/>
-                    <Input placeholder="default size" prefix={<EnvironmentOutlined/>}/>
-                    <Input placeholder="default size" prefix={<PlusCircleOutlined/>}/>
+                    <Input placeholder="Phone" prefix={<PhoneOutlined/>}/>
+                    <InputNumber style={{width:'100%'}} min={1} defaultValue={3} placeholder="Year of Birth" onChange={onChange} prefix={<CalendarOutlined/>} />
+                    <Input placeholder="Address" prefix={<EnvironmentOutlined/>}/>
+                    <Input placeholder="Reason" prefix={<PlusCircleOutlined/>}/>
 
                     <Button type="primary" onClick={handleSubmit}>Confirm</Button>
                 </div>

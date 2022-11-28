@@ -20,7 +20,11 @@
     display: flex;
     gap: 20px;
     align-items: center;
+}
 
+.doctor-list .ant-avatar {
+   width: 80px !important;
+    height: 80px !important;
 }
 
 .doctor-name {
@@ -41,7 +45,7 @@
 }
 
 .link {
-    flex: 1 0 21%;
+    width:calc(25% - 5px);
 }
 .link>Button {
    width: 100%;
@@ -63,8 +67,9 @@
     align-items: center;
 }
 
-.vertical-divider {
-   height: 7.9em;
+.address-style {
+    border-left: 1px solid rgba(0, 0, 0, 0.06);
+    padding-left: 25px;
 }
 .more-info {
     display: flex;
@@ -84,4 +89,9 @@
 
 .schedule-container {
     margin: 20px 0;
+    padding-bottom: 10px;
+    width: 200px;
+    border-bottom:1px solid rgba(0, 0, 0, 0.06);
 }
+
+

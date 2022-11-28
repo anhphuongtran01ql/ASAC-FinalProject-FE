@@ -3,3 +3,8 @@
     flex-direction: column;
     gap: 10px;
 }
+.booking-doctor-title{
+    font-size:16px;
+    color: #337ab7;
+    font-weight: bold;
+}

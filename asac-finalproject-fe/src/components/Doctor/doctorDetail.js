@@ -1,43 +1,32 @@
 import './doctor.css';
 
-import React from 'react';
-import {Link, Route, useParams} from 'react-router-dom';
-import {Breadcrumb, Button, Dropdown, Menu, Space, Avatar, Divider} from 'antd';
-import {ScheduleOutlined, DownOutlined, HomeOutlined} from '@ant-design/icons';
+import React, {useEffect, useState} from 'react';
+import {Link, useParams} from 'react-router-dom';
+import {Breadcrumb, Button, Avatar, Divider, Select} from 'antd';
+import {ScheduleOutlined, HomeOutlined} from '@ant-design/icons';
 import {doctor, scheduleInfo, time} from "../DATA/doctor/doctorData";
 
 import GetDates from "../Utils/Utils";
 
 const DoctorDetail = () => {
     const nextSevenDays = GetDates(new Date(), 7);
-
-    const handleItemOnclick = (e) => {
-        console.log('key', e.key)
-    }
-    const menu = (
-        <Menu
-            onClick={handleItemOnclick}
-            items={
-                nextSevenDays.map((item, index) => {
-                    return {
-                        key: item.key,
-                        label: (
-                            item.value
-                        )
-                    }
-                })
-            }
-        />
-    );
+    const [scheduleValue, setScheduleValue] = useState('');
 
     const {id} = useParams();
 
-    const onScheduleClick = (e) => {
-        e.preventDefault()
+    const onScheduleClick = (value) => {
+        setScheduleValue(value)
     }
 
-    const scheduleClick = () => {
-    }
+    useEffect(()=>{
+        return(()=>{
+            const bookingData = {
+                scheduleDate: scheduleValue,
+            }
+            console.log('booking', bookingData)
+            localStorage.setItem(`booking_${id}`,JSON.stringify(bookingData));
+        })
+    },[id,scheduleValue])
 
     return (
         <div className="container-doctor-detail">
@@ -71,14 +60,12 @@ const DoctorDetail = () => {
                 </div>
 
                 <div className="schedule-container">
-                    <Dropdown overlay={menu}>
-                        <a onClick={onScheduleClick}>
-                            <Space>
-                                Schedule
-                                <DownOutlined/>
-                            </Space>
-                        </a>
-                    </Dropdown>
+                    <Select
+                      defaultValue={nextSevenDays[0]}
+                      style={{ width: '200px' }}
+                      onChange={onScheduleClick}
+                      options={nextSevenDays}
+                    />
                 </div>
 
                 <div className="bold">
@@ -88,15 +75,14 @@ const DoctorDetail = () => {
                     <div>
                         <div className="choose-time">
                             {time.map((item, index) =>
-                                <Link key={index} className="link" to={`/booking/${id}`}>
-                                    <Button  onClick={scheduleClick}>{item.content}</Button>
+                                <Link key={index} className="link" to={`/booking/${id}?time=${item.content}`}>
+                                    <Button>{item.content}</Button>
                                 </Link>
                             )}
                         </div>
                         <div>Choose and book a schedule (booking fee 0đ)</div>
                     </div>
-                    <Divider className="vertical-divider" type="vertical"/>
-                    <div>
+                    <div className="address-style" >
                         <div className="address-title">ADDRESS</div>
                         <div dangerouslySetInnerHTML={{__html: scheduleInfo.address}}/>
                         <div className="address-title">PRICE: <span>{scheduleInfo.price}.</span></div>

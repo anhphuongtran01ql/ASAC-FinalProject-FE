@@ -7,8 +7,8 @@ function GetDates(startDate, daysToAdd) {
         var currentDate = new Date();
         currentDate.setDate(startDate.getDate() + i);
         const date = {
-            key: moment(currentDate).format("YYYY-MM-DD"),
-            value:DayAsString(currentDate.getDay()) + " - " + currentDate.getDate() + "/" + currentDate.getMonth()
+            value: moment(currentDate).format("YYYY-MM-DD"),
+            label:DayAsString(currentDate.getDay()) + " - " + currentDate.getDate() + "/" + `${currentDate.getMonth()+1}`
         }
         aryDates.push(date);
     }
