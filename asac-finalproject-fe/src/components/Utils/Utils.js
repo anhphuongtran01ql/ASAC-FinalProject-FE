@@ -1,4 +1,6 @@
 import moment from 'moment';
+import {useLocation} from "react-router-dom";
+import React from "react";
 
 function GetDates(startDate, daysToAdd) {
     var aryDates = [];
@@ -48,4 +50,11 @@ function DayAsString(dayIndex) {
     return weekdays[dayIndex];
 }
 
-export default GetDates;
+function useQueryParams() {
+    const {search} = useLocation();
+
+    return React.useMemo(() => new URLSearchParams(search), [search]);
+}
+
+
+export  {GetDates, useQueryParams};
