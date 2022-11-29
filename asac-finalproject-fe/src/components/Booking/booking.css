@@ -2,9 +2,46 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
+    width: 35%;
+    margin: 0 auto;
 }
 .booking-doctor-title{
     font-size:16px;
     color: #337ab7;
     font-weight: bold;
+}
+
+.doctor-info{
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-doctor-detail {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    gap: 20px;
+    height: 100vh;
+}
+
+.input-style{
+    /*width: 40%;*/
+}
+.site-layout-background{
+    margin: 0 auto;
+}
+
+.price-detail {
+    display: flex;
+    justify-content: space-between;
+}
+
+.divider {
+    border-top: 1px solid #ccc ;
+    padding-top: 10px;
+}
+.margin-bottom {
+    margin-bottom: 10px;
 }

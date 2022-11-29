@@ -6,11 +6,11 @@ import {Breadcrumb, Button, Avatar, Divider, Select} from 'antd';
 import {ScheduleOutlined, HomeOutlined} from '@ant-design/icons';
 import {doctor, scheduleInfo, time} from "../DATA/doctor/doctorData";
 
-import GetDates from "../Utils/Utils";
+import {GetDates} from "../Utils/Utils";
 
 const DoctorDetail = () => {
     const nextSevenDays = GetDates(new Date(), 7);
-    const [scheduleValue, setScheduleValue] = useState('');
+    const [scheduleValue, setScheduleValue] = useState(nextSevenDays[0].value);
 
     const {id} = useParams();
 
@@ -23,7 +23,6 @@ const DoctorDetail = () => {
             const bookingData = {
                 scheduleDate: scheduleValue,
             }
-            console.log('booking', bookingData)
             localStorage.setItem(`booking_${id}`,JSON.stringify(bookingData));
         })
     },[id,scheduleValue])
@@ -43,12 +42,10 @@ const DoctorDetail = () => {
 
                 <div className="content-container">
                     <div className="avatar-container">
-                        <div>
                             <Avatar
                                 size={{xs: 24, sm: 32, md: 40, lg: 64, xl: 80, xxl: 100}}
                                 icon={<img src={doctor.img} alt="avatar-doctor"/>}
                             />
-                        </div>
                         <div>
                             <div className="doctor-name">
                                 {doctor.name}
