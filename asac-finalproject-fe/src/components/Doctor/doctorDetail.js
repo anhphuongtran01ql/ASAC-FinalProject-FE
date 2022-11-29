@@ -4,23 +4,26 @@ import React, {useEffect, useState} from 'react';
 import {Link, useParams} from 'react-router-dom';
 import {Breadcrumb, Button, Avatar, Divider, Select} from 'antd';
 import {ScheduleOutlined, HomeOutlined} from '@ant-design/icons';
-import {doctor, scheduleInfo} from "../DATA/doctor/doctorData";
+import {doctor,scheduleInfo} from "../DATA/doctor/doctorData";
 
 import {GetDates} from "../Utils/Utils";
 import {useQuery} from "@tanstack/react-query";
 import {fetchDoctorById, fetchScheduleDoctorBydate} from "../Services/Doctor/doctorService";
+import Loading from "../General/Loading";
 
 const DoctorDetail = () => {
     const nextSevenDays = GetDates(new Date(), 7);
     const [scheduleValue, setScheduleValue] = useState(nextSevenDays[0].value);
     const {id} = useParams();
     const {
-        data: doctor,
+        data: doctors,
+        isLoading:isDoctorDataLoading,
+        isFetching: isDoctorDataFetching,
     } = useQuery({
         queryKey: ['doctor', id],
         queryFn: () => fetchDoctorById(id)
     })
-
+    console.log('doctor',doctor)
     const {
         data: doctorSchedules,
         error,
@@ -59,19 +62,23 @@ const DoctorDetail = () => {
                     <Breadcrumb.Item>Heart</Breadcrumb.Item>
                 </Breadcrumb>
                 <div className="content-container">
-                    <div className="avatar-container">
-                        <Avatar
-                            size={{xs: 24, sm: 32, md: 40, lg: 64, xl: 80, xxl: 100}}
-                            icon={<img src={doctor.avatar} alt="avatar-doctor"/>}
-                        />
-                        <div>
-                            <div className="doctor-name">
-                                {doctor.name}
-                            </div>
-                            <div dangerouslySetInnerHTML={{__html: doctor.description}}>
+                    {isDoctorDataLoading || isDoctorDataFetching
+                        ? <Loading/>
+                        :
+                        <div className="avatar-container">
+                            <Avatar
+                                size={{xs: 24, sm: 32, md: 40, lg: 64, xl: 80, xxl: 100}}
+                                icon={<img src={doctor?.avatar} alt="avatar-doctor"/>}
+                            />
+                            <div>
+                                <div className="doctor-name">
+                                    {doctor?.name}
+                                </div>
+                                <div dangerouslySetInnerHTML={{__html: doctor.description}}>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    }
                 </div>
                 <div className="schedule-container">
                     <Select
@@ -107,12 +114,16 @@ const DoctorDetail = () => {
                     </div>
                 </div>
                 <Divider/>
-                <div className="more-info">
-                    <div className="title-more-info">{doctor.name}</div>
-                    <div dangerouslySetInnerHTML={{__html: doctor.moreInformation}}/>
-                    <div className="title-more-info">{doctor.examinationAndTreatment}</div>
-                    <div dangerouslySetInnerHTML={{__html: doctor.moreInformation}}/>
-                </div>
+                {isDoctorDataLoading || isDoctorDataFetching
+                    ? <Loading/>
+                    :
+                    <div className="more-info">
+                        <div className="title-more-info">{doctor.name}</div>
+                        <div dangerouslySetInnerHTML={{__html: doctor.moreInformation}}/>
+                        <div className="title-more-info">{doctor.examinationAndTreatment}</div>
+                        <div dangerouslySetInnerHTML={{__html: doctor.moreInformation}}/>
+                    </div>
+                }
             </div>
         </div>
     );
