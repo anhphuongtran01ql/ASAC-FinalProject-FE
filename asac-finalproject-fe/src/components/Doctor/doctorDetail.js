@@ -23,7 +23,6 @@ const DoctorDetail = () => {
         queryKey: ['doctor', id],
         queryFn: () => fetchDoctorById(id)
     })
-    console.log('doctor',doctor)
     const {
         data: doctorSchedules,
         error,
