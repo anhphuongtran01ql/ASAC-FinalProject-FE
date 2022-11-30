@@ -16,7 +16,7 @@ function Login() {
           </div>
           <Form className="login-form">
             <p className="form-title">Welcome back</p>
-            <p className="p-form">Login to the Homepage</p>
+            <p className="p-form">Login to the HomePage</p>
             <Form.Item
               name="username"
               rules={[
