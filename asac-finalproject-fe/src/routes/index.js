@@ -7,6 +7,8 @@ import Booking from "../components/Booking/booking";
 import HomePage from "../components/Homepage/homepage";
 import Clinic from "../components/Clinic/cliinic";
 import Specialization from "../components/Specialization/specialization";
+import DoctorsBySpecialization from "../components/Specialization/specializationDetail";
+import SpecializationDetail from "../components/Specialization/specializationDetail";
 
 function RouteComponent() {
   return (
@@ -19,6 +21,7 @@ function RouteComponent() {
         <Route path="/booking/:id" element={<Booking />}></Route>
         <Route path="/clinics" element={<Clinic />}></Route>
         <Route path="/specializations" element={<Specialization />}></Route>
+        <Route path="/specializations/:id" element={<SpecializationDetail />}></Route>
       </Routes>
     </>
   );

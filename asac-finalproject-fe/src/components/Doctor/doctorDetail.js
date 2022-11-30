@@ -4,7 +4,9 @@ import React, {useEffect, useState} from 'react';
 import {Link, useParams} from 'react-router-dom';
 import {Breadcrumb, Button, Avatar, Divider, Select} from 'antd';
 import {ScheduleOutlined, HomeOutlined} from '@ant-design/icons';
-import {doctor,scheduleInfo} from "../DATA/doctor/doctorData";
+import {
+    // doctor,
+    scheduleInfo} from "../DATA/doctor/doctorData";
 
 import {GetDates} from "../Utils/Utils";
 import {useQuery} from "@tanstack/react-query";
@@ -16,7 +18,7 @@ const DoctorDetail = () => {
     const [scheduleValue, setScheduleValue] = useState(nextSevenDays[0].value);
     const {id} = useParams();
     const {
-        data: doctors,
+        data: doctor,
         isLoading:isDoctorDataLoading,
         isFetching: isDoctorDataFetching,
     } = useQuery({
@@ -58,7 +60,7 @@ const DoctorDetail = () => {
                     <Breadcrumb.Item href="">
                         <span>Specialist examination</span>
                     </Breadcrumb.Item>
-                    <Breadcrumb.Item>Heart</Breadcrumb.Item>
+                    <Breadcrumb.Item>Musculoskeletal</Breadcrumb.Item>
                 </Breadcrumb>
                 <div className="content-container">
                     {isDoctorDataLoading || isDoctorDataFetching
@@ -73,7 +75,7 @@ const DoctorDetail = () => {
                                 <div className="doctor-name">
                                     {doctor?.name}
                                 </div>
-                                <div dangerouslySetInnerHTML={{__html: doctor.description}}>
+                                <div dangerouslySetInnerHTML={{__html: doctor.generalInfo}}>
                                 </div>
                             </div>
                         </div>
@@ -117,10 +119,7 @@ const DoctorDetail = () => {
                     ? <Loading/>
                     :
                     <div className="more-info">
-                        <div className="title-more-info">{doctor.name}</div>
-                        <div dangerouslySetInnerHTML={{__html: doctor.moreInformation}}/>
-                        <div className="title-more-info">{doctor.examinationAndTreatment}</div>
-                        <div dangerouslySetInnerHTML={{__html: doctor.moreInformation}}/>
+                        <div dangerouslySetInnerHTML={{__html: doctor.description}}/>
                     </div>
                 }
             </div>

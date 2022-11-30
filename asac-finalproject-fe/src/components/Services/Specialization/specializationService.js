@@ -10,4 +10,9 @@ const fetchSpecializations = async (name) => {
     return data
 }
 
-export {fetchSpecializations}
+const fetchDoctorsBySpecialization = async (id) => {
+    const {data} = await axios.get(`http://localhost:3000/doctors/specializaton/${id}`)
+    return data
+}
+
+export {fetchSpecializations, fetchDoctorsBySpecialization}

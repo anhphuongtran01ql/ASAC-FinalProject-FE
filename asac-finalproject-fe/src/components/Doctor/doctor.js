@@ -62,7 +62,7 @@ const Doctor = () => {
                                 <List.Item.Meta
                                     avatar={<Avatar src={item.avatar}/>}
                                     title={<Link to={`/doctor/${item.id}`}>{item.name}</Link>}
-                                    description={item.description}
+                                    description={item.specialization}
                                 />
                             </List.Item>
                         )}

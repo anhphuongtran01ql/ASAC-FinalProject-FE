@@ -155,7 +155,7 @@ const Specialization = () => {
                             <List.Item className='doctor-list'>
                                 <List.Item.Meta
                                     avatar={<img style={{height: '80px', width: '150px'}} src={item.image} alt='123'/>}
-                                    title={<Link to={`/doctor/${item.id}`}>{item.name}</Link>}
+                                    title={<Link to={`/specializations/${item.id}`}>{item.name}</Link>}
                                 />
                             </List.Item>
                         )}
