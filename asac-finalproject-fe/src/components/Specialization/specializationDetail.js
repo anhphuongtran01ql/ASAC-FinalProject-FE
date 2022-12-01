@@ -1,7 +1,7 @@
 import '../Doctor/doctor.css';
 
 import React, {useState} from 'react';
-import {List} from 'antd';
+import {Button, List} from 'antd';
 import {Layout} from 'antd';
 import {Link, useParams} from "react-router-dom";
 import {useQuery} from "@tanstack/react-query";
@@ -20,6 +20,7 @@ const SpecializationDetail = () => {
         isLoading,
         isFetching,
     } = useQuery({queryKey: ['doctorsBySpecialization', id], queryFn: () => fetchDoctorsBySpecialization(id)})
+    const [onShowMoreClick, setOnshowMoreClick] = useState(false)
 
     return (
         <>
@@ -31,19 +32,9 @@ const SpecializationDetail = () => {
                         minHeight: 280,
                         height: '100%'
                     }}>
-                        <div className='title-result'>{doctors.name}</div>
-                        <ShowMoreText
-                            lines={5}
-                            more="Show more"
-                            less="Show less"
-                            className="content-css"
-                            anchorClass="show-more-less-clickable"
-                            expanded={false}
-                            width={280}
-                            truncatedEndingComponent={"... "}
-                        >
-                            <div dangerouslySetInnerHTML={{__html: doctors.description}}/>
-                        </ShowMoreText>
+                        <div style = {{height:onShowMoreClick ? 'fit-content':'200px',overflow:'hidden'}} dangerouslySetInnerHTML={{__html: doctors.description}}>
+                        </div>
+                        <Button style={{marginTop:'20px'}} onClick={() => setOnshowMoreClick(!onShowMoreClick)}>{onShowMoreClick ? "Show less": "Show more"}</Button>
                     </Content>
 
                     <Content

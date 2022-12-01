@@ -108,21 +108,24 @@
 }
 
 .background-image-specialization {
-    background-image: url(https://cdn.bookingcare.vn/fo/2019/12/13/120331-co-xuong-khop.jpg);
+    position: relative;
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
     background-color: white;
 }
-.content-css{
-    /*z-index: 5;*/
-}
+
 .background-image-specialization::before {
+    z-index: 0;
     content: '';
+    background-image: url(https://cdn.bookingcare.vn/fo/2019/12/13/120331-co-xuong-khop.jpg) !important;
+    opacity:0.2 ;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-color: white;
     position: absolute;
-    z-index: -1;
-    inset: 0;
-    background-image: linear-gradient(rgba(255, 255, 255, 0.8)70%,rgba(255, 255, 255, 0.3),rgba(255, 255, 255, 0.5),rgba(255, 255, 255, 1));
+    inset:0;
 }
 
 

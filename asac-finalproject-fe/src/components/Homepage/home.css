@@ -1,0 +1,191 @@
+#app { height: 100% }
+html,
+body {
+    position: relative;
+    height: 100%;
+}
+
+body {
+    background: #eee;
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    color: #000;
+    margin: 0;
+    padding: 0;
+}
+
+.swiper {
+    width: 100%;
+    height: 100%;
+}
+
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+}
+
+.header-homepage {
+    display: flex;
+    background: white;
+    padding: 10px 0;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: 99;
+}
+.container-home {
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+}
+.header {
+    display: flex;
+    align-items: center;
+}
+.menu {
+    /*margin-left: 50px;*/
+    display: flex;
+    gap: 20px;
+    font-size: 12px;
+    margin:0 auto;
+}
+.menu>div>a:first-child {
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: #45c3d2;
+}
+.description-header {
+    font-weight: lighter;
+    font-size: 10px;
+    display: block;
+    opacity: 0.5;
+}
+.logo>img {
+    padding-top: 5px;
+    height: 40px;
+}
+
+.support {
+    margin-left: auto;
+    width: 200px;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 30px;
+    color: #969495;;
+}
+
+.support>span {
+    color: #45c3d2;
+    margin-right: 5px;
+}
+
+.banner {
+    background: url('https://bookingcare.vn/assets/anh/bookingcare-cover-4.jpg');
+    height: 90vh;
+    position: relative;
+}
+
+
+.banner::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.1)70%,rgba(255, 255, 255, 0.3),rgba(255, 255, 255, 0.5),rgba(255, 255, 255, 1));
+}
+
+.selection {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 40px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    font-weight: bold;
+}
+
+.select-item {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    max-width: 120px;
+    text-align: center;
+}
+
+.select-item .wrap-image{
+    overflow: hidden;
+    border-radius: 100rem;
+    padding: 10px;
+    height:50px;
+    width: 50px;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 1px 2px rgb(0 0 0 / 50%);
+    margin-bottom: 5px;
+}
+
+.select-item>div>img{
+    width: 100%;
+    object-fit: cover;
+}
+
+.remote-title>div:first-child {
+    font-size: 24px;
+    font-weight: bold;
+    padding: 15px 0px 5px 0px;
+    margin-bottom: 20px;
+}
+
+.remote-title Button {
+    background-color: #45c3d2;
+    border-color: #45c3d2;
+    font-weight: bold;
+}
+.remote-title Button:hover{
+    background-color: #45c3d2;
+    border-color: #45c3d2;
+    font-weight: bold;
+}
+
+.remote-title Button:focus{
+    background-color: #45c3d2;
+    border-color: #45c3d2;
+    font-weight: bold;
+}
+
+.remote-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.padding-swiper {
+    padding: 20px 0;
+}
+.mySwiper .swiper-button-prev{
+    display:none
+}
+.slider-style{
+    background-color: white;
+}

@@ -6,7 +6,7 @@ const { Content } = Layout;
 function ContentComponent() {
   return (
     <Content>
-      <div>
+      <div style={{ height:'calc(100vh - 134px)', overflowY:'auto'}}>
         <RouteComponent />
       </div>
     </Content>
