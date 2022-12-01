@@ -19,7 +19,7 @@ function SiderComponent() {
           selectedKeys={[location.pathname]}
         >
           <Menu.Item key="/" icon={<HomeOutlined />}>
-            <Link to="/">Homepage</Link>
+            <Link to="/">HomePage</Link>
           </Menu.Item>
           <Menu.Item key="/admin/list-doctors" icon={<UsergroupAddOutlined />}>
             <Link to="/admin/list-doctors">Doctors</Link>

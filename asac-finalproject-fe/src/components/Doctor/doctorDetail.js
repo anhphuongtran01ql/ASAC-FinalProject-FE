@@ -4,31 +4,54 @@ import React, {useEffect, useState} from 'react';
 import {Link, useParams} from 'react-router-dom';
 import {Breadcrumb, Button, Avatar, Divider, Select} from 'antd';
 import {ScheduleOutlined, HomeOutlined} from '@ant-design/icons';
-import {doctor, scheduleInfo, time} from "../DATA/doctor/doctorData";
+import {
+    // doctor,
+    scheduleInfo} from "../DATA/doctor/doctorData";
 
 import {GetDates} from "../Utils/Utils";
+import {useQuery} from "@tanstack/react-query";
+import {fetchDoctorById, fetchScheduleDoctorBydate} from "../Services/Doctor/doctorService";
+import Loading from "../General/Loading";
 
 const DoctorDetail = () => {
     const nextSevenDays = GetDates(new Date(), 7);
     const [scheduleValue, setScheduleValue] = useState(nextSevenDays[0].value);
-
     const {id} = useParams();
-
+    const {
+        data: doctor,
+        isLoading:isDoctorDataLoading,
+        isFetching: isDoctorDataFetching,
+    } = useQuery({
+        queryKey: ['doctor', id],
+        queryFn: () => fetchDoctorById(id)
+    })
+    const {
+        data: doctorSchedules,
+        error,
+        isError,
+        isLoading,
+        isFetching,
+        refetch: refetchSchedule
+    } = useQuery({
+        queryKey: ['doctorSchedules', id, scheduleValue],
+        queryFn: () => fetchScheduleDoctorBydate(id, scheduleValue)
+    })
+    const time = doctorSchedules && doctorSchedules.time !== '' ? JSON.parse(doctorSchedules.time) : []
     const onScheduleClick = (value) => {
         setScheduleValue(value)
+        refetchSchedule()
     }
-
-    useEffect(()=>{
-        return(()=>{
+    useEffect(() => {
+        return (() => {
             const bookingData = {
                 scheduleDate: scheduleValue,
             }
-            localStorage.setItem(`booking_${id}`,JSON.stringify(bookingData));
+            localStorage.setItem(`booking_${id}`, JSON.stringify(bookingData));
         })
-    },[id,scheduleValue])
+    }, [id, scheduleValue])
 
     return (
-        <div className="container-doctor-detail">
+        <div className="container-doctor-detail margin-left">
             <div>
                 <Breadcrumb>
                     <Breadcrumb.Item href="/login">
@@ -37,49 +60,54 @@ const DoctorDetail = () => {
                     <Breadcrumb.Item href="">
                         <span>Specialist examination</span>
                     </Breadcrumb.Item>
-                    <Breadcrumb.Item>Heart</Breadcrumb.Item>
+                    <Breadcrumb.Item>Musculoskeletal</Breadcrumb.Item>
                 </Breadcrumb>
-
                 <div className="content-container">
-                    <div className="avatar-container">
+                    {isDoctorDataLoading || isDoctorDataFetching
+                        ? <Loading/>
+                        :
+                        <div className="avatar-container">
                             <Avatar
                                 size={{xs: 24, sm: 32, md: 40, lg: 64, xl: 80, xxl: 100}}
-                                icon={<img src={doctor.img} alt="avatar-doctor"/>}
+                                icon={<img src={doctor?.avatar} alt="avatar-doctor"/>}
                             />
-                        <div>
-                            <div className="doctor-name">
-                                {doctor.name}
-                            </div>
-                            <div dangerouslySetInnerHTML={{__html: doctor.description}}>
+                            <div>
+                                <div className="doctor-name">
+                                    {doctor?.name}
+                                </div>
+                                <div dangerouslySetInnerHTML={{__html: doctor.generalInfo}}>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    }
                 </div>
-
                 <div className="schedule-container">
                     <Select
-                      defaultValue={nextSevenDays[0]}
-                      style={{ width: '200px' }}
-                      onChange={onScheduleClick}
-                      options={nextSevenDays}
+                        defaultValue={nextSevenDays[0]}
+                        style={{width: '200px'}}
+                        onChange={onScheduleClick}
+                        options={nextSevenDays}
                     />
                 </div>
-
                 <div className="bold">
                     <ScheduleOutlined/> <span>Schedule</span>
                 </div>
                 <div className="schedule-order">
                     <div>
                         <div className="choose-time">
-                            {time.map((item, index) =>
-                                <Link key={index} className="link" to={`/booking/${id}?time=${item.content}`}>
-                                    <Button>{item.content}</Button>
-                                </Link>
-                            )}
+                            {doctorSchedules || time.length > 0
+                                ?
+                                time.map((item, index) =>
+                                    <Link key={index} className="link" to={`/booking/${id}?time=${item}`}>
+                                        <Button>{item}</Button>
+                                    </Link>
+                                )
+                                : <div>No data</div>
+                            }
                         </div>
                         <div>Choose and book a schedule (booking fee 0đ)</div>
                     </div>
-                    <div className="address-style" >
+                    <div className="address-style">
                         <div className="address-title">ADDRESS</div>
                         <div dangerouslySetInnerHTML={{__html: scheduleInfo.address}}/>
                         <div className="address-title">PRICE: <span>{scheduleInfo.price}.</span></div>
@@ -87,12 +115,13 @@ const DoctorDetail = () => {
                     </div>
                 </div>
                 <Divider/>
-                <div className="more-info">
-                    <div className="title-more-info">{doctor.name}</div>
-                    <div dangerouslySetInnerHTML={{__html: doctor.moreInformation}}/>
-                    <div className="title-more-info">{doctor.examinationAndTreatment}</div>
-                    <div dangerouslySetInnerHTML={{__html: doctor.moreInformation}}/>
-                </div>
+                {isDoctorDataLoading || isDoctorDataFetching
+                    ? <Loading/>
+                    :
+                    <div className="more-info">
+                        <div dangerouslySetInnerHTML={{__html: doctor.description}}/>
+                    </div>
+                }
             </div>
         </div>
     );
