@@ -34,7 +34,7 @@ export function DoctorInfo() {
 function DoctorDetails() {
   return (
     <>
-      <Link to="/doctor-info">
+      <Link to="/admin/list-doctors/doctor-info">
         <Button
           className="button-detail"
           type="link"

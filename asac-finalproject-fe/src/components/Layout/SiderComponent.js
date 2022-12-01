@@ -21,8 +21,11 @@ function SiderComponent() {
           <Menu.Item key="/" icon={<HomeOutlined />}>
             <Link to="/">Homepage</Link>
           </Menu.Item>
-          <Menu.Item key="/list-doctors" icon={<UsergroupAddOutlined />}>
-            <Link to="/list-doctors">Doctors</Link>
+          <Menu.Item key="/admin/list-doctors" icon={<UsergroupAddOutlined />}>
+            <Link to="/admin/list-doctors">Doctors</Link>
+          </Menu.Item>
+          <Menu.Item key="/doctor" icon={<HomeOutlined />}>
+            <Link to="/doctor">Doctor</Link>
           </Menu.Item>
         </Menu>
       </Sider>
