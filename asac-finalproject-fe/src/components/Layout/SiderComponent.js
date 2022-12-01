@@ -13,7 +13,7 @@ function SiderComponent() {
         <div className="logo" />
         <Menu theme="dark" mode="vertical" defaultSelectedKeys={["/"]}>
           <Menu.Item key="/" icon={<HomeOutlined />}>
-            <Link to="/">Homepage</Link>
+            <Link to="/">HomePage</Link>
           </Menu.Item>
           <Menu.Item key="/login" icon={<HomeOutlined />}>
             <Link to="/login">Login</Link>

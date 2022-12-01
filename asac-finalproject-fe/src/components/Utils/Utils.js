@@ -1,6 +1,7 @@
 import moment from 'moment';
 import {useLocation} from "react-router-dom";
 import React from "react";
+import insane from "insane";
 
 function GetDates(startDate, daysToAdd) {
     var aryDates = [];
@@ -56,5 +57,27 @@ function useQueryParams() {
     return React.useMemo(() => new URLSearchParams(search), [search]);
 }
 
+const Sanitized = ({ html }) => (
+    <div
+        dangerouslySetInnerHTML={{
+            __html: insane(html, {
+                allowedTags: [
+                    "p",
+                    "strong",
+                    "em",
+                    "a",
+                    "b",
+                    "i",
+                    "span",
+                    "div",
+                    "br",
+                    "u",
+                    "img",
+                ],
+            }),
+        }}
+    />
+);
 
-export  {GetDates, useQueryParams};
+
+export  {GetDates, useQueryParams, Sanitized};

@@ -1,5 +1,5 @@
 const doctor = {
-    img: "https://cdn.bookingcare.vn/fr/w200/2020/03/17/114430-bshung.jpg",
+    avatar: "https://cdn.bookingcare.vn/fr/w200/2020/03/17/114430-bshung.jpg",
     name: "Phó Giáo sư, Tiến sĩ, Bác sĩ cao cấp Nguyễn Duy Hưng",
     description: "Nguyên Trưởng phòng chỉ đạo tuyến tại Bệnh viện Da liễu Trung ương </br> Bác sĩ từng công tác tại Bệnh viện Da liễu Trung ương <br> Nguyên Tổng Thư ký Hiệp hội Da liễu Việt Nam",
     moreInformation: "<li>Phó giáo sư, Tiến sĩ, Bác sĩ cao cấp chuyên khoa Da liễu" +
@@ -12,12 +12,21 @@ const doctor = {
         "<li>Trưởng Bộ môn Da liễu, Trường Đại học Kinh doanh và Công nghệ" +
         "<li>Tốt nghiệp Đại học Y Hà Nội (1977)" +
         "<li>Nguyên Tổng Thư ký Hiệp hội Da liễu Việt Nam",
-    examinationAndTreatment:"Phó Giáo sư khám và điều trị",
+    examinationAndTreatment: "Phó Giáo sư khám và điều trị",
 }
 const scheduleInfo = {
     address: "<b>Phòng khám Chuyên khoa Da Liễu</b> </br> 207 Phố Huế - Hai Bà Trưng - Hà Nội",
     price: "300 000đ",
 }
+const timeData = [
+    "15:30 - 16:00",
+    "15:45 - 16:15",
+    "16:00 - 16:30",
+    "16:15 - 16:45",
+    "16:30 - 17:00",
+    "16:45 - 17:15",
+    "17:00 - 17:30"
+]
 const time = [
     {
         content: "15:30 - 16:00"
@@ -45,4 +54,4 @@ const time = [
     // }
 ]
 
-export {doctor, scheduleInfo, time}
+export {doctor, scheduleInfo, time, timeData}
