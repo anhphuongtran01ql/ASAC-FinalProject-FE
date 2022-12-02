@@ -19,7 +19,7 @@ function RouteComponent() {
       <Routes>
         <Route path="/admin/list-doctors" element={<ListOfDoctors />} />
         <Route
-          path="/admin/list-doctors/doctor-info"
+          path="/admin/list-doctors/:id"
           element={<DoctorInfo />}
         />
         <Route path="/" element={<Homepage />}></Route>

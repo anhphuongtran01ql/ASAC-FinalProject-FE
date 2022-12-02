@@ -1,9 +1,18 @@
-import { Button, Input, Form, Modal, Select } from "antd";
+import { Button, Input, Form, Modal, Select, notification } from "antd";
 import React, { useState } from "react";
 import { EditOutlined } from "@ant-design/icons";
+import {
+  editUser,
+  fetchAllDoctors,
+  fetchDoctorById,
+} from "../../Services/Doctor/doctorService";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { genderData } from "../../DATA/general/generalData";
+import Loading from "../../General/Loading";
 
-const EditDoctorInfoForm = ({ visible, onCancel }) => {
+const EditDoctorInfoForm = ({ visible, onEdit, onCancel, data }) => {
   const [form] = Form.useForm();
+
   return (
     <Modal
       bodyStyle={{ height: "50vh", overflowY: "scroll" }}
@@ -13,12 +22,31 @@ const EditDoctorInfoForm = ({ visible, onCancel }) => {
       cancelText="Cancel"
       onCancel={onCancel}
       onOk={() => {
-        form.validateFields().then(() => {
-          console.log("Edit doctor information");
+        form.validateFields().then((values) => {
+          onEdit(values);
         });
       }}
     >
-      <Form initialValues="" form={form} layout="vertical" name="form_in_modal">
+      <Form
+        initialValues={data}
+        form={form}
+        layout="vertical"
+        name="form_in_modal"
+      >
+        <Form.Item
+          name="email"
+          label="Email"
+          rules={[
+            {
+              required: true,
+              type: "email",
+              message: "Invalid Email!",
+            },
+          ]}
+        >
+          <Input disabled />
+        </Form.Item>
+
         <Form.Item
           name="name"
           label="Name"
@@ -32,19 +60,7 @@ const EditDoctorInfoForm = ({ visible, onCancel }) => {
         >
           <Input />
         </Form.Item>
-        <Form.Item
-          name="email"
-          label="Email"
-          rules={[
-            {
-              required: true,
-              type: "email",
-              message: "Invalid Email!",
-            },
-          ]}
-        >
-          <Input />
-        </Form.Item>
+
         <Form.Item
           name="phone"
           label="Phone Number"
@@ -69,16 +85,16 @@ const EditDoctorInfoForm = ({ visible, onCancel }) => {
             },
           ]}
         >
-          <Select>
-            <Select.Option key="male" value="male">
-              Male
-            </Select.Option>
-            <Select.Option key="female" value="female">
-              Female
-            </Select.Option>
+          <Select value={data.gender === 0 ? "Male" : "Female"}>
+            {genderData &&
+              genderData.map((item, index) => (
+                <Select.Option key={index} value={item.value}>
+                  {item.name}
+                </Select.Option>
+              ))}
           </Select>
         </Form.Item>
-        <Form.Item
+        {/* <Form.Item
           name="specialization"
           label="Specialization"
           rules={[
@@ -96,7 +112,7 @@ const EditDoctorInfoForm = ({ visible, onCancel }) => {
               2
             </Select.Option>
           </Select>
-        </Form.Item>
+        </Form.Item> */}
         <Form.Item
           name="address"
           label="Address"
@@ -110,34 +126,85 @@ const EditDoctorInfoForm = ({ visible, onCancel }) => {
         >
           <Input />
         </Form.Item>
-        <Form.Item name="descriptions" label="Descriptions">
+        {/* <Form.Item name="descriptions" label="Descriptions">
           <Input />
-        </Form.Item>
+        </Form.Item> */}
       </Form>
     </Modal>
   );
 };
 
-function EditDoctorInfo() {
+function EditDoctorInfo({ doctorId }) {
   const [openModal, setOpenModal] = useState(false);
+
+  const { data, isLoading, isFetching } = useQuery({
+    queryKey: ["doctor", doctorId],
+    queryFn: () => fetchDoctorById(doctorId),
+  });
+
+  const queryClient = useQueryClient();
+
+  const mutation = useMutation({
+    mutationFn: (data) => editUser(doctorId, data),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["doctors"] });
+    },
+  });
+
+  const onEdit = (values) => {
+    let editData = { doctorId, ...values };
+    mutation.mutate(editData, {
+      onSuccess: () => {
+        notification["success"]({
+          message: `Success`,
+          description: `Edit successfully!`,
+        });
+        setOpenModal(false);
+      },
+      onError: (error) => {
+        notification["error"]({
+          message: `Edit failed!`,
+          description: error.message,
+        });
+        setOpenModal(false);
+      },
+    });
+  };
+
+  const transformData = (data) => {
+    // console.log("value", {
+    //   ...data,
+    //   gender: data.gender === 1 ? "Female" : "Male",
+    // });
+    // console.log("data", data);
+    return { ...data, gender: data.gender === 1 ? "Female" : "Male" };
+  };
   return (
     <>
-      <Button
-        className="button-edit"
-        type="link"
-        icon={<EditOutlined />}
-        onClick={() => {
-          setOpenModal(true);
-        }}
-      >
-        Edit
-      </Button>
-      <EditDoctorInfoForm
-        visible={openModal}
-        onCancel={() => {
-          setOpenModal(false);
-        }}
-      />
+      {isLoading || isFetching ? (
+        <Loading />
+      ) : (
+        <>
+          <Button
+            className="button-edit"
+            type="link"
+            icon={<EditOutlined />}
+            onClick={() => {
+              setOpenModal(true);
+            }}
+          >
+            Edit
+          </Button>
+          <EditDoctorInfoForm
+            visible={openModal}
+            onEdit={onEdit}
+            data={data}
+            onCancel={() => {
+              setOpenModal(false);
+            }}
+          />
+        </>
+      )}
     </>
   );
 }

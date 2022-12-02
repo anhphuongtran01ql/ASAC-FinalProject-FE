@@ -9,7 +9,7 @@ import { Layout } from "antd";
 import ContentComponent from "./components/Layout/ContentComponent";
 
 function App() {
-  <Login />;
+  // <Login />;
   return (
     <div className="App">
       <Layout>

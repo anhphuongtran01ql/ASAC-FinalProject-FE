@@ -1,29 +1,15 @@
 import React from "react";
 import "../user.css";
 
-import { Table, Button, Space, Col, Row } from "antd";
+import { Table, Space, Col, Row } from "antd";
 import DoctorDetails from "./detail";
 import EditDoctorInfo from "./edit";
 import DeleteADoctor from "./delete";
 import CreateADoctor from "./create";
+import { useQuery } from "@tanstack/react-query";
+import { fetchAllDoctors } from "../../Services/Doctor/doctorService";
+import Loading from "../../General/Loading";
 const { Column } = Table;
-
-const data = [
-  {
-    key: "1",
-    name: "Mike",
-    email: "mike@gmail.com",
-    phone: "123456789",
-    specialization: "123445",
-  },
-  {
-    key: "2",
-    name: "John",
-    email: "john@gmail.com",
-    phone: "123456789",
-    specialization: "123445",
-  },
-];
 
 function NameOfTable() {
   return (
@@ -43,29 +29,38 @@ function NameOfTable() {
 }
 
 function ListOfDoctors() {
+  const { data, isLoading, isFetching } = useQuery({
+    queryKey: ["doctors"],
+    queryFn: () => fetchAllDoctors(),
+  });
+
   return (
     <>
       <NameOfTable />
-      <Table dataSource={data} bordered="true">
-        <Column title="Name" dataIndex="name" key="name" />
-        <Column title="Email" dataIndex="email" key="email" />
-        <Column
-          title="Specialization"
-          dataIndex="specialization"
-          key="specialization"
-        />
-        <Column
-          title="Action"
-          key="action"
-          render={(record) => (
-            <div className="button-group">
-              <DoctorDetails />
-              <EditDoctorInfo />
-              <DeleteADoctor />
-            </div>
-          )}
-        />
-      </Table>
+      {isLoading || isFetching ? (
+        <Loading />
+      ) : (
+        <Table dataSource={data} bordered="true">
+          <Column title="Name" dataIndex="name" key="name" />
+          <Column title="Email" dataIndex="email" key="email" />
+          <Column
+            title="Specialization"
+            dataIndex="specialization"
+            key="specialization"
+          />
+          <Column
+            title="Action"
+            key="action"
+            render={(record) => (
+              <div className="button-group">
+                <DoctorDetails doctorId={record.id} />
+                <EditDoctorInfo doctorId={record.id} />
+                <DeleteADoctor doctorId={record.id} />
+              </div>
+            )}
+          />
+        </Table>
+      )}
     </>
   );
 }
