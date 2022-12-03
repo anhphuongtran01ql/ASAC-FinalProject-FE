@@ -1,7 +1,7 @@
 import axios from "axios";
 
 
-const fetchSpecializations = async (name) => {
+const fetchSpecializations = async (name = '') => {
     let url = 'http://localhost:3000/specializations';
     if (name !== '') {
         url += `?name=${name}`;
@@ -11,7 +11,7 @@ const fetchSpecializations = async (name) => {
 }
 
 const fetchDoctorsBySpecialization = async (id) => {
-    const {data} = await axios.get(`http://localhost:3000/doctors/specializaton/${id}`)
+    const {data} = await axios.get(`http://localhost:3000/doctors/specializations/${id}`)
     return data
 }
 

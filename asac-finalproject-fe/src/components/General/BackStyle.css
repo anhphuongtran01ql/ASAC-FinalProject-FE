@@ -13,18 +13,13 @@
     align-content: center;
 }
 
-.support {
+.support-back {
     margin-left: auto;
     width: 200px;
     font-size: 14px;
     font-weight: bold;
     line-height: 30px;
     color: #fff;
-}
-
-.support>span {
-    color: white;
-    margin-right: 5px;
 }
 
 .back-button-style{

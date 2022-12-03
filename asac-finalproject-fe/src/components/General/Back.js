@@ -15,7 +15,7 @@ const Back = () => {
         <header className="header-back-container">
             <div className="container-back">
                 <Button className="back-button-style" type="link" onClick={handleBack} icon={<LeftOutlined />}/>
-                <div className="support">
+                <div className="support-back">
                     <QuestionCircleOutlined/>
                     Support
                 </div>

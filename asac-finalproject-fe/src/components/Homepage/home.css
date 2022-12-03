@@ -1,4 +1,7 @@
-#app { height: 100% }
+#app {
+    height: 100%
+}
+
 html,
 body {
     position: relative;
@@ -51,35 +54,41 @@ body {
     top: 0;
     z-index: 99;
 }
+
 .container-home {
     width: 100%;
     max-width: 1280px;
     margin: 0 auto;
 }
+
 .header {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
+
 .menu {
     /*margin-left: 50px;*/
     display: flex;
     gap: 20px;
     font-size: 12px;
-    margin:0 auto;
+    margin: 0 auto;
 }
-.menu>div>a:first-child {
+
+.menu > div > a:first-child {
     font-size: 0.8rem;
     font-weight: bold;
     color: #45c3d2;
 }
+
 .description-header {
     font-weight: lighter;
     font-size: 10px;
     display: block;
     opacity: 0.5;
 }
-.logo>img {
+
+.logo > img {
     padding-top: 5px;
     height: 40px;
 }
@@ -93,7 +102,7 @@ body {
     color: #969495;;
 }
 
-.support>span {
+.support > span {
     color: #45c3d2;
     margin-right: 5px;
 }
@@ -109,7 +118,7 @@ body {
     content: '';
     position: absolute;
     inset: 0;
-    background-image: linear-gradient(rgba(255, 255, 255, 0.1)70%,rgba(255, 255, 255, 0.3),rgba(255, 255, 255, 0.5),rgba(255, 255, 255, 1));
+    background-image: linear-gradient(rgba(255, 255, 255, 0.1) 70%, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 1));
 }
 
 .selection {
@@ -132,11 +141,11 @@ body {
     text-align: center;
 }
 
-.select-item .wrap-image{
+.select-item .wrap-image {
     overflow: hidden;
     border-radius: 100rem;
     padding: 10px;
-    height:50px;
+    height: 50px;
     width: 50px;
     background: white;
     display: flex;
@@ -146,12 +155,12 @@ body {
     margin-bottom: 5px;
 }
 
-.select-item>div>img{
+.select-item > div > img {
     width: 100%;
     object-fit: cover;
 }
 
-.remote-title>div:first-child {
+.remote-title > div:first-child {
     font-size: 24px;
     font-weight: bold;
     padding: 15px 0px 5px 0px;
@@ -163,13 +172,14 @@ body {
     border-color: #45c3d2;
     font-weight: bold;
 }
-.remote-title Button:hover{
+
+.remote-title Button:hover {
     background-color: #45c3d2;
     border-color: #45c3d2;
     font-weight: bold;
 }
 
-.remote-title Button:focus{
+.remote-title Button:focus {
     background-color: #45c3d2;
     border-color: #45c3d2;
     font-weight: bold;
@@ -184,9 +194,21 @@ body {
 .padding-swiper {
     padding: 20px 0;
 }
-.mySwiper .swiper-button-prev{
-    display:none
+
+.mySwiper .swiper-button-prev {
+    display: none
 }
-.slider-style{
+
+.slider-specialization-style {
     background-color: white;
+    border-bottom: 3px solid #efeef5;
 }
+
+.slider-clinic-style {
+    border-bottom: 3px solid #efeef5;
+}
+
+.slider-clinic-content-style {
+    background-color: #eee;
+}
+
