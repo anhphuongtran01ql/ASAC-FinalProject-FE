@@ -6,7 +6,7 @@ import {useQuery} from "@tanstack/react-query";
 import Loading from "../General/Loading";
 import Back from "../General/Back";
 import {Divider, Tabs} from 'antd';
-import {fetchClinicsById} from "../Services/Clinic/clinicService";
+import {fetchClinicById} from "../Services/Clinic/clinicService";
 import InfoTab from "./clinicDetail/infoTab";
 import {EQUIPMENT, INTRODUCE, INTRODUCEIMG} from "../DATA/clinic/clinicDetail";
 import BookAppointment from "./clinicDetail/bookAppointment";
@@ -19,7 +19,7 @@ const ClinicDetail = () => {
         isFetching: isClinicsDataFetching,
     } = useQuery({
         queryKey: ['clinics', id],
-        queryFn: () => fetchClinicsById(id)
+        queryFn: () => fetchClinicById(id)
     })
     // const onChange = (key) => {
     //     console.log(key);

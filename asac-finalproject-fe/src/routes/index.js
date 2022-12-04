@@ -39,7 +39,6 @@ function RouteComponent() {
         <Route path="/admin/list-clinics/:id" element={<ClinicInfo />} />
         <Route path="/admin/clinic" element={<CreateClinicInfo />} />
         <Route path="/admin/clinic/:id" element={<EditClinicInfo />} />
-        <Route path="admin/login" element={<Login/>} />}/>
       </Routes>
     </>
   );

@@ -14,6 +14,7 @@ import Specialization from "./components/Specialization/specialization";
 import SpecializationDetail from "./components/Specialization/specializationDetail";
 import React from "react";
 import ClinicDetail from "./components/Clinic/clinicDetail";
+import Login from "./components/Auth/login";
 
 function App() {
     const history = createBrowserHistory();
@@ -30,7 +31,7 @@ function App() {
             <Route path="/clinics/:id" element={<ClinicDetail />}/>
             <Route path="/specializations" element={<Specialization />}/>
             <Route path="/specializations/:id" element={<SpecializationDetail />}/>
-
+            <Route path="/login" element={<Login/>} />}/>
             <Route path="/*" element={<AdminLayout/>}/>
         </Routes>
       </>

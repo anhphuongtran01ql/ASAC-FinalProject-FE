@@ -5,9 +5,8 @@ import ContentComponent from "./ContentComponent";
 import FooterComponent from "./FooterComponent";
 
 const AdminLayout = () =>{
-
     return (
-        <Layout style={{minHeight:'100vh'}}>
+        <Layout>
             <HeaderComponent />
             <Layout>
                 <SiderComponent />
