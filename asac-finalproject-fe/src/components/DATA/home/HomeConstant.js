@@ -1,19 +1,23 @@
 export const DATA = [
   {
-    title: "Chuyên khoa",
-    description: "Tìm bác sĩ theo chuyên khoa"
+    title: "Specializations",
+    description: "Find a doctor by Specializations",
+    link:"/specializations"
   },
   {
-    title: "Cơ sở y tế",
-    description: "Chọn bệnh viện phòng khám"
+    title: "Health facilities",
+    description: "Choose hospital clinic",
+    link:"/clinics"
   },
   {
-    title: "Bác sĩ",
-    description: "Chọn bác sĩ giỏi"
+    title: "Doctors",
+    description: "Choose a doctor",
+    link:"/doctors"
   },
   {
-    title: "Gói khám",
-    description: "Khám sức khỏe tổng quát"
+    title: "Checkup package",
+    description: "General health check\n",
+    link:"/"
   },
 ]
 
@@ -57,7 +61,7 @@ export const SELECTION = [
 ]
 
 export const REMOTESLIDER = {
-  title: "Bác sĩ từ xa qua Video",
+  title: "Popular specializations",
   data: [
     {
       image: "https://cdn.bookingcare.vn/fr/w300/2020/12/20/111237-tam-ly-2.jpg",

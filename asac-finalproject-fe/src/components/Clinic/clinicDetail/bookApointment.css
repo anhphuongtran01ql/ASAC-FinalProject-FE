@@ -1,0 +1,12 @@
+.book-appointment-container {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    gap: 20px;
+}
+.select-and-search-section{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+}

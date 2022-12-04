@@ -40,9 +40,6 @@ function SiderComponent() {
             <Link to="/admin/list-clinics">Clinics</Link>
           </Menu.Item>
           {/* Role */}
-          <Menu.Item key="/doctor" icon={<HomeOutlined />}>
-            <Link to="/doctor">Doctor</Link>
-          </Menu.Item>
         </Menu>
       </Sider>
     </>

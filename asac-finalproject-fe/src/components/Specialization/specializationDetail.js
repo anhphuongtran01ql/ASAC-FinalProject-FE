@@ -1,77 +1,64 @@
 import '../Doctor/doctor.css';
 
 import React, {useState} from 'react';
-import {List} from 'antd';
+import {Button, Divider, List} from 'antd';
 import {Layout} from 'antd';
 import {Link, useParams} from "react-router-dom";
 import {useQuery} from "@tanstack/react-query";
 import Loading from "../General/Loading";
 import {fetchDoctorsBySpecialization} from "../Services/Specialization/specializationService";
 import {Sanitized} from "../Utils/Utils";
-import ShowMoreText from "react-show-more-text";
+import Back from "../General/Back";
+import ListDoctors from "../General/ListDoctors";
 
 const {Content} = Layout;
 const SpecializationDetail = () => {
     const {id} = useParams();
     const {
         data: doctors,
-        error,
-        isError,
         isLoading,
         isFetching,
     } = useQuery({queryKey: ['doctorsBySpecialization', id], queryFn: () => fetchDoctorsBySpecialization(id)})
+    const [onShowMoreClick, setOnshowMoreClick] = useState(false)
 
     return (
         <>
+            <Back/>
             {isFetching || isLoading ? <Loading/> :
-                <div className="container flex-column">
+                <div className="container-specialization-detail flex-column">
                     <Content className="site-layout-background background-image-specialization" style={{
                         padding: 24,
                         margin: 0,
-                        minHeight: 280,
-                        height: '100%'
+                        // minHeight: 280,
+                        height: '100%',
                     }}>
-                        <div className='title-result'>{doctors.name}</div>
-                        <ShowMoreText
-                            lines={5}
-                            more="Show more"
-                            less="Show less"
-                            className="content-css"
-                            anchorClass="show-more-less-clickable"
-                            expanded={false}
-                            width={280}
-                            truncatedEndingComponent={"... "}
-                        >
-                            <div dangerouslySetInnerHTML={{__html: doctors.description}}/>
-                        </ShowMoreText>
-                    </Content>
-
-                    <Content
-                        className="site-layout-background"
-                        style={{
-                            padding: 24,
-                            margin: 0,
-                            minHeight: 280,
-                            height: '100%'
-                        }}
-                    >
-                        <div className="title-result">
-                            Outstanding Doctors
+                        <div className="flex-column general-info-spe">
+                            <div>
+                                <div className="title-result margin-bottom">{doctors.specializationName}</div>
+                                <div style={{height: onShowMoreClick ? "fit-content" : "100px", overflow: "hidden"}}
+                                     dangerouslySetInnerHTML={{__html: doctors.description}}>
+                                </div>
+                                <Button style={{marginTop: '20px'}}
+                                        onClick={() => setOnshowMoreClick(!onShowMoreClick)}>{onShowMoreClick ? "Show less" : "Show more"}</Button>
+                            </div>
                         </div>
-                        <List
-                            itemLayout="horizontal"
-                            dataSource={doctors.data}
-                            renderItem={(item) => (
-                                <List.Item className='doctor-list'>
-                                    <List.Item.Meta
-                                        avatar={<img style={{height: '80px'}} src={item.avatar} alt='123'/>}
-                                        title={<Link to={`/doctor/${item.id}`}>{item.name}</Link>}
-                                        description={<Sanitized html={item.generalInfo}/>}
-                                    />
-                                </List.Item>
-                            )}
-                        />
                     </Content>
+                    <div style={{margin:'0 30px'}}>
+                        <Content
+                            className="site-layout-background"
+                            style={{
+                                padding: 24,
+                                margin: 0,
+                                minHeight: 280,
+                                height: '100%',
+                            }}
+                        >
+                            <div className="title-result">
+                                Outstanding Doctors
+                            </div>
+                            <ListDoctors doctors={doctors}/>
+                        </Content>
+                    </div>
                 </div>
             }
         </>

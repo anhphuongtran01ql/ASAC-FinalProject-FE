@@ -1,26 +1,39 @@
 import "./App.css";
+import { Route } from "react-router-dom";
+import {Routes} from 'react-router';
+import { createBrowserHistory } from 'history'
 
-import HeaderComponent from "../src/components/Layout/HeaderComponent";
-import FooterComponent from "../src/components/Layout/FooterComponent";
-import SiderComponent from "../src/components/Layout/SiderComponent";
-import Login from "./components/Auth/login";
 
-import { Layout } from "antd";
-import ContentComponent from "./components/Layout/ContentComponent";
+import HomePage from "./components/Homepage/homepage";
+import AdminLayout from "./components/Layout/AdminLayout";
+import Doctor from "./components/Doctor/doctor";
+import DoctorDetail from "./components/Doctor/doctorDetail";
+import Booking from "./components/Booking/booking";
+import Clinic from "./components/Clinic/cliinic";
+import Specialization from "./components/Specialization/specialization";
+import SpecializationDetail from "./components/Specialization/specializationDetail";
+import React from "react";
+import ClinicDetail from "./components/Clinic/clinicDetail";
 
 function App() {
-  // <Login />;
-  return (
-    <div className="App">
-      <Layout>
-        <HeaderComponent />
-        <Layout>
-          <SiderComponent />
-          <ContentComponent />
-        </Layout>
-        <FooterComponent />
-      </Layout>
-    </div>
+    const history = createBrowserHistory();
+    return (
+      <>
+        <Routes history = {history }>
+          <Route path="/" element={<HomePage/>}/>
+            <Route path="/specializations" element={<Specialization/>}/>
+            <Route path="/specializations/:id" element={<SpecializationDetail />}/>
+            <Route path="/doctors" element={<Doctor />}/>
+            <Route path="/doctors/:id" element={<DoctorDetail />}/>
+            <Route path="/bookings/:id" element={<Booking />}/>
+            <Route path="/clinics" element={<Clinic />}/>
+            <Route path="/clinics/:id" element={<ClinicDetail />}/>
+            <Route path="/specializations" element={<Specialization />}/>
+            <Route path="/specializations/:id" element={<SpecializationDetail />}/>
+
+            <Route path="/*" element={<AdminLayout/>}/>
+        </Routes>
+      </>
   );
 }
 

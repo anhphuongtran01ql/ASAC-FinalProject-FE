@@ -4,7 +4,7 @@ const fetchAllDoctors = async () => {
   const { data } = await axios.get(`http://localhost:3000/doctors`);
   return data;
 };
-const fetchDoctors = async (name) => {
+const fetchDoctors = async (name = "") => {
   let url = "http://localhost:3000/doctors";
   if (name !== "") {
     url += `?name=${name}`;
