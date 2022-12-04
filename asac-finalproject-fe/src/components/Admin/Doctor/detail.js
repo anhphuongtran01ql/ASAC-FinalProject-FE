@@ -18,7 +18,7 @@ export function DoctorInfo() {
       {isLoading || isFetching ? (
         <Loading />
       ) : (
-        <div className="doctor-info-container">
+        <div className="info-container">
           <PageHeader
             title="Doctor information"
             onBack={() => window.history.back()}
@@ -41,7 +41,9 @@ export function DoctorInfo() {
                 {data.gender === "0" ? "Male" : "Female"}
               </Descriptions.Item>
               <Descriptions.Item label="Specialization">
-                {data.specialization?.length > 0 ? data.specialization : "N/A"}
+                {data.specializationName?.length > 0
+                  ? data.specializationName
+                  : "N/A"}
               </Descriptions.Item>
               <Descriptions.Item label="Description" span={3}>
                 {data.description?.length === 0 ? data.description : "N/A"}

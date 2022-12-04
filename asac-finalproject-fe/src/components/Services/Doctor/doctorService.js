@@ -31,10 +31,7 @@ const createUser = async (data) => {
   await axios.post(`http://localhost:3000/user`, data);
 };
 
-const editUser = async (doctorId, data) => {
-  console.log("doctorId", doctorId);
-  console.log("data", data);
-  
+const editUser = async (doctorId, data) => {  
   await axios.put(`http://localhost:3000/users/${doctorId}`, data);
 };
 
