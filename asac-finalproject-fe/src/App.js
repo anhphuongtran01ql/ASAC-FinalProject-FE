@@ -13,6 +13,7 @@ import Clinic from "./components/Clinic/cliinic";
 import Specialization from "./components/Specialization/specialization";
 import SpecializationDetail from "./components/Specialization/specializationDetail";
 import React from "react";
+import ClinicDetail from "./components/Clinic/clinicDetail";
 
 function App() {
     const history = createBrowserHistory();
@@ -26,8 +27,10 @@ function App() {
             <Route path="/doctors/:id" element={<DoctorDetail />}/>
             <Route path="/bookings/:id" element={<Booking />}/>
             <Route path="/clinics" element={<Clinic />}/>
+            <Route path="/clinics/:id" element={<ClinicDetail />}/>
             <Route path="/specializations" element={<Specialization />}/>
             <Route path="/specializations/:id" element={<SpecializationDetail />}/>
+
             <Route path="/*" element={<AdminLayout/>}/>
         </Routes>
       </>

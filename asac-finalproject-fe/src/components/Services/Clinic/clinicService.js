@@ -10,4 +10,9 @@ const fetchClinics = async (name = '') => {
     return data
 }
 
-export {fetchClinics}
+const fetchClinicsById = async (id) => {
+    const {data} = await axios.get(`http://localhost:3000/clinics/${id}`);
+    return data
+}
+
+export {fetchClinics, fetchClinicsById}

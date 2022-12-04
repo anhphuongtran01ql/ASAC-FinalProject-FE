@@ -9,6 +9,7 @@ import Loading from "../General/Loading";
 import {fetchDoctorsBySpecialization} from "../Services/Specialization/specializationService";
 import {Sanitized} from "../Utils/Utils";
 import Back from "../General/Back";
+import ListDoctors from "../General/ListDoctors";
 
 const {Content} = Layout;
 const SpecializationDetail = () => {
@@ -55,34 +56,7 @@ const SpecializationDetail = () => {
                             <div className="title-result">
                                 Outstanding Doctors
                             </div>
-                            <List
-                                itemLayout="horizontal"
-                                dataSource={doctors.data}
-                                renderItem={(item) => (
-                                    <Content
-                                        className="site-layout-background"
-                                        style={{
-                                            margin: 0,
-                                            height: '100%',
-                                            minHeight:180,
-                                            backgroundColor: '#fff',
-                                            boxShadow: '0 1px 6px rgb(32 33 36 / 28%)',
-                                            borderRadius: '8px',
-                                            borderBottom: 'none',
-                                            marginBottom: '10px',
-                                            paddingLeft: '20px'
-                                        }}
-                                    >
-                                        <List.Item className='doctor-list'>
-                                            <List.Item.Meta
-                                                avatar={<img style={{height: '80px'}} src={item.avatar} alt='123'/>}
-                                                title={<Link to={`/doctors/${item.id}`}>{item.name}</Link>}
-                                                description={<Sanitized html={item.generalInfo}/>}
-                                            />
-                                        </List.Item>
-                                    </Content>
-                                )}
-                            />
+                            <ListDoctors doctors={doctors}/>
                         </Content>
                     </div>
                 </div>
