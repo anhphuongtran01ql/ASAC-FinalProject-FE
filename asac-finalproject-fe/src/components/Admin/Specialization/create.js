@@ -2,7 +2,8 @@ import { Button, Input, Form, notification } from "antd";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { PlusOutlined } from "@ant-design/icons";
-import MDEditor from "@uiw/react-md-editor";
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { createASpecialization } from "../../Services/Specialization/specializationService";
@@ -20,13 +21,14 @@ export function CreateSpecializationInfo() {
   });
 
   const onCreate = (values) => {
-    mutation.mutate(values, {
+    const data = {...values, descriptionHTML:description}
+    mutation.mutate(data, {
       onSuccess: () => {
         notification["success"]({
           message: `Success`,
           description: `Create successfully!`,
         });
-        console.log(" success", values);
+        console.log(" success", data);
       },
       onError: (error) => {
         notification["error"]({
@@ -65,20 +67,16 @@ export function CreateSpecializationInfo() {
 
             <Form.Item
               label="Description"
-              name="descriptionMarkdown"
-              rules={[
-                { required: true, message: "Please input your description!" },
-              ]}
+              name="descriptionHTML"
             >
               <div data-color-mode="light">
-                <MDEditor
-                  height={300}
-                  value={description}
-                  onChange={setDescription}
-                />
-                <MDEditor.Markdown
-                  source={description}
-                  style={{ whiteSpace: "pre-wrap" }}
+                <CKEditor
+                    editor={ ClassicEditor }
+                    data=""
+                    onChange={ ( event, editor ) => {
+                      const data = editor.getData();
+                      setDescription(data);
+                    } }
                 />
               </div>
             </Form.Item>
