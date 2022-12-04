@@ -11,6 +11,7 @@
     display:flex;
     justify-content: space-between;
     align-content: center;
+    gap:10px;
 }
 
 .support-back {
@@ -20,6 +21,13 @@
     font-weight: bold;
     line-height: 30px;
     color: #fff;
+}
+
+.page-title {
+    font-weight: bold;
+    line-height: 30px;
+    color: #fff;
+    font-size: 18px;
 }
 
 .back-button-style{

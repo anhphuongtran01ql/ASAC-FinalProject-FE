@@ -55,7 +55,7 @@ const DoctorDetail = () => {
                 <Loading/>
                 :
                 <div className="container-doctor-detail margin-left">
-                    <div>
+                    <div style ={{width:'70%',paddingBottom:'60px'}}>
                         <Breadcrumb>
                             <Breadcrumb.Item href="/">
                                 <HomeOutlined/>

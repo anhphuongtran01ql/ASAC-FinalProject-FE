@@ -29,8 +29,8 @@ const Specialization = () => {
 
     return (
         <>
-            <Back/>
-            <div className="container margin-top-back-button">
+            <Back title="Specializations"/>
+            <div className="specialization-container general-container-style">
                 <div className="title-result">Results</div>
                 <Search
                     placeholder="Search specializations"
@@ -43,6 +43,8 @@ const Specialization = () => {
                     className="site-layout-background"
                     style={{
                         padding: 24,
+                        paddingTop:0,
+                        paddingLeft:0,
                         margin: 0,
                         minHeight: 280,
                         height: '100%'

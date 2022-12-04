@@ -93,7 +93,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 30px;
+    justify-content: center;
+    margin-top: 82px;
 }
 
 .schedule-container {
@@ -140,4 +141,22 @@
     margin-top: 52px;
 }
 
+.general-container-style {
+    margin-left: 57px;
+    margin-top:70px;
+    margin-right: 57px;
+}
+
+.clinic-detail-title {
+    font-weight: bold;
+    color: #45c3d2;
+    border-bottom: 1px solid #eee;
+    padding:10px 0;
+    margin-bottom: 10px;
+}
+
+.white-background{
+    height: 100vh;
+    background: white;
+}
 
