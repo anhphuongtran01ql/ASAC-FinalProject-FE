@@ -1,0 +1,98 @@
+.table-name-container {
+    margin: 10px 0 30px 5px;
+}
+
+.table-name-text {
+    margin: 0;
+    font-size: 30px;
+}
+
+.ant-col.table-name-col {
+    align-items: center;
+    display: flex;
+}
+
+.ant-table-thead>tr>th {
+    color: white !important;
+    background: #001529 !important;
+    justify-content: center !important;
+}
+
+th.ant-table-cell {
+    text-align: center !important;
+}
+
+td.ant-table-cell {
+    text-align: center !important;
+}
+
+.button-group>div {
+    display: inline;
+}
+
+.button-group>button {
+    padding: 4px 5px;
+}
+
+/* button details */
+button.ant-btn.ant-btn-link.button-detail {
+    padding-right: 20px;
+}
+
+button.ant-btn.ant-btn-link.button-edit {
+    padding-right: 20px;
+}
+
+.info-container {
+    padding: 20px;
+}
+
+/* doctor info */
+.ant-descriptions-bordered .ant-descriptions-item-label {
+    background-color: rgb(211, 211, 211);
+    text-align: center;
+    width: 20%;
+}
+
+.ant-descriptions-bordered .ant-descriptions-item-content:last-child {
+    border-right: none;
+    background: white;
+}
+
+/* specialization info */
+.specialization-info {
+    background-color: rgb(231, 231, 231);
+    height: 75vh;
+}
+
+.specialization-info-heading {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.specialization-info-content {
+    padding: 20px;
+    text-align: justify;
+}
+
+.ant-col.ant-form-item-label.ant-col-sm-6.ant-col-md-4.ant-col-lg-4.ant-col-xl-3.ant-col-xxl-2 {
+    text-align: left;
+}
+
+.ant-row.ant-form-item-row {
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* clinics info  */
+.para-detail {
+    padding-left: 20px;
+}
+
+span.ant-divider-inner-text {
+    font-weight: bold;
+    font-style: italic;
+    color: #6a6a6a;
+}

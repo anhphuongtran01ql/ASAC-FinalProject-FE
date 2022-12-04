@@ -1,0 +1,23 @@
+/* css for header component */
+.header-layout {
+    padding: 0;
+    background-color: rgb(219, 175, 175);
+    height: 70px;
+}
+
+.header-logo {
+    width: 50px;
+    margin-left: 10px;
+}
+
+/* css for content component */
+.content-layout {
+    padding: 25px 20px 5px;
+    min-height: 100vh;
+}
+
+/* css for footer component */
+.footer-layout {
+    text-align: center;
+    background-color: rgb(219, 175, 175);
+}

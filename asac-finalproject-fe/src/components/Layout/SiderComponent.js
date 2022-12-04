@@ -1,22 +1,45 @@
 import React from "react";
 
 import { Layout, Menu } from "antd";
-import { Link } from "react-router-dom";
-import { HomeOutlined } from "@ant-design/icons";
-import {useNavigate} from "react-router";
+import { Link, useLocation } from "react-router-dom";
+import {
+  HomeOutlined,
+  UsergroupAddOutlined,
+  SolutionOutlined,
+  AlertOutlined,
+} from "@ant-design/icons";
 
 const { Sider } = Layout;
 
 function SiderComponent() {
-  let navigate = useNavigate()
+  let location = useLocation();
   return (
     <>
       <Sider breakpoint="lg">
         <div className="logo" />
-        <Menu theme="dark" mode="vertical" defaultSelectedKeys={["admin/login"]}>
-          <Menu.Item key="/login"  icon={<HomeOutlined />}>
-            <Link to="admin/login">Login</Link>
+        <Menu
+          theme="dark"
+          mode="vertical"
+          defaultSelectedKeys={["/"]}
+          selectedKeys={[location.pathname]}
+        >
+          <Menu.Item key="/" icon={<HomeOutlined />}>
+            <Link to="/">HomePage</Link>
           </Menu.Item>
+          {/* role admin */}
+          <Menu.Item key="/admin/list-doctors" icon={<UsergroupAddOutlined />}>
+            <Link to="/admin/list-doctors">Doctors</Link>
+          </Menu.Item>
+          <Menu.Item
+            key="/admin/list-specializations"
+            icon={<SolutionOutlined />}
+          >
+            <Link to="/admin/list-specializations">Specializations</Link>
+          </Menu.Item>
+          <Menu.Item key="/admin/list-clinics" icon={<AlertOutlined />}>
+            <Link to="/admin/list-clinics">Clinics</Link>
+          </Menu.Item>
+          {/* Role */}
         </Menu>
       </Sider>
     </>

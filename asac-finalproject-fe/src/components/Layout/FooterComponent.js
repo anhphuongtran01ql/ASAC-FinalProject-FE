@@ -1,14 +1,13 @@
 import { Layout } from "antd";
+import "./layout.css";
+
 const { Footer } = Layout;
+
 function FooterComponent() {
   return (
     <>
-      <Footer
-        style={{
-          textAlign: "center",
-        }}
-      >
-        Ant Design ©2018 Created by Ant UED
+      <Footer className="footer-layout">
+        ASAC ©2022 Created by Shinap
       </Footer>
     </>
   );

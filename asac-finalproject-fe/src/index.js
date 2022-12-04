@@ -2,10 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./styles/index.css";
 import App from "./App";
+import "./index.css";
 import { BrowserRouter } from "react-router-dom";
-
-import { Provider } from "react-redux";
-import { store } from "../src/redux/store";
 import {
     QueryClient,
     QueryClientProvider,
@@ -17,11 +15,9 @@ const queryClient = new QueryClient();
 root.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
-      <Provider store={store}>
         <BrowserRouter>
           <App />
         </BrowserRouter>
-      </Provider>
     </QueryClientProvider>
   </React.StrictMode>
 );
