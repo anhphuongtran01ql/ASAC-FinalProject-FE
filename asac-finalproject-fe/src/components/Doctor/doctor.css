@@ -1,6 +1,10 @@
-.container {
-    margin-left: 30px;
-    /*height: 100vh;*/
+.container-specialization-detail {
+    margin-top: 52px;
+    /*height: calc(100vh - 52px);*/
+}
+
+.margin-bottom{
+    margin-bottom: 10px;
 }
 
 .title-result {
@@ -87,8 +91,9 @@
 
 .container-doctor-detail{
     display: flex;
-    justify-content: center;
-    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
 }
 
 .schedule-container {
@@ -104,25 +109,35 @@
 .flex-column {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+}
+
+.general-info-spe {
+    align-items: center;
 }
 
 .background-image-specialization {
-    background-image: url(https://cdn.bookingcare.vn/fo/2019/12/13/120331-co-xuong-khop.jpg);
+    position: relative;
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
     background-color: white;
 }
-.content-css{
-    /*z-index: 5;*/
-}
+
 .background-image-specialization::before {
+    z-index: 0;
     content: '';
+    background-image: url(https://cdn.bookingcare.vn/fo/2019/12/13/120331-co-xuong-khop.jpg) !important;
+    opacity:0.2 ;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-color: white;
     position: absolute;
-    z-index: -1;
-    inset: 0;
-    background-image: linear-gradient(rgba(255, 255, 255, 0.8)70%,rgba(255, 255, 255, 0.3),rgba(255, 255, 255, 0.5),rgba(255, 255, 255, 1));
+    inset:0;
+}
+
+.margin-top-back-button {
+    margin-top: 52px;
 }
 
 
