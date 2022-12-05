@@ -28,14 +28,12 @@ export function CreateSpecializationInfo() {
           message: `Success`,
           description: `Create successfully!`,
         });
-        console.log(" success", data);
       },
       onError: (error) => {
         notification["error"]({
           message: `Create failed!`,
           description: error.message,
         });
-        console.log("error", error);
       },
     });
   };

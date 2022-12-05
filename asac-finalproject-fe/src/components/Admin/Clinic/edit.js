@@ -5,12 +5,13 @@ import { EditOutlined } from "@ant-design/icons";
 import "../user.css";
 import Loading from "../../General/Loading";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import MDEditor from "@uiw/react-md-editor";
 import TextArea from "antd/lib/input/TextArea";
 import {
   editAClinic,
   fetchClinicById,
 } from "../../Services/Clinic/clinicService";
+import { CKEditor } from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
 export function EditClinicInfo() {
   const { id } = useParams();
@@ -19,7 +20,7 @@ export function EditClinicInfo() {
     queryKey: ["clinic", id],
     queryFn: () => fetchClinicById(id),
   });
-  const [introduction, setIntroduction] = useState(data?.introductionMarkdown);
+  const [introduction, setIntroduction] = useState(data?.introductionHTML);
   const queryClient = useQueryClient();
 
   const mutation = useMutation({
@@ -30,21 +31,19 @@ export function EditClinicInfo() {
   });
 
   const onEdit = (values) => {
-    let editData = { id, ...values };
+    let editData = { ...values, introductionHTML: introduction };
     mutation.mutate(editData, {
       onSuccess: () => {
         notification["success"]({
           message: `Success`,
           description: `Edit successfully!`,
         });
-        console.log("success", values);
       },
       onError: (error) => {
         notification["error"]({
           message: `Edit failed!`,
           description: error.message,
         });
-        console.log("error", error);
       },
     });
   };
@@ -115,25 +114,15 @@ export function EditClinicInfo() {
                 <TextArea />
               </Form.Item>
 
-              <Form.Item
-                label="Introduction"
-                name="introductionMarkdown"
-                rules={[
-                  {
-                    required: true,
-                    message: "Please input your introduction!",
-                  },
-                ]}
-              >
+              <Form.Item label="Introduction" name="introductionHTML">
                 <div data-color-mode="light">
-                  <MDEditor
-                    height={300}
-                    value={introduction}
-                    onChange={setIntroduction}
-                  />
-                  <MDEditor.Markdown
-                    source={introduction}
-                    style={{ whiteSpace: "pre-wrap" }}
+                  <CKEditor
+                    editor={ClassicEditor}
+                    data={data.introductionHTML}
+                    onChange={(event, editor) => {
+                      const data = editor.getData();
+                      setIntroduction(data);
+                    }}
                   />
                 </div>
               </Form.Item>

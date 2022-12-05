@@ -9,7 +9,7 @@ import {
   editASpecialization,
   fetchSpecializationById,
 } from "../../Services/Specialization/specializationService";
-import {CKEditor} from "@ckeditor/ckeditor5-react";
+import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
 export function EditSpecializationInfo() {
@@ -19,7 +19,7 @@ export function EditSpecializationInfo() {
     queryFn: () => fetchSpecializationById(id),
   });
 
-  const [description, setDescription] = useState("");
+  const [description, setDescription] = useState(data?.descriptionHTML);
 
   const queryClient = useQueryClient();
 
@@ -31,21 +31,19 @@ export function EditSpecializationInfo() {
   });
 
   const onEdit = (values) => {
-    let editData = {...values,descriptionHTML: description };
+    let editData = { ...values, descriptionHTML: description };
     mutation.mutate(editData, {
       onSuccess: () => {
         notification["success"]({
           message: `Success`,
           description: `Edit successfully!`,
         });
-        console.log("success", values);
       },
       onError: (error) => {
         notification["error"]({
           message: `Edit failed!`,
           description: error.message,
         });
-        console.log("error", error);
       },
     });
   };
@@ -78,18 +76,15 @@ export function EditSpecializationInfo() {
                 <Input />
               </Form.Item>
 
-              <Form.Item
-                  label="Description"
-                  name="descriptionHTML"
-              >
+              <Form.Item label="Description" name="descriptionHTML">
                 <div data-color-mode="light">
                   <CKEditor
-                      editor={ ClassicEditor }
-                      data={data.descriptionHTML}
-                      onChange={ ( event, editor ) => {
-                        const data = editor.getData();
-                        setDescription(data);
-                      } }
+                    editor={ClassicEditor}
+                    data={data.descriptionHTML}
+                    onChange={(event, editor) => {
+                      const data = editor.getData();
+                      setDescription(data);
+                    }}
                   />
                 </div>
               </Form.Item>

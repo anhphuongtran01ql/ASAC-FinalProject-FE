@@ -2,7 +2,6 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import { DoctorInfo } from "../components/Admin/Doctor/detail";
 import ListOfDoctors from "../components/Admin/Doctor/listDoctors";
-import Login from "../components/Auth/login";
 import ListOfSpecializations from "../components/Admin/Specialization/listSpecializations";
 import { SpecializationInfo } from "../components/Admin/Specialization/detail";
 import { EditSpecializationInfo } from "../components/Admin/Specialization/edit";
@@ -11,11 +10,13 @@ import ListOfClinics from "../components/Admin/Clinic/listClinics";
 import { ClinicInfo } from "../components/Admin/Clinic/detail";
 import { CreateClinicInfo } from "../components/Admin/Clinic/create";
 import { EditClinicInfo } from "../components/Admin/Clinic/edit";
+import HomepageComponent from "../components/Layout/HomepageComponent";
 
 function RouteComponent() {
   return (
     <>
       <Routes>
+        <Route path="/admin" element={<HomepageComponent />} />
         <Route path="/admin/list-doctors" element={<ListOfDoctors />} />
         <Route path="/admin/list-doctors/:id" element={<DoctorInfo />} />
         <Route
