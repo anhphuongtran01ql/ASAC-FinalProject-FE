@@ -7,6 +7,7 @@ import {
   UsergroupAddOutlined,
   SolutionOutlined,
   AlertOutlined,
+  ScheduleOutlined,
 } from "@ant-design/icons";
 import "./layout.css";
 
@@ -39,6 +40,9 @@ function SiderComponent() {
           </Menu.Item>
           <Menu.Item key="/admin/list-clinics" icon={<AlertOutlined />}>
             <Link to="/admin/list-clinics">Clinics</Link>
+          </Menu.Item>
+          <Menu.Item key="/admin/list-schedules" icon={<ScheduleOutlined />}>
+            <Link to="/admin/list-schedules">Schedules</Link>
           </Menu.Item>
           {/* Role */}
         </Menu>

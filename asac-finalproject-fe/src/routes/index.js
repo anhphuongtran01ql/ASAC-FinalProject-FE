@@ -11,6 +11,9 @@ import { ClinicInfo } from "../components/Admin/Clinic/detail";
 import { CreateClinicInfo } from "../components/Admin/Clinic/create";
 import { EditClinicInfo } from "../components/Admin/Clinic/edit";
 import HomepageComponent from "../components/Layout/HomepageComponent";
+import ListOfSchedules from "../components/Admin/Schedule/listSchedules";
+import { CreateScheduleInfo } from "../components/Admin/Schedule/create";
+import { EditScheduleInfo } from "../components/Admin/Schedule/edit";
 
 function RouteComponent() {
   return (
@@ -19,6 +22,7 @@ function RouteComponent() {
         <Route path="/admin" element={<HomepageComponent />} />
         <Route path="/admin/list-doctors" element={<ListOfDoctors />} />
         <Route path="/admin/list-doctors/:id" element={<DoctorInfo />} />
+
         <Route
           path="/admin/list-specializations"
           element={<ListOfSpecializations />}
@@ -40,6 +44,14 @@ function RouteComponent() {
         <Route path="/admin/list-clinics/:id" element={<ClinicInfo />} />
         <Route path="/admin/clinic" element={<CreateClinicInfo />} />
         <Route path="/admin/clinic/:id" element={<EditClinicInfo />} />
+
+        <Route path="/admin/list-schedules" element={<ListOfSchedules />} />
+        <Route path="/admin/schedule" element={<CreateScheduleInfo />} />
+        <Route
+          path="/admin/schedule/:id"
+          element={<EditScheduleInfo />}
+        />
+
       </Routes>
     </>
   );
