@@ -10,7 +10,9 @@ import TextArea from "antd/lib/input/TextArea";
 import { createAClinic } from "../../Services/Clinic/clinicService";
 
 export function CreateClinicInfo() {
-  const [introduction, setIntroduction] = useState("Enter...");
+  const [introduction, setIntroduction] = useState("Enter introduction...");
+  const [equipment, setEquipment] = useState("Enter equipment...");
+  const [location, setLocation] = useState("Enter location...");
   const queryClient = useQueryClient();
 
   const mutation = useMutation({
@@ -21,7 +23,13 @@ export function CreateClinicInfo() {
   });
 
   const onCreate = (values) => {
-    const data = { ...values, introductionHTML: introduction };
+    const data = {
+      ...values,
+      introductionHTML: introduction,
+      equipmentHTML: equipment,
+      locationHTML: location,
+    };
+    console.log("data", data);
     mutation.mutate(data, {
       onSuccess: () => {
         notification["success"]({
@@ -54,6 +62,10 @@ export function CreateClinicInfo() {
               name="name"
               rules={[
                 {
+                  whitespace: true,
+                  message: "The field must be required.",
+                },
+                {
                   required: true,
                   message: "Please input clinic's name!",
                 },
@@ -66,6 +78,10 @@ export function CreateClinicInfo() {
               name="phone"
               rules={[
                 {
+                  whitespace: true,
+                  message: "The field must be required.",
+                },
+                {
                   required: true,
                   message: "Please input clinic's phone number!",
                 },
@@ -77,6 +93,10 @@ export function CreateClinicInfo() {
               label="Address"
               name="address"
               rules={[
+                {
+                  whitespace: true,
+                  message: "The field must be required.",
+                },
                 {
                   required: true,
                   message: "Please input clinic's address!",
@@ -91,6 +111,10 @@ export function CreateClinicInfo() {
               name="description"
               rules={[
                 {
+                  whitespace: true,
+                  message: "The field must be required.",
+                },
+                {
                   required: true,
                   message: "Please input clinic's description!",
                 },
@@ -100,16 +124,104 @@ export function CreateClinicInfo() {
             </Form.Item>
 
             <Form.Item label="Introduction" name="introductionHTML">
-              <div data-color-mode="light">
-                <CKEditor
-                  editor={ClassicEditor}
-                  data="Enter..."
-                  onChange={(event, editor) => {
-                    const data = editor.getData();
-                    setIntroduction(data);
-                  }}
-                />
-              </div>
+              <CKEditor
+                editor={ClassicEditor}
+                data="Enter introduction..."
+                onChange={(event, editor) => {
+                  const data = editor.getData();
+                  setIntroduction(data);
+                }}
+              />
+            </Form.Item>
+
+            <Form.Item label="Equipment" name="equipmentHTML">
+              <CKEditor
+                editor={ClassicEditor}
+                data="Enter equipment..."
+                onChange={(event, editor) => {
+                  const data = editor.getData();
+                  setEquipment(data);
+                }}
+              />
+            </Form.Item>
+
+            <Form.Item
+              label="Equipment Image"
+              name="equipmentImg"
+              rules={[
+                {
+                  whitespace: true,
+                  message: "The field must be required.",
+                },
+                {
+                  type: "url",
+                  message: "This field must be a valid url.",
+                },
+              ]}
+            >
+              <Input placeholder="Please input equipment image url..." />
+            </Form.Item>
+
+            <Form.Item label="Location" name="locationHTML">
+              <CKEditor
+                editor={ClassicEditor}
+                data="Enter location..."
+                onChange={(event, editor) => {
+                  const data = editor.getData();
+                  setLocation(data);
+                }}
+              />
+            </Form.Item>
+
+            <Form.Item
+              label="Location Image"
+              name="locationImg"
+              rules={[
+                {
+                  whitespace: true,
+                  message: "The field must be required.",
+                },
+                {
+                  type: "url",
+                  message: "This field must be a valid url.",
+                },
+              ]}
+            >
+              <Input placeholder="Please input location image url..." />
+            </Form.Item>
+
+            <Form.Item
+              label="Image"
+              name="image"
+              rules={[
+                {
+                  whitespace: true,
+                  message: "The field must be required.",
+                },
+                {
+                  type: "url",
+                  message: "This field must be a valid url.",
+                },
+              ]}
+            >
+              <Input placeholder="Please input image url..." />
+            </Form.Item>
+
+            <Form.Item
+              label="Avatar"
+              name="avatar"
+              rules={[
+                {
+                  whitespace: true,
+                  message: "The field must be required.",
+                },
+                {
+                  type: "url",
+                  message: "This field must be a valid url.",
+                },
+              ]}
+            >
+              <Input placeholder="Please input avatar url..." />
             </Form.Item>
 
             <Form.Item>

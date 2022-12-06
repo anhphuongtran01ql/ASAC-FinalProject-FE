@@ -89,6 +89,23 @@ export function EditSpecializationInfo() {
                 </div>
               </Form.Item>
 
+              <Form.Item
+                label="Image"
+                name="image"
+                rules={[
+                  {
+                    whitespace: true,
+                    message: "The field must be required.",
+                  },
+                  {
+                    type: "url",
+                    message: "This field must be a valid url.",
+                  },
+                ]}
+              >
+                <Input placeholder="Please input image url..." />
+              </Form.Item>
+
               <Form.Item>
                 <Button type="primary" htmlType="submit">
                   Submit

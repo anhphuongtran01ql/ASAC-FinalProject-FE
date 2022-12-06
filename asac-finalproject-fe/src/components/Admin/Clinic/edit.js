@@ -21,6 +21,9 @@ export function EditClinicInfo() {
     queryFn: () => fetchClinicById(id),
   });
   const [introduction, setIntroduction] = useState(data?.introductionHTML);
+  const [equipment, setEquipment] = useState(data?.equipmentHTML);
+  const [location, setLocation] = useState(data?.locationHTML);
+
   const queryClient = useQueryClient();
 
   const mutation = useMutation({
@@ -31,7 +34,12 @@ export function EditClinicInfo() {
   });
 
   const onEdit = (values) => {
-    let editData = { ...values, introductionHTML: introduction };
+    let editData = {
+      ...values,
+      introductionHTML: introduction,
+      equipmentHTML: equipment,
+      locationHTML: location,
+    };
     mutation.mutate(editData, {
       onSuccess: () => {
         notification["success"]({
@@ -125,6 +133,96 @@ export function EditClinicInfo() {
                     }}
                   />
                 </div>
+              </Form.Item>
+
+              <Form.Item label="Equipment" name="equipmentHTML">
+                <CKEditor
+                  editor={ClassicEditor}
+                  data={data.equipmentHTML}
+                  onChange={(event, editor) => {
+                    const data = editor.getData();
+                    setEquipment(data);
+                  }}
+                />
+              </Form.Item>
+
+              <Form.Item
+                label="Equipment Image"
+                name="equipmentImg"
+                rules={[
+                  {
+                    whitespace: true,
+                    message: "The field must be required.",
+                  },
+                  {
+                    type: "url",
+                    message: "This field must be a valid url.",
+                  },
+                ]}
+              >
+                <Input placeholder="Please input equipment image url..." />
+              </Form.Item>
+
+              <Form.Item label="Location" name="locationHTML">
+                <CKEditor
+                  editor={ClassicEditor}
+                  data={data.locationHTML}
+                  onChange={(event, editor) => {
+                    const data = editor.getData();
+                    setLocation(data);
+                  }}
+                />
+              </Form.Item>
+
+              <Form.Item
+                label="Location Image"
+                name="locationImg"
+                rules={[
+                  {
+                    whitespace: true,
+                    message: "The field must be required.",
+                  },
+                  {
+                    type: "url",
+                    message: "This field must be a valid url.",
+                  },
+                ]}
+              >
+                <Input placeholder="Please input location image url..." />
+              </Form.Item>
+
+              <Form.Item
+                label="Image"
+                name="image"
+                rules={[
+                  {
+                    whitespace: true,
+                    message: "The field must be required.",
+                  },
+                  {
+                    type: "url",
+                    message: "This field must be a valid url.",
+                  },
+                ]}
+              >
+                <Input placeholder="Please input image url..." />
+              </Form.Item>
+
+              <Form.Item
+                label="Avatar"
+                name="avatar"
+                rules={[
+                  {
+                    whitespace: true,
+                    message: "The field must be required.",
+                  },
+                  {
+                    type: "url",
+                    message: "This field must be a valid url.",
+                  },
+                ]}
+              >
+                <Input placeholder="Please input avatar url..." />
               </Form.Item>
 
               <Form.Item>
