@@ -3,7 +3,7 @@
     /*height: calc(100vh - 52px);*/
 }
 
-.margin-bottom{
+.margin-bottom {
     margin-bottom: 10px;
 }
 
@@ -11,7 +11,8 @@
     font-weight: bold;
     font-size: 20px;
 }
-.search  {
+
+.search {
     border-radius: 90px;
     margin-bottom: 30px;
 }
@@ -27,7 +28,7 @@
 }
 
 .doctor-list .ant-avatar {
-   width: 80px !important;
+    width: 80px !important;
     height: 80px !important;
 }
 
@@ -40,7 +41,7 @@
     font-weight: bold;
 }
 
-.choose-time{
+.choose-time {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
@@ -50,18 +51,19 @@
 }
 
 .link {
-    width:calc(25% - 5px);
-}
-.link>Button {
-   width: 100%;
+    width: calc(25% - 5px);
 }
 
-.address-title{
+.link > Button {
+    width: 100%;
+}
+
+.address-title {
     font-weight: bold;
     font-size: 14px;
 }
 
-.address-title>span{
+.address-title > span {
     font-weight: normal;
     font-size: 14px;
 }
@@ -78,6 +80,7 @@
     padding-left: 25px;
     margin-right: 10%;
 }
+
 .more-info {
     display: flex;
     flex-direction: column;
@@ -89,7 +92,7 @@
     font-weight: bold;
 }
 
-.container-doctor-detail{
+.container-doctor-detail {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -101,12 +104,13 @@
     margin: 20px 0;
     padding-bottom: 10px;
     width: 200px;
-    border-bottom:1px solid rgba(0, 0, 0, 0.06);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
 }
 
 .margin-left {
     margin-left: 30px;
 }
+
 .flex-column {
     display: flex;
     flex-direction: column;
@@ -128,13 +132,13 @@
     z-index: 0;
     content: '';
     background-image: url(https://cdn.bookingcare.vn/fo/2019/12/13/120331-co-xuong-khop.jpg) !important;
-    opacity:0.2 ;
+    opacity: 0.2;
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
     background-color: white;
     position: absolute;
-    inset:0;
+    inset: 0;
 }
 
 .margin-top-back-button {
@@ -143,7 +147,7 @@
 
 .general-container-style {
     margin-left: 57px;
-    margin-top:70px;
+    margin-top: 70px;
     margin-right: 57px;
 }
 
@@ -151,12 +155,60 @@
     font-weight: bold;
     color: #45c3d2;
     border-bottom: 1px solid #eee;
-    padding:10px 0;
+    padding: 10px 0;
     margin-bottom: 10px;
 }
 
-.white-background{
-    height: 100vh;
+.white-background {
     background: white;
+}
+
+.doctor-schedule-choose-right {
+    border-left: 1px solid rgba(0, 0, 0, 0.06);
+    padding-left: 30px;
+    margin-right: 20px;
+    padding-bottom: 20px;
+    width: 50%;
+}
+
+.line-top {
+    padding-top: 10px;
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.line-bottom {
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.color-primary {
+    color: #45c3d2;
+}
+
+.avatar-clinic {
+    object-fit: contain !important;
+    background: white;
+}
+
+.clinic-detail-container {
+    margin-left: 57px;
+    margin-top: 52px;
+    margin-right: 57px;
+}
+
+.padding-top {
+    padding-top: 20px;
+}
+
+.clinic-img {
+    height : 500px;
+    margin : 0 auto;
+}
+
+.justify-content-center{
+    justify-content: center;
+}
+.padding-bottom-footer{
+    padding-bottom: 30px;
 }
 

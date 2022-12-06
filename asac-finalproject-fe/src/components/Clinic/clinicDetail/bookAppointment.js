@@ -2,7 +2,7 @@ import "./bookApointment.css"
 
 import React, {useState} from 'react';
 import {Select, Input} from 'antd';
-import {useQuery} from "@tanstack/react-query";
+import {useQuery, useQueryClient} from "@tanstack/react-query";
 import {
     fetchDoctorsByClinic,
     fetchSpecializationsByClinic
@@ -13,9 +13,10 @@ import ListDoctors from "../../General/ListDoctors";
 const {Search} = Input;
 
 const BookAppointment = ({clinicId}) => {
+    const queryClient = useQueryClient()
     const [specializationId, setSpecializationId] = useState()
     const [name, setName] = useState('')
-    //write get specializationByClinicId
+
     const {
         data: specializations,
         isLoading: isSpecializationsLoading,
@@ -32,15 +33,13 @@ const BookAppointment = ({clinicId}) => {
         queryFn: () => fetchDoctorsByClinic(clinicId, specializationId, name)
     })
 
-    const handleSelectSpecialization = (value) => {
+    const handleSelectSpecialization = (value,e) => {
         setSpecializationId(value)
-        refetchDoctors()
-        console.log(`selected ${value}`);
     };
 
-    const onSearch = (value) => {
+    const onSearch = (value,e) => {
+        e.preventDefault()
         setName(value)
-        refetchDoctors()
     }
 
     return (
