@@ -50,7 +50,7 @@ const DoctorDetail = () => {
 
     return (
         <>
-            <Back/>
+            <Back title={doctor?.name}/>
             {isDoctorDataFetching || isDoctorDataLoading ?
                 <Loading/>
                 :
@@ -99,8 +99,8 @@ const DoctorDetail = () => {
                                     {doctorSchedules || time.length > 0
                                         ?
                                         time.map((item, index) =>
-                                            <Link key={index} className="link" to={`/booking/${id}?time=${item}`}>
-                                                <Button>{item}</Button>
+                                            <Link key={index} className="link" to={`/booking/${id}?time=${item.time}`}>
+                                                    <Button disabled={item.status}>{item.time}</Button>
                                             </Link>
                                         )
                                         : <div>No data</div>
