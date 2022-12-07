@@ -31,7 +31,9 @@ export function CreateScheduleInfo() {
     const formatValues = {
       doctorId: values.doctorId,
       date: values.date.format("YYYY-MM-DD"),
-      time: JSON.stringify(values.time),
+      time: JSON.stringify(
+        values.time.map((time) => ({ time: time, status: 0 }))
+      ),
     };
 
     mutation.mutate(formatValues, {
@@ -112,7 +114,7 @@ export function CreateScheduleInfo() {
               >
                 {timeData &&
                   timeData.map((item) => (
-                    <Select.Option value={item}>{item}</Select.Option>
+                    <Select.Option value={item.time}>{item.time}</Select.Option>
                   ))}
               </Select>
             </Form.Item>

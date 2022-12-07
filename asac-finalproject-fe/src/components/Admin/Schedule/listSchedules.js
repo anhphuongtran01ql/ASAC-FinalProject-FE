@@ -56,7 +56,7 @@ function ListOfSchedules() {
                   <div>
                     <b>Schedule:</b>
                     {JSON.parse(item.time).map((s) => {
-                      return <Button type="link">{s}</Button>;
+                      return <Button type="link">{s.time}</Button>;
                     })}
                   </div>
                 </>

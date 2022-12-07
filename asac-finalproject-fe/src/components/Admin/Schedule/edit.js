@@ -44,7 +44,9 @@ export function EditScheduleInfo() {
     const formatValues = {
       doctorId: values.doctorId,
       date: values.date.format("YYYY-MM-DD"),
-      time: JSON.stringify(values.time),
+      time: JSON.stringify(
+        values.time.map((time) => ({ time: time, status: 0 }))
+      ),
     };
     mutation.mutate(formatValues, {
       onSuccess: () => {
@@ -79,7 +81,9 @@ export function EditScheduleInfo() {
               initialValues={{
                 doctorId: data.doctorId,
                 date: moment(data.date),
-                time: JSON.parse(data.time),
+                time: JSON.parse(data.time).map((item) => {
+                  return item.time;
+                }),
               }}
             >
               <Form.Item
@@ -132,7 +136,9 @@ export function EditScheduleInfo() {
                 >
                   {timeData &&
                     timeData.map((item) => (
-                      <Select.Option value={item}>{item}</Select.Option>
+                      <Select.Option value={item.time}>
+                        {item.time}
+                      </Select.Option>
                     ))}
                 </Select>
               </Form.Item>
