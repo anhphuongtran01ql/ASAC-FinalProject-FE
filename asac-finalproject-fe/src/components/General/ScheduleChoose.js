@@ -8,6 +8,7 @@ import {Link} from "react-router-dom";
 import {GetDates} from "../Utils/Utils";
 import Loading from "./Loading";
 import {scheduleInfo} from "../DATA/doctor/doctorData";
+import {ICON} from "../DATA/Booking/bookingdata";
 
 const ScheduleChoose = ({id}) => {
     const nextSevenDays = GetDates(new Date(), 7);
@@ -66,24 +67,33 @@ const ScheduleChoose = ({id}) => {
                         <ScheduleOutlined className="color-primary"/> <span className="color-primary">Schedule</span>
                     </div>
                     <div className="schedule-order margin-bottom">
-                        <div>
-                            <div className="choose-time">
-                                {doctorSchedules || time.length > 0
-                                    ?
-                                    time.map((item, index) =>
-                                        <Link key={index} className="link" to={`/booking/${id}?time=${item}`}>
-                                            <Button>{item}</Button>
-                                        </Link>
-                                    )
-                                    : <div>No data</div>
-                                }
-                            </div>
-                            <div>Choose and book a schedule (booking fee 0đ)</div>
+                        <div style={{width:"100%"}}>
+                            {doctorSchedules || time.length > 0
+                                ?
+                                <>
+                                    <div className="choose-time">
+                                        {time.map((item, index) =>
+                                            <Link key={index} className="link" to={`/booking/${id}?time=${item.time}`}>
+                                                <Button disabled={item.status}>{item.time}</Button>
+                                            </Link>
+                                        )}
+
+                                    </div>
+                                    <div>Choose and book a schedule (booking fee 0đ)</div>
+                                    <div className="address-title line-top color-primary">PRICE: <span
+                                        style={{color: 'black'}}>{scheduleInfo.price}.</span></div>
+                                </>
+                                : <div style={{textAlign: "center", opacity: 0.5, padding: "10px 0"}}>
+                                    <div dangerouslySetInnerHTML={{__html: ICON}}/>
+                                    <div>No data</div>
+                                </div>
+                            }
                         </div>
                     </div>
-                    <div className="address-title line-top color-primary">PRICE: <span style={{color:'black'}}>{scheduleInfo.price}.</span></div>
+
                 </div>
             }
         </>
-    )}
+    )
+}
 export default ScheduleChoose;

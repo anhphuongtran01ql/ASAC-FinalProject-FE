@@ -23,8 +23,9 @@
     justify-content: flex-start;
     flex-direction: column;
     gap: 20px;
-    height: 100vh;
+    /*height: 100vh;*/
     margin-top: 52px;
+    padding-bottom:30px ;
 }
 
 .input-style-reason{

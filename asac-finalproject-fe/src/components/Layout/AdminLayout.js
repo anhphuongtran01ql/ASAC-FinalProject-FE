@@ -6,13 +6,13 @@ import FooterComponent from "./FooterComponent";
 
 const AdminLayout = () =>{
     return (
-        <Layout>
+        <Layout style={{width:"100vw", height:"100vh", overflow:"hidden"}}>
             <HeaderComponent />
             <Layout>
                 <SiderComponent />
                 <Layout>
                     <ContentComponent />
-                    <FooterComponent />
+                    {/*<FooterComponent />*/}
                 </Layout>
             </Layout>
         </Layout>

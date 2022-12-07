@@ -9,9 +9,13 @@ function GetDates(startDate, daysToAdd) {
     for (var i = 1; i <= daysToAdd; i++) {
         var currentDate = new Date();
         currentDate.setDate(startDate.getDate() + i);
+        let currentDay = currentDate.getDate();
+        if (currentDay < 10) {
+            currentDay = "0" + currentDay;
+        }
         const date = {
             value: moment(currentDate).format("YYYY-MM-DD"),
-            label:DayAsString(currentDate.getDay()) + " - " + currentDate.getDate() + "/" + `${currentDate.getMonth()+1}`
+            label:DayAsString(currentDate.getDay()) + " - " + currentDay + "/" + `${currentDate.getMonth()+1}`
         }
         aryDates.push(date);
     }
