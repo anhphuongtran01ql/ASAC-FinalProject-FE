@@ -9,6 +9,7 @@ import {useQuery} from "@tanstack/react-query";
 import {fetchSpecializations} from "../Services/Specialization/specializationService";
 import Loading from "../General/Loading";
 import Back from "../General/Back";
+import ChatbotComponent from "../../Chatbot/ChatbotComponent";
 
 const {Content} = Layout;
 const {Search} = Input;
@@ -29,6 +30,7 @@ const Specialization = () => {
 
     return (
         <>
+            <ChatbotComponent/>
             <Back title="Specializations"/>
             <div className="specialization-container general-container-style">
                 <div className="title-result">Results</div>

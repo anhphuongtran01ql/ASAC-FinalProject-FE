@@ -12,7 +12,7 @@ const AdminLayout = () =>{
                 <SiderComponent />
                 <Layout>
                     <ContentComponent />
-                    {/*<FooterComponent />*/}
+                    <FooterComponent />
                 </Layout>
             </Layout>
         </Layout>

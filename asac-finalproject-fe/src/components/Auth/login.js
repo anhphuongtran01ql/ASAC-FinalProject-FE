@@ -32,10 +32,18 @@ function Login() {
       onSuccess: (res) => {
         localStorage.setItem("userDetails", JSON.stringify(res.data));
         setIsLogged(true)
-        navigate("/admin")
+        if (res.data.roleId === 1) {
+          navigate("/admin")
+        }
+        if(res.data.roleId === 2) {
+          navigate("/supporter")
+        }
+        if(res.data.roleId === 3) {
+          navigate("/doctor")
+        }
         notification["success"]({
           message: `Success`,
-          description: `Create successfully!`,
+          description: `Login successfully!`,
         });
       },
       onError: (error) => {

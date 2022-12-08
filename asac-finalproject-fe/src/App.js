@@ -15,20 +15,17 @@ import React, {Fragment} from "react";
 import ClinicDetail from "./components/Clinic/clinicDetail";
 import Login from "./components/Auth/login";
 import {BookingSuccess} from "./components/Booking/bookingSuccess";
-import {PrivateRoute} from "./routes/privateRoute";
+import ChatbotComponent from "./Chatbot/ChatbotComponent";
 
 function App() {
     const history = createBrowserHistory();
     return (
         <>
-            <Routes history={history}>
+            <Routes>
                 <Route path="/" element={<HomePage/>}/>
-                <Route exact path='/' element={<PrivateRoute/>}>
-                    <Route path='/doctors' element={<Doctor/>}/>
-                </Route>
                 <Route path="/specializations" element={<Specialization/>}/>
                 <Route path="/specializations/:id" element={<SpecializationDetail/>}/>
-                {/*<Route path="/doctors" element={<Doctor />} />*/}
+                <Route path="/doctors" element={<Doctor />} />
                 <Route path="/doctors/:id" element={<DoctorDetail/>}/>
                 <Route path="/bookings/:id" element={<Booking/>}/>
                 <Route path="/clinics" element={<Clinic/>}/>

@@ -15,6 +15,7 @@ import Loading from "../General/Loading";
 import {fetchClinics} from "../Services/Clinic/clinicService";
 import {fetchDoctors} from "../Services/Doctor/doctorService";
 import {Link, useNavigate} from "react-router-dom";
+import ChatbotComponent from "../../Chatbot/ChatbotComponent";
 
 const HomePage = () => {
     const navigate = useNavigate();
@@ -39,8 +40,9 @@ const HomePage = () => {
     } = useQuery({queryKey: ['doctors'], queryFn:()=> fetchDoctors()})
   return (
     <div>
-      <HeaderHomePage/>
-      <div className="banner">
+        <ChatbotComponent/>
+        <HeaderHomePage/>
+        <div className="banner">
         <div className="selection">
           {SELECTION.map((item, index) =>
             (

@@ -1,12 +1,13 @@
 import axios from "axios";
+import {authHeader} from "../../../Helper/authHeader";
 
 const fetchAllSchedules = async () => {
-  const { data } = await axios.get(`http://localhost:3000/schedules`);
+  const { data } = await axios.get(`http://localhost:3000/schedules`,authHeader());
   return data;
 };
 
 const fetchScheduleById = async (id) => {
-  const { data } = await axios.get(`http://localhost:3000/schedules/${id}`);
+  const { data } = await axios.get(`http://localhost:3000/schedules/${id}`,authHeader());
   return data;
 };
 

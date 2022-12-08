@@ -7,4 +7,9 @@ const login = async (data) => {
     return response;
 };
 
-export {login}
+const getUserInfo = async (token) => {
+    const {data} = await axios.get(`${Global.BASE_API_PATH}/info`,authHeader())
+    return data
+}
+
+export {login, getUserInfo}

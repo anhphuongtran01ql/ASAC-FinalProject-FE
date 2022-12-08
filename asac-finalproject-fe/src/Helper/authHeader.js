@@ -1,19 +1,11 @@
-export function authHeader(isImage) {
-// Return authorization header with jwt token
+const authHeader=() => {
     let user = JSON.parse(localStorage.getItem("userDetails"));
-    if (user && user.token) {
-        if (isImage != null && isImage) {
+    if (user && user.access_token) {
             return {
-                Authorization: "Bearer " + user.token,
+                headers: { Authorization: `Bearer ${user.access_token}` }
             };
-        } else {
-            return {
-                "Content-Type": "application/json",
-                Authorization: user.token,
-// Authorization: "Bearers " + user.token,
-            };
-        }
     } else {
         return {};
     }
 }
+export { authHeader };
