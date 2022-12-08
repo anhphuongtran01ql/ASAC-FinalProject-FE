@@ -14,13 +14,15 @@ import HomepageComponent from "../components/Layout/HomepageComponent";
 import ListOfSchedules from "../components/Admin/Schedule/listSchedules";
 import { CreateScheduleInfo } from "../components/Admin/Schedule/create";
 import { EditScheduleInfo } from "../components/Admin/Schedule/edit";
+import ListOfPatients from "../components/Supporter/listPatients";
+import { PatientInfo } from "../components/Supporter/detail";
 
 function RouteComponent() {
   return (
     <>
       <Routes>
         <Route path="/admin" element={<HomepageComponent />} />
-        <Route path="/admin/list-doctors" element={<ListOfDoctors />} />
+        <Route path="/admin/list-users" element={<ListOfDoctors />} />
         <Route path="/admin/list-doctors/:id" element={<DoctorInfo />} />
 
         <Route
@@ -47,11 +49,16 @@ function RouteComponent() {
 
         <Route path="/admin/list-schedules" element={<ListOfSchedules />} />
         <Route path="/admin/schedule" element={<CreateScheduleInfo />} />
-        <Route
-          path="/admin/schedule/:id"
-          element={<EditScheduleInfo />}
-        />
+        <Route path="/admin/schedule/:id" element={<EditScheduleInfo />} />
 
+        <Route
+          path="/supporter/list-patients"
+          element={<ListOfPatients />}
+        ></Route>
+        <Route
+          path="/supporter/list-patients/:id"
+          element={<PatientInfo />}
+        ></Route>
       </Routes>
     </>
   );

@@ -6,6 +6,7 @@ import { fetchAllSchedules } from "../../Services/Schedule/scheduleService";
 import { useQuery } from "@tanstack/react-query";
 import EditSchedule from "./edit";
 import DeleteASchedule from "./delete";
+import Loading from "../../General/Loading";
 
 function NameOfTable() {
   return (
@@ -33,38 +34,47 @@ function ListOfSchedules() {
   return (
     <>
       <NameOfTable />
-      <List
-        bordered
-        className="list-schedules"
-        itemLayout="horizontal"
-        dataSource={data}
-        renderItem={(item) => (
-          <List.Item
-            className="list-item-schedule"
-            actions={[
-              <EditSchedule scheduleId={item.id} />,
-              <DeleteASchedule scheduleId={item.id} />,
-            ]}
-          >
-            <List.Item.Meta
-              title={<h1>{item.doctorId}</h1>}
-              description={
-                <>
-                  <div>
-                    <b>Date:</b> {item.date}
-                  </div>
-                  <div>
-                    <b>Schedule:</b>
-                    {JSON.parse(item.time).map((s) => {
-                      return <Button type="link">{s.time}</Button>;
-                    })}
-                  </div>
-                </>
-              }
-            />
-          </List.Item>
-        )}
-      />
+      {isLoading || isFetching ? (
+        <Loading />
+      ) : (
+        <List
+          bordered
+          className="list-schedules"
+          itemLayout="horizontal"
+          dataSource={data}
+          renderItem={(item) => (
+            <List.Item
+              className="list-item-schedule"
+              actions={[
+                <EditSchedule scheduleId={item.id} />,
+                <DeleteASchedule scheduleId={item.id} />,
+              ]}
+            >
+              <List.Item.Meta
+                title={
+                  <h1>
+                    <b>Doctor {item.doctorId}: </b> {item.doctorName}
+                  </h1>
+                }
+                description={
+                  <>
+                    <div>
+                      <b>Date:</b>{" "}
+                      {new Date(item.date).toLocaleDateString("vi")}
+                    </div>
+                    <div>
+                      <b>Schedule:</b>
+                      {JSON.parse(item.time).map((s) => {
+                        return <Button type="link">{s.time}</Button>;
+                      })}
+                    </div>
+                  </>
+                }
+              />
+            </List.Item>
+          )}
+        />
+      )}
     </>
   );
 }

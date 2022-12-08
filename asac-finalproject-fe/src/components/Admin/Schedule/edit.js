@@ -79,7 +79,9 @@ export function EditScheduleInfo() {
               className="info-content-form"
               onFinish={onEdit}
               initialValues={{
-                doctorId: data.doctorId,
+                doctorId: doctors.find((item) => {
+                  return item.id === data.doctorId;
+                }).name,
                 date: moment(data.date),
                 time: JSON.parse(data.time).map((item) => {
                   return item.time;

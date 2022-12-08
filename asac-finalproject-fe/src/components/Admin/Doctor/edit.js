@@ -1,34 +1,42 @@
 import { Button, Input, Form, Modal, Select, notification } from "antd";
 import React, { useState } from "react";
 import { EditOutlined } from "@ant-design/icons";
-import {
-  editUser,
-  fetchAllDoctors,
-  fetchDoctorById,
-} from "../../Services/Doctor/doctorService";
+import { editUser, fetchDoctorById } from "../../Services/Doctor/doctorService";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { genderData } from "../../DATA/general/generalData";
 import Loading from "../../General/Loading";
 
+import { CKEditor } from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+
 const EditDoctorInfoForm = ({ visible, onEdit, onCancel, data }) => {
   const [form] = Form.useForm();
+  const [generalInfo, setGeneralInfo] = useState(data?.generalInfo);
 
   return (
     <Modal
       bodyStyle={{ height: "50vh", overflowY: "scroll" }}
       visible={visible}
-      title="Edit doctor information"
+      title="Edit user information"
       okText="Edit"
       cancelText="Cancel"
       onCancel={onCancel}
       onOk={() => {
         form.validateFields().then((values) => {
-          onEdit(values);
+          const data = { ...values, generalInfo: generalInfo };
+          onEdit(data);
         });
       }}
     >
       <Form
-        initialValues={data}
+        initialValues={{
+          email: data.email,
+          name: data.name,
+          phone: data.phone,
+          gender: data.gender === 1 ? "Female" : "Male",
+          address: data.address,
+          avatar: data.avatar,
+        }}
         form={form}
         layout="vertical"
         name="form_in_modal"
@@ -85,7 +93,7 @@ const EditDoctorInfoForm = ({ visible, onEdit, onCancel, data }) => {
             },
           ]}
         >
-          <Select value={data.gender === 0 ? "Male" : "Female"}>
+          <Select>
             {genderData &&
               genderData.map((item, index) => (
                 <Select.Option key={index} value={item.value}>
@@ -94,25 +102,7 @@ const EditDoctorInfoForm = ({ visible, onEdit, onCancel, data }) => {
               ))}
           </Select>
         </Form.Item>
-        {/* <Form.Item
-          name="specialization"
-          label="Specialization"
-          rules={[
-            {
-              required: true,
-              message: "Please choose specialization!",
-            },
-          ]}
-        >
-          <Select>
-            <Select.Option key="1" value="1">
-              1
-            </Select.Option>
-            <Select.Option key="2" value="2">
-              2
-            </Select.Option>
-          </Select>
-        </Form.Item> */}
+
         <Form.Item
           name="address"
           label="Address"
@@ -126,9 +116,34 @@ const EditDoctorInfoForm = ({ visible, onEdit, onCancel, data }) => {
         >
           <Input />
         </Form.Item>
-        {/* <Form.Item name="descriptions" label="Descriptions">
-          <Input />
-        </Form.Item> */}
+
+        <Form.Item
+          label="Avatar"
+          name="avatar"
+          rules={[
+            {
+              whitespace: true,
+              message: "The field must be required.",
+            },
+            {
+              type: "url",
+              message: "This field must be a valid url.",
+            },
+          ]}
+        >
+          <Input placeholder="Please input avatar url..." />
+        </Form.Item>
+
+        <Form.Item label="General Information" name="generalInfo">
+          <CKEditor
+            editor={ClassicEditor}
+            data={data?.generalInfo}
+            onChange={(event, editor) => {
+              const data = editor.getData();
+              setGeneralInfo(data);
+            }}
+          />
+        </Form.Item>
       </Form>
     </Modal>
   );
@@ -171,14 +186,6 @@ function EditDoctorInfo({ doctorId }) {
     });
   };
 
-  const transformData = (data) => {
-    // console.log("value", {
-    //   ...data,
-    //   gender: data.gender === 1 ? "Female" : "Male",
-    // });
-    // console.log("data", data);
-    return { ...data, gender: data.gender === 1 ? "Female" : "Male" };
-  };
   return (
     <>
       {isLoading || isFetching ? (
