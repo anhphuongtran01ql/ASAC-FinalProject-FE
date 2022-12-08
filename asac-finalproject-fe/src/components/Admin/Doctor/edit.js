@@ -16,7 +16,7 @@ const EditDoctorInfoForm = ({ visible, onEdit, onCancel, data }) => {
   return (
     <Modal
       bodyStyle={{ height: "50vh", overflowY: "scroll" }}
-      visible={visible}
+      open={visible}
       title="Edit user information"
       okText="Edit"
       cancelText="Cancel"

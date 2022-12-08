@@ -45,10 +45,15 @@ function SiderComponent() {
           <Menu.Item key="/admin/list-schedules" icon={<ScheduleOutlined />}>
             <Link to="/admin/list-schedules">Schedules</Link>
           </Menu.Item>
+
+          {/* role supporter */}
           <Menu.Item key="/supporter/list-patients" icon={<SnippetsOutlined />}>
             <Link to="/supporter/list-patients">Appointments</Link>
           </Menu.Item>
-          {/* Role */}
+          {/* role doctor */}
+          <Menu.Item key="/doctor/list-patients" icon={<SnippetsOutlined />}>
+            <Link to="/doctor/list-patients">Appointments</Link>
+          </Menu.Item>
         </Menu>
       </Sider>
     </>

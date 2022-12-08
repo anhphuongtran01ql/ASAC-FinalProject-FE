@@ -42,7 +42,7 @@ const CreateDoctorInfoForm = ({ visible, onCreate, onCancel }) => {
       ) : (
         <Modal
           bodyStyle={{ height: "50vh", overflowY: "scroll" }}
-          visible={visible}
+          open={visible}
           title="Create a new user"
           okText="Create"
           cancelText="Cancel"

@@ -60,6 +60,50 @@ button.ant-btn.ant-btn-link.button-edit {
     background: white;
 }
 
+.ant-list.ant-list-split.ant-list-bordered.list-supporter-container {
+    margin-bottom: 20px;
+}
+
+.list-doctor-container {
+    border: 1px solid rgb(211, 211, 211);
+}
+
+h2.list-doctor-heading2 {
+
+    padding: 20px 0 0 20px;
+}
+
+h2.list-supporters-header {
+    margin-bottom: 0;
+}
+
+.ant-table-wrapper.list-doctor-table {
+    padding: 5px;
+}
+
+.doctor-detail-introduction {
+    display: flex;
+    justify-content: center;
+}
+
+span.ant-avatar.ant-avatar-square.ant-avatar-image.doctor-detail-avatar {
+    margin-right: 20px;
+}
+
+p.doctor-detail-para {
+    font-style: italic;
+}
+
+h1.doctor-detail-heading1 {
+    font-size: 20px;
+    padding-top: 16px;
+    font-weight: bold;
+}
+
+img.ant-image-img {
+    border: 1px solid rgb(231, 231, 231);
+}
+
 /* specialization info */
 
 .specialization-info-heading {
@@ -135,5 +179,11 @@ li.ant-list-item.list-item-schedule {
 
     span.ant-page-header-heading-title {
         font-size: 16px;
+    }
+
+    h1.doctor-detail-heading1 {
+        font-size: 15px;
+        padding-top: 22px;
+        font-weight: bold;
     }
 }

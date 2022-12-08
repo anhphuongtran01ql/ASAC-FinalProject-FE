@@ -16,6 +16,7 @@ import { CreateScheduleInfo } from "../components/Admin/Schedule/create";
 import { EditScheduleInfo } from "../components/Admin/Schedule/edit";
 import ListOfPatients from "../components/Supporter/listPatients";
 import { PatientInfo } from "../components/Supporter/detail";
+import ListOfPatientsSuccess from "../components/Doctor/appointment";
 
 function RouteComponent() {
   return (
@@ -55,9 +56,11 @@ function RouteComponent() {
           path="/supporter/list-patients"
           element={<ListOfPatients />}
         ></Route>
+        <Route path="/list-patients/:id" element={<PatientInfo />}></Route>
+
         <Route
-          path="/supporter/list-patients/:id"
-          element={<PatientInfo />}
+          path="/doctor/list-patients"
+          element={<ListOfPatientsSuccess />}
         ></Route>
       </Routes>
     </>
