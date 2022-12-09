@@ -5,11 +5,12 @@ import {Link, useParams} from 'react-router-dom';
 import {useQuery} from "@tanstack/react-query";
 import Loading from "../General/Loading";
 import Back from "../General/Back";
-import {Divider, Tabs} from 'antd';
-import {fetchClinicsById} from "../Services/Clinic/clinicService";
+import {Divider, Tabs, Avatar} from 'antd';
+import {fetchClinicById} from "../Services/Clinic/clinicService";
 import InfoTab from "./clinicDetail/infoTab";
 import {EQUIPMENT, INTRODUCE, INTRODUCEIMG} from "../DATA/clinic/clinicDetail";
 import BookAppointment from "./clinicDetail/bookAppointment";
+import {EnvironmentOutlined} from "@ant-design/icons";
 
 const ClinicDetail = () => {
     const {id} = useParams();
@@ -19,57 +20,56 @@ const ClinicDetail = () => {
         isFetching: isClinicsDataFetching,
     } = useQuery({
         queryKey: ['clinics', id],
-        queryFn: () => fetchClinicsById(id)
+        queryFn: () => fetchClinicById(id)
     })
-    // const onChange = (key) => {
-    //     console.log(key);
-    // };
     return (
         <>
             {isClinicsDataFetching || isClinicsDataLoading ?
+                <Loading/>
+                :
                 <div>
-                    <Back />
-                    <Loading/>
-                </div>
-                    :
-                <div>
-                    <Back title={clinic.name}/>
-                    <div className="white-background">
-                        <div className="general-container-style">
-                            <div className="card-container">
-                                <Tabs
-                                    type="card"
-                                    items={
-                                        [
-                                            {
-                                                label: "Book an appointment",
-                                                key: 1,
-                                                children: <BookAppointment clinicId={id}/>
-                                            },
-                                            {
-                                                label: "Introduce",
-                                                key: 2,
-                                                children: <InfoTab title="Introduce" content={INTRODUCE}/>
-                                            },
-                                            {
-                                                label: "Equipment",
-                                                key: 3,
-                                                children:<InfoTab
-                                                    title="Equipment"
-                                                    content={EQUIPMENT}
-                                                    img="https://cdn.bookingcare.vn/fr/w800/2020/05/29/105331-ban-do-pkdhyd1.png"/>
-                                            },
-                                            {
-                                                label: "Location",
-                                                key: 4,
-                                                children:<InfoTab
-                                                    title="Location"
-                                                    content="The Medical University Hospital 1 clinic is close to 115 People's Hospital."
-                                                    img={INTRODUCEIMG}/>
-                                            }
-                                        ]
-                                    }
-                                />
+                    <Back title={clinic?.name}/>
+                    <div className="white-background padding-top padding-bottom-footer">
+                        <div className="clinic-detail-container ">
+                            <div className="flex-column">
+                                <img className="clinic-img" src={clinic.image} alt='clinic-image'/>
+                                <div className="avatar-container line-bottom justify-content-center">
+                                    <Avatar
+                                        size={{xs: 24, sm: 32, md: 40, lg: 64, xl: 80, xxl: 100}}
+                                        icon={<img className="avatar-clinic" src={clinic.avatar} alt="clinic-avatar"/>}
+                                    />
+                                    <div>
+                                        <div className="title-result color-primary">
+                                            {clinic.name}
+                                        </div>
+                                        <div>
+                                            <EnvironmentOutlined
+                                                className="color-primary "/><span>{clinic.address}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="card-container">
+                                    <Tabs defaultActiveKey="1">
+                                        <Tabs.TabPane className="color-primary" tab="Book an appointment" key="1">
+                                            <BookAppointment clinicId={id}/>
+                                        </Tabs.TabPane>
+                                        <Tabs.TabPane tab="Introduce" key="2">
+                                            <InfoTab title="Introduce" content={clinic.introductionHTML}/>
+                                        </Tabs.TabPane>
+                                        <Tabs.TabPane tab="Equipment" key="3">
+                                            <InfoTab
+                                                title="Equipment"
+                                                content={clinic.equipmentHTML}
+                                                img={clinic.equipmentImg}/>
+                                        </Tabs.TabPane>
+                                        <Tabs.TabPane tab="Location" key="4">
+                                            <InfoTab
+                                                title="Location"
+                                                content={clinic.locationHTML}
+                                                img={clinic.locationImg}/>
+                                        </Tabs.TabPane>
+                                    </Tabs>
+                                </div>
                             </div>
                         </div>
                     </div>

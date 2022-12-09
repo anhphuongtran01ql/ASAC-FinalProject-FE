@@ -45,6 +45,7 @@ button.ant-btn.ant-btn-link.button-edit {
 
 .info-container {
     padding: 20px;
+    /* overflow: scroll; */
 }
 
 /* doctor info */
@@ -60,21 +61,13 @@ button.ant-btn.ant-btn-link.button-edit {
 }
 
 /* specialization info */
-.specialization-info {
-    background-color: rgb(231, 231, 231);
-    height: 75vh;
-}
 
 .specialization-info-heading {
-    font-size: 20px;
+    font-size: 24px;
     font-weight: bold;
     text-align: center;
     margin-bottom: 20px;
-}
-
-.specialization-info-content {
-    padding: 20px;
-    text-align: justify;
+    background-color: rgb(231, 231, 231);
 }
 
 .ant-col.ant-form-item-label.ant-col-sm-6.ant-col-md-4.ant-col-lg-4.ant-col-xl-3.ant-col-xxl-2 {
@@ -88,11 +81,59 @@ button.ant-btn.ant-btn-link.button-edit {
 
 /* clinics info  */
 .para-detail {
-    padding-left: 20px;
+    padding: 20px;
+    background-color: rgb(231, 231, 231);
 }
 
 span.ant-divider-inner-text {
     font-weight: bold;
     font-style: italic;
     color: #6a6a6a;
+}
+
+.clinic-image {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+/* schedule info  */
+.ant-list.ant-list-split.ant-list-bordered.list-schedules {
+    border-color: rgb(231, 231, 231);
+}
+
+li.ant-list-item.list-item-schedule {
+    border-color: rgb(231, 231, 231);
+}
+
+/* responsive */
+@media only screen and (max-width: 768px) {
+    .para-detail {
+        padding: 15px;
+    }
+
+    .ant-page-header.ant-page-header-ghost.ant-page-header-compact {
+        padding: 0;
+    }
+}
+
+@media only screen and (max-width: 576px) {
+    .info-container {
+        padding: 0 0 15px;
+    }
+
+    h1.specialization-info-heading {
+        font-size: 20px;
+    }
+
+    button.ant-btn.ant-btn-text.ant-btn-dangerous.button-delete {
+        padding: 0;
+    }
+
+    li.ant-list-item.list-item-schedule {
+        padding: 10px 0 0 10px;
+    }
+
+    span.ant-page-header-heading-title {
+        font-size: 16px;
+    }
 }

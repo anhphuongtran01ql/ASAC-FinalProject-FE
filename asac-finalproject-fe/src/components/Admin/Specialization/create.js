@@ -2,7 +2,8 @@ import { Button, Input, Form, notification } from "antd";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { PlusOutlined } from "@ant-design/icons";
-import MDEditor from "@uiw/react-md-editor";
+import { CKEditor } from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { createASpecialization } from "../../Services/Specialization/specializationService";
@@ -20,20 +21,19 @@ export function CreateSpecializationInfo() {
   });
 
   const onCreate = (values) => {
-    mutation.mutate(values, {
+    const data = { ...values, descriptionHTML: description };
+    mutation.mutate(data, {
       onSuccess: () => {
         notification["success"]({
           message: `Success`,
           description: `Create successfully!`,
         });
-        console.log(" success", values);
       },
       onError: (error) => {
         notification["error"]({
           message: `Create failed!`,
           description: error.message,
         });
-        console.log("error", error);
       },
     });
   };
@@ -63,24 +63,34 @@ export function CreateSpecializationInfo() {
               <Input />
             </Form.Item>
 
-            <Form.Item
-              label="Description"
-              name="descriptionMarkdown"
-              rules={[
-                { required: true, message: "Please input your description!" },
-              ]}
-            >
+            <Form.Item label="Description" name="descriptionHTML">
               <div data-color-mode="light">
-                <MDEditor
-                  height={300}
-                  value={description}
-                  onChange={setDescription}
-                />
-                <MDEditor.Markdown
-                  source={description}
-                  style={{ whiteSpace: "pre-wrap" }}
+                <CKEditor
+                  editor={ClassicEditor}
+                  data=""
+                  onChange={(event, editor) => {
+                    const data = editor.getData();
+                    setDescription(data);
+                  }}
                 />
               </div>
+            </Form.Item>
+
+            <Form.Item
+              label="Image"
+              name="image"
+              rules={[
+                {
+                  whitespace: true,
+                  message: "The field must be required.",
+                },
+                {
+                  type: "url",
+                  message: "This field must be a valid url.",
+                },
+              ]}
+            >
+              <Input placeholder="Please input image url..." />
             </Form.Item>
 
             <Form.Item>

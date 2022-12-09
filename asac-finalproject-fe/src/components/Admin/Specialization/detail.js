@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, PageHeader } from "antd";
+import { Button, PageHeader, Divider, Image } from "antd";
 import { Link, useParams } from "react-router-dom";
 import { ProfileOutlined } from "@ant-design/icons";
 import "../user.css";
@@ -27,7 +27,17 @@ export function SpecializationInfo() {
           >
             <div className="specialization-info">
               <h1 className="specialization-info-heading">{data.name}</h1>
-              <div className="specialization-info-content">
+              <Divider className="divider-detail" orientation="left">
+                Description
+              </Divider>
+              <div className="para-detail">
+                {!data.image ? (
+                  ""
+                ) : (
+                  <div className="clinic-image">
+                    <Image src={data.image} alt="specialization image" />
+                  </div>
+                )}
                 <Markup content={data.descriptionHTML} />
               </div>
             </div>

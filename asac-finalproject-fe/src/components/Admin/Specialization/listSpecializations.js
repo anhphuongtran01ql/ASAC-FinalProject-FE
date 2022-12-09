@@ -45,10 +45,10 @@ function ListOfSpecializations() {
             title="Action"
             key="action"
             render={(record) => (
-              <div className="button-group">
-                <SpecializationsDetailInfo specializationId={record.id} />
-                <EditSpecialization specializationId={record.id} />
-                <DeleteASpecialization specializationId={record.id} />
+              <div key="button-group" className="button-group">
+                <SpecializationsDetailInfo specializationId={record.id} key={`specialization-${record.id}`} />
+                <EditSpecialization specializationId={record.id} key={`edit-specialization-${record.id}`} />
+                <DeleteASpecialization specializationId={record.id} key={`delete-specialization-${record.id}`} />
               </div>
             )}
           />

@@ -5,12 +5,13 @@ import { EditOutlined } from "@ant-design/icons";
 import "../user.css";
 import Loading from "../../General/Loading";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import MDEditor from "@uiw/react-md-editor";
 import TextArea from "antd/lib/input/TextArea";
 import {
   editAClinic,
   fetchClinicById,
 } from "../../Services/Clinic/clinicService";
+import { CKEditor } from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
 export function EditClinicInfo() {
   const { id } = useParams();
@@ -19,7 +20,10 @@ export function EditClinicInfo() {
     queryKey: ["clinic", id],
     queryFn: () => fetchClinicById(id),
   });
-  const [introduction, setIntroduction] = useState(data?.introductionMarkdown);
+  const [introduction, setIntroduction] = useState(data?.introductionHTML);
+  const [equipment, setEquipment] = useState(data?.equipmentHTML);
+  const [location, setLocation] = useState(data?.locationHTML);
+
   const queryClient = useQueryClient();
 
   const mutation = useMutation({
@@ -30,21 +34,24 @@ export function EditClinicInfo() {
   });
 
   const onEdit = (values) => {
-    let editData = { id, ...values };
+    let editData = {
+      ...values,
+      introductionHTML: introduction,
+      equipmentHTML: equipment,
+      locationHTML: location,
+    };
     mutation.mutate(editData, {
       onSuccess: () => {
         notification["success"]({
           message: `Success`,
           description: `Edit successfully!`,
         });
-        console.log("success", values);
       },
       onError: (error) => {
         notification["error"]({
           message: `Edit failed!`,
           description: error.message,
         });
-        console.log("error", error);
       },
     });
   };
@@ -115,27 +122,107 @@ export function EditClinicInfo() {
                 <TextArea />
               </Form.Item>
 
+              <Form.Item label="Introduction" name="introductionHTML">
+                <div data-color-mode="light">
+                  <CKEditor
+                    editor={ClassicEditor}
+                    data={data.introductionHTML}
+                    onChange={(event, editor) => {
+                      const data = editor.getData();
+                      setIntroduction(data);
+                    }}
+                  />
+                </div>
+              </Form.Item>
+
+              <Form.Item label="Equipment" name="equipmentHTML">
+                <CKEditor
+                  editor={ClassicEditor}
+                  data={data.equipmentHTML}
+                  onChange={(event, editor) => {
+                    const data = editor.getData();
+                    setEquipment(data);
+                  }}
+                />
+              </Form.Item>
+
               <Form.Item
-                label="Introduction"
-                name="introductionMarkdown"
+                label="Equipment Image"
+                name="equipmentImg"
                 rules={[
                   {
-                    required: true,
-                    message: "Please input your introduction!",
+                    whitespace: true,
+                    message: "The field must be required.",
+                  },
+                  {
+                    type: "url",
+                    message: "This field must be a valid url.",
                   },
                 ]}
               >
-                <div data-color-mode="light">
-                  <MDEditor
-                    height={300}
-                    value={introduction}
-                    onChange={setIntroduction}
-                  />
-                  <MDEditor.Markdown
-                    source={introduction}
-                    style={{ whiteSpace: "pre-wrap" }}
-                  />
-                </div>
+                <Input placeholder="Please input equipment image url..." />
+              </Form.Item>
+
+              <Form.Item label="Location" name="locationHTML">
+                <CKEditor
+                  editor={ClassicEditor}
+                  data={data.locationHTML}
+                  onChange={(event, editor) => {
+                    const data = editor.getData();
+                    setLocation(data);
+                  }}
+                />
+              </Form.Item>
+
+              <Form.Item
+                label="Location Image"
+                name="locationImg"
+                rules={[
+                  {
+                    whitespace: true,
+                    message: "The field must be required.",
+                  },
+                  {
+                    type: "url",
+                    message: "This field must be a valid url.",
+                  },
+                ]}
+              >
+                <Input placeholder="Please input location image url..." />
+              </Form.Item>
+
+              <Form.Item
+                label="Image"
+                name="image"
+                rules={[
+                  {
+                    whitespace: true,
+                    message: "The field must be required.",
+                  },
+                  {
+                    type: "url",
+                    message: "This field must be a valid url.",
+                  },
+                ]}
+              >
+                <Input placeholder="Please input image url..." />
+              </Form.Item>
+
+              <Form.Item
+                label="Avatar"
+                name="avatar"
+                rules={[
+                  {
+                    whitespace: true,
+                    message: "The field must be required.",
+                  },
+                  {
+                    type: "url",
+                    message: "This field must be a valid url.",
+                  },
+                ]}
+              >
+                <Input placeholder="Please input avatar url..." />
               </Form.Item>
 
               <Form.Item>

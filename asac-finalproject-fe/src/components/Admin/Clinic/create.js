@@ -2,14 +2,17 @@ import { Button, Input, Form, notification } from "antd";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { PlusOutlined } from "@ant-design/icons";
-import MDEditor from "@uiw/react-md-editor";
+import { CKEditor } from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import TextArea from "antd/lib/input/TextArea";
 import { createAClinic } from "../../Services/Clinic/clinicService";
 
 export function CreateClinicInfo() {
-  const [description, setDescription] = useState("**Enter...**");
+  const [introduction, setIntroduction] = useState("Enter introduction...");
+  const [equipment, setEquipment] = useState("Enter equipment...");
+  const [location, setLocation] = useState("Enter location...");
   const queryClient = useQueryClient();
 
   const mutation = useMutation({
@@ -20,20 +23,25 @@ export function CreateClinicInfo() {
   });
 
   const onCreate = (values) => {
-    mutation.mutate(values, {
+    const data = {
+      ...values,
+      introductionHTML: introduction,
+      equipmentHTML: equipment,
+      locationHTML: location,
+    };
+    console.log("data", data);
+    mutation.mutate(data, {
       onSuccess: () => {
         notification["success"]({
           message: `Success`,
           description: `Create successfully!`,
         });
-        console.log(" success", values);
       },
       onError: (error) => {
         notification["error"]({
           message: `Create failed!`,
           description: error.message,
         });
-        console.log("error", error);
       },
     });
   };
@@ -54,6 +62,10 @@ export function CreateClinicInfo() {
               name="name"
               rules={[
                 {
+                  whitespace: true,
+                  message: "The field must be required.",
+                },
+                {
                   required: true,
                   message: "Please input clinic's name!",
                 },
@@ -66,6 +78,10 @@ export function CreateClinicInfo() {
               name="phone"
               rules={[
                 {
+                  whitespace: true,
+                  message: "The field must be required.",
+                },
+                {
                   required: true,
                   message: "Please input clinic's phone number!",
                 },
@@ -77,6 +93,10 @@ export function CreateClinicInfo() {
               label="Address"
               name="address"
               rules={[
+                {
+                  whitespace: true,
+                  message: "The field must be required.",
+                },
                 {
                   required: true,
                   message: "Please input clinic's address!",
@@ -91,6 +111,10 @@ export function CreateClinicInfo() {
               name="description"
               rules={[
                 {
+                  whitespace: true,
+                  message: "The field must be required.",
+                },
+                {
                   required: true,
                   message: "Please input clinic's description!",
                 },
@@ -99,24 +123,105 @@ export function CreateClinicInfo() {
               <TextArea />
             </Form.Item>
 
+            <Form.Item label="Introduction" name="introductionHTML">
+              <CKEditor
+                editor={ClassicEditor}
+                data="Enter introduction..."
+                onChange={(event, editor) => {
+                  const data = editor.getData();
+                  setIntroduction(data);
+                }}
+              />
+            </Form.Item>
+
+            <Form.Item label="Equipment" name="equipmentHTML">
+              <CKEditor
+                editor={ClassicEditor}
+                data="Enter equipment..."
+                onChange={(event, editor) => {
+                  const data = editor.getData();
+                  setEquipment(data);
+                }}
+              />
+            </Form.Item>
+
             <Form.Item
-              label="Introduction"
-              name="introductionMarkdown"
+              label="Equipment Image"
+              name="equipmentImg"
               rules={[
-                { required: true, message: "Please input your description!" },
+                {
+                  whitespace: true,
+                  message: "The field must be required.",
+                },
+                {
+                  type: "url",
+                  message: "This field must be a valid url.",
+                },
               ]}
             >
-              <div data-color-mode="light">
-                <MDEditor
-                  height={300}
-                  value={description}
-                  onChange={setDescription}
-                />
-                <MDEditor.Markdown
-                  source={description}
-                  style={{ whiteSpace: "pre-wrap" }}
-                />
-              </div>
+              <Input placeholder="Please input equipment image url..." />
+            </Form.Item>
+
+            <Form.Item label="Location" name="locationHTML">
+              <CKEditor
+                editor={ClassicEditor}
+                data="Enter location..."
+                onChange={(event, editor) => {
+                  const data = editor.getData();
+                  setLocation(data);
+                }}
+              />
+            </Form.Item>
+
+            <Form.Item
+              label="Location Image"
+              name="locationImg"
+              rules={[
+                {
+                  whitespace: true,
+                  message: "The field must be required.",
+                },
+                {
+                  type: "url",
+                  message: "This field must be a valid url.",
+                },
+              ]}
+            >
+              <Input placeholder="Please input location image url..." />
+            </Form.Item>
+
+            <Form.Item
+              label="Image"
+              name="image"
+              rules={[
+                {
+                  whitespace: true,
+                  message: "The field must be required.",
+                },
+                {
+                  type: "url",
+                  message: "This field must be a valid url.",
+                },
+              ]}
+            >
+              <Input placeholder="Please input image url..." />
+            </Form.Item>
+
+            <Form.Item
+              label="Avatar"
+              name="avatar"
+              rules={[
+                {
+                  whitespace: true,
+                  message: "The field must be required.",
+                },
+                {
+                  type: "url",
+                  message: "This field must be a valid url.",
+                },
+              ]}
+            >
+              <Input placeholder="Please input avatar url..." />
             </Form.Item>
 
             <Form.Item>

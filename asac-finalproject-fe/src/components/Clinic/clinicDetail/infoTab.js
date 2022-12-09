@@ -7,7 +7,7 @@ const InfoTab = ({title,content, img = ""}) =>{
                 {title}
             </div>
             <div dangerouslySetInnerHTML={{__html:content}}/>
-            <div>
+            <div style={{textAlign:"center"}}>
                 {img !== "" && <img src={img} alt='clinic-img'/>}
             </div>
         </div>

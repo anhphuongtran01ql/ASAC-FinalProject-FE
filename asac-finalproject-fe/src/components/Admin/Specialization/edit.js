@@ -5,11 +5,12 @@ import { EditOutlined } from "@ant-design/icons";
 import "../user.css";
 import Loading from "../../General/Loading";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import MDEditor from "@uiw/react-md-editor";
 import {
   editASpecialization,
   fetchSpecializationById,
 } from "../../Services/Specialization/specializationService";
+import { CKEditor } from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
 export function EditSpecializationInfo() {
   const { id } = useParams();
@@ -18,7 +19,7 @@ export function EditSpecializationInfo() {
     queryFn: () => fetchSpecializationById(id),
   });
 
-  const [description, setDescription] = useState(data?.descriptionMarkdown);
+  const [description, setDescription] = useState(data?.descriptionHTML);
 
   const queryClient = useQueryClient();
 
@@ -30,21 +31,19 @@ export function EditSpecializationInfo() {
   });
 
   const onEdit = (values) => {
-    let editData = { id, ...values };
+    let editData = { ...values, descriptionHTML: description };
     mutation.mutate(editData, {
       onSuccess: () => {
         notification["success"]({
           message: `Success`,
           description: `Edit successfully!`,
         });
-        console.log("success", values);
       },
       onError: (error) => {
         notification["error"]({
           message: `Edit failed!`,
           description: error.message,
         });
-        console.log("error", error);
       },
     });
   };
@@ -77,24 +76,34 @@ export function EditSpecializationInfo() {
                 <Input />
               </Form.Item>
 
-              <Form.Item
-                label="Description"
-                name="descriptionMarkdown"
-                rules={[
-                  { required: true, message: "Please input your description!" },
-                ]}
-              >
+              <Form.Item label="Description" name="descriptionHTML">
                 <div data-color-mode="light">
-                  <MDEditor
-                    height={300}
-                    value={description}
-                    onChange={setDescription}
-                  />
-                  <MDEditor.Markdown
-                    source={description}
-                    style={{ whiteSpace: "pre-wrap" }}
+                  <CKEditor
+                    editor={ClassicEditor}
+                    data={data.descriptionHTML}
+                    onChange={(event, editor) => {
+                      const data = editor.getData();
+                      setDescription(data);
+                    }}
                   />
                 </div>
+              </Form.Item>
+
+              <Form.Item
+                label="Image"
+                name="image"
+                rules={[
+                  {
+                    whitespace: true,
+                    message: "The field must be required.",
+                  },
+                  {
+                    type: "url",
+                    message: "This field must be a valid url.",
+                  },
+                ]}
+              >
+                <Input placeholder="Please input image url..." />
               </Form.Item>
 
               <Form.Item>
