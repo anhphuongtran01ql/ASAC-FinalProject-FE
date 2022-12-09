@@ -9,7 +9,7 @@ const { confirm } = Modal;
 export default function Logout() {
   // { setAccessToken, setRefreshToken }
   let navigate = useNavigate();
-  let path = `/`;
+  let path = `/login`;
 
   function showConfirm() {
     confirm({
@@ -22,8 +22,6 @@ export default function Logout() {
           setTimeout(() => {
             resolve(
               localStorage.clear(),
-              //   setAccessToken(""),
-              //   setRefreshToken(""),
               navigate(path),
               notification["success"]({
                 message: "Logout successful",

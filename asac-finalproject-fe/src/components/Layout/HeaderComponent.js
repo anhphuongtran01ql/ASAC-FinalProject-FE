@@ -6,6 +6,8 @@ import "./layout.css";
 const { Header } = Layout;
 
 function HeaderComponent() {
+    let user = JSON.parse(localStorage.getItem("userDetails"));
+
   return (
     <>
       <Header
