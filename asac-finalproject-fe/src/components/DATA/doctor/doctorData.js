@@ -18,15 +18,34 @@ const scheduleInfo = {
     address: "<b>Phòng khám Chuyên khoa Da Liễu</b> </br> 207 Phố Huế - Hai Bà Trưng - Hà Nội",
     price: "300 000đ",
 }
+
 const timeData = [
-    "15:30 - 16:00",
-    "15:45 - 16:15",
-    "16:00 - 16:30",
-    "16:15 - 16:45",
-    "16:30 - 17:00",
-    "16:45 - 17:15",
-    "17:00 - 17:30"
+    {
+        time: "15:30 - 16:00",
+        status:0
+    },
+    {
+        time: "15:45 - 16:15",
+        status:0
+    },
+    {
+        time: "16:15 - 16:45",
+        status:0
+    },
+    {
+        time: "16:45 - 17:15",
+        status:0
+    },
+    {
+        time:  "17:15 - 17:45",
+        status:0
+    },
+    {
+        time:  "17:45 - 18:15",
+        status:1
+    }
 ]
+
 const time = [
     {
         content: "15:30 - 16:00"

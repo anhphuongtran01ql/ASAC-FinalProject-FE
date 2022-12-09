@@ -6,8 +6,8 @@ const fetchPosts= async () => {
 }
 
 const createSchedule= async (data) => {
-    await axios.post('http://localhost:3000/patient',data)
-
+   const response = await axios.post('http://localhost:3000/patient',data)
+    return response?.data;
 }
 async function createPost() {
     const response = await axios.post('https://jsonplaceholder.typicode.com/posts')

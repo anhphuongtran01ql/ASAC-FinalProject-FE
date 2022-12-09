@@ -1,6 +1,6 @@
 import React from 'react';
 import {useParams} from 'react-router-dom';
-import {Input, Radio, Layout, InputNumber, Avatar} from 'antd';
+import {Input, Radio, Layout, InputNumber, Avatar, notification} from 'antd';
 import {doctor} from '../DATA/doctor/doctorData';
 
 import {useForm, Controller} from "react-hook-form";
@@ -21,12 +21,18 @@ import {fetchDoctorById} from "../Services/Doctor/doctorService";
 import {useQueryParams} from "../Utils/Utils";
 import Back from "../General/Back";
 import Loading from "../General/Loading";
+import {NOTICE} from "../DATA/Booking/bookingdata";
+import { yupResolver } from '@hookform/resolvers/yup';
+import yup from '../Utils/YupGlobal';
+import bookingSchema from "./validateBooking";
+import { useNavigate } from "react-router-dom";
 
 const {Content} = Layout;
 
 const Booking = () => {
     const {id} = useParams();
     const query = useQueryParams();
+    const navigate = useNavigate();
     const date = JSON.parse(`${localStorage.getItem(`booking_${id}`)}`);
     const {
         data: doctor,
@@ -46,7 +52,9 @@ const Booking = () => {
         reason: '',
         year: '',
     }
-    const {handleSubmit, control, formState: {errors}} = useForm();
+    const {handleSubmit, control, formState: {errors}} = useForm({
+        resolver: yupResolver(bookingSchema)
+    });
     const priceData = {
         price: '300,000'
     }
@@ -66,9 +74,23 @@ const Booking = () => {
             dateBooking: date.scheduleDate,
             timeBooking: query.get("time")
         }
-        mutate({...data, ...additionalData})
+        mutate({...data, ...additionalData},{
+            onSuccess: (data) => {
+                console.log('data',data)
+                notification["success"]({
+                    message: `Success`,
+                    description: `Create successfully!`,
+                });
+                navigate(`/booking-success/${data.id}`);
+            },
+            onError: (error) => {
+                notification["error"]({
+                    message: `Create failed!`,
+                    description: error.message,
+                });
+            },
+        })
     }
-
 
     return (
         <>
@@ -81,17 +103,17 @@ const Booking = () => {
                             padding: 24,
                             margin: 0,
                             maxHeight: '150px',
-                            background:'#eee',
-                            width:'100%'
+                            background: '#eee',
+                            width: '100%'
                         }}
                     >
                         {isDoctorDataLoading ?
                             <Loading/>
                             :
                             <div className="doctor-info">
-                                <Avatar style={{height:'120px',width:"120px"}}
-                                    size={{xs: 24, sm: 32, md: 40, lg: 64, xl: 80, xxl: 100}}
-                                    icon={<img src={doctor.avatar} alt="avatar-doctor"/>}
+                                <Avatar style={{height: '120px', width: "120px"}}
+                                        size={{xs: 24, sm: 32, md: 40, lg: 64, xl: 80, xxl: 100}}
+                                        icon={<img src={doctor.avatar} alt="avatar-doctor"/>}
                                 />
                                 <div>
                                     <div>
@@ -132,7 +154,7 @@ const Booking = () => {
                                        prefix={<UserOutlined/>}/>
                             )}
                         />
-
+                        {errors.name && <p className="error-yup">{errors.name.message}</p>}
 
                         <Controller
                             control={control}
@@ -158,7 +180,7 @@ const Booking = () => {
                                 />
                             )}
                         />
-
+                        {errors.email && <p className="error-yup">{errors.email.message}</p>}
                         <Controller
                             control={control}
                             name="phone"
@@ -168,7 +190,7 @@ const Booking = () => {
                                        prefix={<PhoneOutlined/>}/>
                             )}
                         />
-
+                        {errors.phone && <p className="error-yup">{errors.phone.message}</p>}
                         <Controller
                             control={control}
                             name="year"
@@ -181,6 +203,7 @@ const Booking = () => {
                                              onChange={onChange} prefix={<CalendarOutlined/>}/>
                             )}
                         />
+                        {errors.year && <p className="error-yup">{errors.year.message}</p>}
                         <Controller
                             control={control}
                             name="address"
@@ -195,7 +218,7 @@ const Booking = () => {
                             name="description"
                             defaultValue={defaultValue.reason}
                             render={({field: {onChange, onBlur, value, ref}}) => (
-                                <Input className="input-style" onChange={onChange} value={value} placeholder="Reason"
+                                <Input className="input-style-reason" onChange={onChange} value={value} placeholder="Reason"
                                        prefix={<PlusCircleOutlined/>}/>
                             )}
                         />
@@ -225,7 +248,7 @@ const Booking = () => {
                                 <div style={{color: 'red'}}>{priceData.price} VND</div>
                             </div>
                         </Content>
-                        <div style={{color: '#666'}}>Please fill in the information completely to save time for
+                        <div style={{color: '#666',textAlign:"center"}}>Please fill in the information completely to save time for
                             examination
                             procedures
                         </div>
@@ -236,14 +259,12 @@ const Booking = () => {
                                 borderRadius: '5px',
                                 width: '100%  ',
                                 boxShadow: '0 2px 3px 0 rgb(0 0 0 / 15%)',
-
+                                background:"rgb(238, 238, 238)"
                             }}
                         >
-                                                <div dangerouslySetInnerHTML={{__html: NOTICE}}/>
-
-                        <div >
+                            <div dangerouslySetInnerHTML={{__html: NOTICE}}/>
                         </Content>
-                        <Input type="submit" className="button-confirm-booking"  value="Confirm"/>
+                        <Input type="submit" className="button-confirm-booking" value="Confirm"/>
                         <div>By confirming your booking, you fully agree to our <span style={{color: '#45c3d2'}}>Terms of Service</span>.
                         </div>
                     </div>

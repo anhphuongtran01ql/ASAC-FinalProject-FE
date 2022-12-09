@@ -18,8 +18,7 @@ const ListDoctors = ({doctors}) =>{
                     className="site-layout-background"
                     style={{
                         margin: 0,
-                        // height: '100%',
-                        minHeight:180,
+                        minHeight:290,
                         backgroundColor: '#fff',
                         boxShadow: '0 1px 6px rgb(32 33 36 / 28%)',
                         borderRadius: '8px',
