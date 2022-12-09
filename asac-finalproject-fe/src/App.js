@@ -15,7 +15,7 @@ import React, {Fragment} from "react";
 import ClinicDetail from "./components/Clinic/clinicDetail";
 import Login from "./components/Auth/login";
 import {BookingSuccess} from "./components/Booking/bookingSuccess";
-import ChatbotComponent from "./Chatbot/ChatbotComponent";
+import ChatbotComponent from "./chatbot/ChatbotComponent";
 import NotFoundPage from "./components/Auth/notFound";
 import ListOfDoctors from "./components/Admin/Doctor/listDoctors";
 import {PrivateRoute} from "./routes/privateRoute";
