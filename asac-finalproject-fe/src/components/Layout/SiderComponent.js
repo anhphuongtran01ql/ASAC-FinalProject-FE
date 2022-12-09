@@ -21,6 +21,7 @@ function SiderComponent() {
       <Sider breakpoint="lg" className="sider-layout">
         <div className="logo" />
         <Menu
+          className="menu-layout"
           theme="dark"
           mode="vertical"
           defaultSelectedKeys={["/"]}

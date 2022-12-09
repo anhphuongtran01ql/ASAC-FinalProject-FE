@@ -14,7 +14,7 @@
 
 .ant-table-thead>tr>th {
     color: white !important;
-    background: #001529 !important;
+    background: #45c3d2 !important;
     justify-content: center !important;
 }
 
@@ -185,5 +185,9 @@ li.ant-list-item.list-item-schedule {
         font-size: 15px;
         padding-top: 22px;
         font-weight: bold;
+    }
+
+    button.ant-btn.ant-btn-link.button-edit {
+        padding-right: 20px;
     }
 }

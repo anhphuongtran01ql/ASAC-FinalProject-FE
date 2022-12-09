@@ -1,22 +1,22 @@
-import {Layout} from "antd";
+import { Layout } from "antd";
 import HeaderComponent from "./HeaderComponent";
 import SiderComponent from "./SiderComponent";
 import ContentComponent from "./ContentComponent";
-import FooterComponent from "./FooterComponent";
+import FooterManage from "./Footer";
 
-const AdminLayout = () =>{
-    return (
+const AdminLayout = () => {
+  return (
+    <Layout>
+      <HeaderComponent />
+      <Layout>
+        <SiderComponent />
         <Layout>
-            <HeaderComponent />
-            <Layout>
-                <SiderComponent />
-                <Layout>
-                    <ContentComponent />
-                    <FooterComponent />
-                </Layout>
-            </Layout>
+          <ContentComponent />
+          <FooterManage />
         </Layout>
-    )
-}
+      </Layout>
+    </Layout>
+  );
+};
 
 export default AdminLayout;
