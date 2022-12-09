@@ -72,6 +72,7 @@ const Booking = () => {
         const additionalData = {
             doctorId: id,
             dateBooking: date.scheduleDate,
+            clinicAddress: date?.clinicAddress,
             timeBooking: query.get("time")
         }
         mutate({...data, ...additionalData},{

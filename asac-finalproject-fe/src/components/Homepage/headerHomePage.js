@@ -1,13 +1,14 @@
 import {DATA} from "../DATA/home/HomeConstant";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {QuestionCircleOutlined} from "@ant-design/icons";
 import React from "react";
 
 const HeaderHomePage = () => {
+    const navigate = useNavigate();
     return (<header className="header-homepage">
         <div className="container-home header">
             <div className="logo">
-                <img src='https://bookingcare.vn/assets/icon/bookingcare-2020.svg' alt="BookingCare/"/>
+               <img onClick={() => navigate("/") } src='https://bookingcare.vn/assets/icon/bookingcare-2020.svg' alt="BookingCare/"/>
             </div>
 
             <div className="menu">
