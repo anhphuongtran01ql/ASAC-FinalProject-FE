@@ -1,18 +1,13 @@
 import "../Doctor/doctor.css";
 
-import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import React from "react";
+import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import Loading from "../General/Loading";
 import Back from "../General/Back";
-import { Divider, Tabs, Avatar } from "antd";
+import { Tabs, Avatar } from "antd";
 import { fetchClinicById } from "../Services/Clinic/clinicService";
 import InfoTab from "./clinicDetail/infoTab";
-import {
-  EQUIPMENT,
-  INTRODUCE,
-  INTRODUCEIMG,
-} from "../DATA/clinic/clinicDetail";
 import BookAppointment from "./clinicDetail/bookAppointment";
 import { EnvironmentOutlined } from "@ant-design/icons";
 

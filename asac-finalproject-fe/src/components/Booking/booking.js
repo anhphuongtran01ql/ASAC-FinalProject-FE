@@ -76,7 +76,6 @@ const Booking = () => {
         }
         mutate({...data, ...additionalData},{
             onSuccess: (data) => {
-                console.log('data',data)
                 notification["success"]({
                     message: `Success`,
                     description: `Create successfully!`,

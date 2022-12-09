@@ -56,6 +56,19 @@ const getPatientFeedback = async (id) => {
   return data;
 };
 
+const editComment = async (commentId, data) => {
+  await axios.put(
+    `http://localhost:3000/appointments/comments/${commentId}`,
+    data,
+    authHeader()
+  );
+};
+
+const fetchCommentById = async (id) => {
+  const { data } = await axios.get(`http://localhost:3000/comments/${id}`, authHeader());
+  return data;
+};
+
 export {
   fetchAllDoctors,
   fetchDoctors,
@@ -66,4 +79,6 @@ export {
   deleteUser,
   createPatientFeedback,
   getPatientFeedback,
+  editComment,
+  fetchCommentById,
 };

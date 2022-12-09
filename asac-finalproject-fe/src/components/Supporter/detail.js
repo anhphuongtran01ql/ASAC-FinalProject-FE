@@ -6,7 +6,6 @@ import "../Admin/user.css";
 import Loading from "../../components/General/Loading";
 import { useQuery } from "@tanstack/react-query";
 import { fetchPatientById } from "../Services/Supporter/patientService";
-import { getPatientFeedback } from "../Services/Doctor/doctorService";
 
 export function PatientInfo() {
   const { id } = useParams();
@@ -15,18 +14,9 @@ export function PatientInfo() {
     queryFn: () => fetchPatientById(id),
   });
 
-  const {
-    data: comments,
-    isCommentLoading,
-    isCommentFetching,
-  } = useQuery({
-    queryKey: ["comments"],
-    queryFn: () => getPatientFeedback(data.doctorId),
-  });
-  console.log("comments", comments);
   return (
     <>
-      {isLoading || isCommentLoading || isFetching || isCommentFetching ? (
+      {isLoading || isFetching ? (
         <Loading />
       ) : (
         <div className="info-container">
@@ -81,16 +71,6 @@ export function PatientInfo() {
                 <p>
                   <b>Description: </b>
                   {data.description}
-                </p>
-                <p>
-                  <b>Feedback: </b>
-                  {comments ? (
-                    comments.map((item) => {
-                      return <p>{item.content}</p>;
-                    })
-                  ) : (
-                    <p>Have no comment!</p>
-                  )}
                 </p>
               </div>
             </div>
