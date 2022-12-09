@@ -39,16 +39,21 @@ function ListOfSpecializations() {
       {isLoading || isFetching ? (
         <Loading />
       ) : (
-        <Table dataSource={data} bordered="true">
+        <Table
+          dataSource={data}
+          bordered="true"
+          scroll={{ x: 300 }}
+          rowKey="doctorId"
+        >
           <Column title="Name" dataIndex="name" key="name" />
           <Column
             title="Action"
             key="action"
             render={(record) => (
               <div key="button-group" className="button-group">
-                <SpecializationsDetailInfo specializationId={record.id} key={`specialization-${record.id}`} />
-                <EditSpecialization specializationId={record.id} key={`edit-specialization-${record.id}`} />
-                <DeleteASpecialization specializationId={record.id} key={`delete-specialization-${record.id}`} />
+                <SpecializationsDetailInfo specializationId={record.id} />
+                <EditSpecialization specializationId={record.id} />
+                <DeleteASpecialization specializationId={record.id} />
               </div>
             )}
           />

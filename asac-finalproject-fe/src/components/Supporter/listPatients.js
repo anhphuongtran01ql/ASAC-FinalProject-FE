@@ -24,7 +24,12 @@ function ListOfPatients() {
       {isLoading || isFetching ? (
         <Loading />
       ) : (
-        <Table dataSource={data} bordered="true">
+        <Table
+          dataSource={data}
+          bordered="true"
+          scroll={{ x: 300 }}
+          rowKey="appointmentId"
+        >
           <Column title="Email" dataIndex="email" key="email" />
           <Column title="Doctor" dataIndex="doctorName" key="doctorName" />
           <Column title="Status" dataIndex="statusName" key="statusName" />

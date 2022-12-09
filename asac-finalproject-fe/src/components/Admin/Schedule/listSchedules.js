@@ -38,6 +38,8 @@ function ListOfSchedules() {
         <Loading />
       ) : (
         <List
+          scroll={{ x: 300 }}
+          rowKey="doctorId"
           bordered
           className="list-schedules"
           itemLayout="horizontal"

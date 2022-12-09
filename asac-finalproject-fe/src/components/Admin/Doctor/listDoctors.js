@@ -55,7 +55,7 @@ function ListOfDoctors() {
       ) : (
         <>
           <List
-            bordered
+            rowKey="supporterId"
             className="list-supporter-container"
             header={
               <h2 className="list-supporters-header">List Of Supporters</h2>
@@ -69,10 +69,10 @@ function ListOfDoctors() {
               >
                 <List.Item.Meta
                   title={
-                    <h1>
+                    <>
                       <Typography.Text mark>[SUPPORTER]</Typography.Text>{" "}
                       {item.name}
-                    </h1>
+                    </>
                   }
                   description={
                     <>
@@ -90,7 +90,8 @@ function ListOfDoctors() {
             <Table
               className="list-doctor-table"
               dataSource={data}
-              bordered="true"
+              scroll={{ x: 300 }}
+              rowKey="doctorId"
             >
               <Column title="Name" dataIndex="name" key="name" />
               <Column title="Email" dataIndex="email" key="email" />

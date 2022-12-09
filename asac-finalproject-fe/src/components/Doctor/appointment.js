@@ -22,7 +22,12 @@ function ListOfPatientsSuccess() {
       {isLoading || isFetching ? (
         <Loading />
       ) : (
-        <Table dataSource={data} bordered="true">
+        <Table
+          dataSource={data}
+          bordered="true"
+          scroll={{ x: 300 }}
+          rowKey="patientId"
+        >
           <Column title="Email" dataIndex="email" key="email" />
           <Column
             title="Date Booking"
