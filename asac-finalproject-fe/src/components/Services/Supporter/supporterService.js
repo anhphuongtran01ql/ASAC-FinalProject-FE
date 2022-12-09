@@ -1,4 +1,5 @@
 import axios from "axios";
+import { authHeader } from "../../../Helper/authHeader";
 
 const fetchAllSupporters = async () => {
   const { data } = await axios.get(`http://localhost:3000/supporters`);
@@ -16,7 +17,8 @@ const fetchSupporters = async (name = "") => {
 const updateStatusPatient = async (data) => {
   await axios.post(
     `http://localhost:3000/supporters/update-status-patient`,
-    data
+    data,
+    authHeader()
   );
 };
 

@@ -75,7 +75,7 @@ body {
     margin: 0 auto;
 }
 
-.menu > div > a:first-child {
+.menu>div>a:first-child {
     font-size: 0.8rem;
     font-weight: bold;
     color: #45c3d2;
@@ -88,7 +88,7 @@ body {
     opacity: 0.5;
 }
 
-.logo > img {
+.logo>img {
     padding-top: 5px;
     height: 40px;
 }
@@ -102,14 +102,14 @@ body {
     color: #969495;
 }
 
-.support > span {
+.support>span {
     color: #45c3d2;
     margin-right: 5px;
 }
 
 .banner {
-    background: url('https://bookingcare.vn/assets/anh/bookingcare-cover-4.jpg');
-    height: 90vh;
+    background: url('https://patientengagementhit.com/images/site/article_headers/_normal/2017-healthcare-image-it.jpg');
+    height: 60vh;
     position: relative;
 }
 
@@ -155,12 +155,12 @@ body {
     margin-bottom: 5px;
 }
 
-.select-item > div > img {
+.select-item>div>img {
     width: 100%;
     object-fit: cover;
 }
 
-.remote-title > div:first-child {
+.remote-title>div:first-child {
     font-size: 24px;
     font-weight: bold;
     padding: 15px 0px 5px 0px;
@@ -212,3 +212,26 @@ body {
     background-color: #eee;
 }
 
+/* header-logo */
+img.homepage-logo {
+    width: 50px;
+    height: 50px;
+    padding: 0px;
+}
+
+p.homepage-paragraph {
+    margin: 0px;
+    padding-left: 5px;
+    font-weight: bold;
+    color: rgb(69, 195, 210);
+}
+
+.ant-row.homepage-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+a.link-about-us {
+    color: rgb(69, 195, 210);
+}
