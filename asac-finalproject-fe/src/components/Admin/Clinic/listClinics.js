@@ -39,7 +39,12 @@ function ListOfClinics() {
       {isLoading || isFetching ? (
         <Loading />
       ) : (
-        <Table dataSource={data} bordered="true">
+        <Table
+          dataSource={data}
+          bordered="true"
+          scroll={{ x: 300 }}
+          rowKey="clinicId"
+        >
           <Column title="Name" dataIndex="name" key="name" />
           <Column title="Phone" dataIndex="phone" key="phone" />
           <Column

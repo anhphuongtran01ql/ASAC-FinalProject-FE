@@ -29,7 +29,6 @@ export function CreateClinicInfo() {
       equipmentHTML: equipment,
       locationHTML: location,
     };
-    console.log("data", data);
     mutation.mutate(data, {
       onSuccess: () => {
         notification["success"]({

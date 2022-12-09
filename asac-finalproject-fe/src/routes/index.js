@@ -14,6 +14,9 @@ import HomepageComponent from "../components/Layout/HomepageComponent";
 import ListOfSchedules from "../components/Admin/Schedule/listSchedules";
 import { CreateScheduleInfo } from "../components/Admin/Schedule/create";
 import { EditScheduleInfo } from "../components/Admin/Schedule/edit";
+import ListOfPatients from "../components/Supporter/listPatients";
+import { PatientInfo } from "../components/Supporter/detail";
+import ListOfPatientsSuccess from "../components/Doctor/appointment";
 import {PrivateRoute} from "./privateRoute";
 
 function RouteComponent() {
@@ -22,9 +25,9 @@ function RouteComponent() {
     <>
       <Routes>
         <Route exact path='/' element={<PrivateRoute/>}>
-          <Route path="/admin" element={<HomepageComponent />} />
-          <Route path="/admin/list-doctors" element={<ListOfDoctors />} />
-          <Route path="/admin/list-doctors/:id" element={<DoctorInfo />} />
+        <Route path="/admin" element={<HomepageComponent />} />
+        <Route path="/admin/list-users" element={<ListOfDoctors />} />
+        <Route path="/admin/list-doctors/:id" element={<DoctorInfo />} />
 
           <Route
               path="/admin/list-specializations"
@@ -48,12 +51,20 @@ function RouteComponent() {
           <Route path="/admin/clinic" element={<CreateClinicInfo />} />
           <Route path="/admin/clinic/:id" element={<EditClinicInfo />} />
 
-          <Route path="/admin/list-schedules" element={<ListOfSchedules />} />
-          <Route path="/admin/schedule" element={<CreateScheduleInfo />} />
-          <Route
-              path="/admin/schedule/:id"
-              element={<EditScheduleInfo />}
-          />
+        <Route path="/admin/list-schedules" element={<ListOfSchedules />} />
+        <Route path="/admin/schedule" element={<CreateScheduleInfo />} />
+        <Route path="/admin/schedule/:id" element={<EditScheduleInfo />} />
+
+        <Route
+          path="/supporter/list-patients"
+          element={<ListOfPatients />}
+        ></Route>
+        <Route path="/list-patients/:id" element={<PatientInfo />}></Route>
+
+        <Route
+          path="/doctor/list-patients"
+          element={<ListOfPatientsSuccess />}
+        ></Route>
         </Route>
       </Routes>
     </>

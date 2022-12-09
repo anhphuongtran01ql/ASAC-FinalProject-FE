@@ -13,6 +13,9 @@ function DeleteADoctor({ doctorId }) {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["doctors"] });
     },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["supporters"] });
+    },
   });
 
   function showConfirm() {

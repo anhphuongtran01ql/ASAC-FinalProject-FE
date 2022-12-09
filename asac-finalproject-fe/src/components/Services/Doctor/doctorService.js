@@ -31,12 +31,23 @@ const createUser = async (data) => {
   await axios.post(`http://localhost:3000/user`, data);
 };
 
-const editUser = async (doctorId, data) => {  
+const editUser = async (doctorId, data) => {
   await axios.put(`http://localhost:3000/users/${doctorId}`, data);
 };
 
 const deleteUser = async (id) => {
   await axios.delete(`http://localhost:3000/users/${id}`);
+};
+
+const createPatientFeedback = async (data) => {
+  await axios.post(`http://localhost:3000/comment`, data);
+};
+
+const getPatientFeedback = async (id) => {
+  const { data } = await axios.get(
+    `http://localhost:3000/doctor/${id}/comments`
+  );
+  return data;
 };
 
 export {
@@ -47,4 +58,6 @@ export {
   createUser,
   editUser,
   deleteUser,
+  createPatientFeedback,
+  getPatientFeedback,
 };
