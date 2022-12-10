@@ -10,9 +10,10 @@ import FeedbackPatient from "./feedback";
 const { Column } = Table;
 
 function ListOfPatientsSuccess() {
+  let user = JSON.parse(localStorage.getItem("userDetails"));
   const { data, isLoading, isFetching } = useQuery({
     queryKey: ["patients"],
-    queryFn: () => fetchPatientsSuccessByDoctorId(51),
+    queryFn: () => fetchPatientsSuccessByDoctorId(user.id),
   });
   return (
     <>
@@ -45,7 +46,17 @@ function ListOfPatientsSuccess() {
             render={(record) => (
               <div className="button-group">
                 <PatientDetailInfo patientId={record.id} />
-                <FeedbackPatient patientId={record.id} />
+                {record.statusId !== 4 ? (
+                  <FeedbackPatient commentId={record.commentId} />
+                ) : (
+                  <>
+                    <FeedbackPatient commentId={record.commentId} />
+                    <p style={{ margin: 0, color: "red", fontSize: "14px" }}>
+                      Done
+                    </p>
+                  </>
+                )}
+                {/* <FeedbackPatient commentId={record.commentId} /> */}
               </div>
             )}
           />

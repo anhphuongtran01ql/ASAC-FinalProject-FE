@@ -61,11 +61,8 @@ export function CreateClinicInfo() {
               name="name"
               rules={[
                 {
-                  whitespace: true,
-                  message: "The field must be required.",
-                },
-                {
                   required: true,
+                  whitespace: true,
                   message: "Please input clinic's name!",
                 },
               ]}
@@ -77,12 +74,9 @@ export function CreateClinicInfo() {
               name="phone"
               rules={[
                 {
-                  whitespace: true,
-                  message: "The field must be required.",
-                },
-                {
                   required: true,
-                  message: "Please input clinic's phone number!",
+                  whitespace: true,
+                  message: "Please input clinic's name!",
                 },
               ]}
             >
@@ -93,12 +87,9 @@ export function CreateClinicInfo() {
               name="address"
               rules={[
                 {
-                  whitespace: true,
-                  message: "The field must be required.",
-                },
-                {
                   required: true,
-                  message: "Please input clinic's address!",
+                  whitespace: true,
+                  message: "Please input clinic's name!",
                 },
               ]}
             >
@@ -110,12 +101,9 @@ export function CreateClinicInfo() {
               name="description"
               rules={[
                 {
-                  whitespace: true,
-                  message: "The field must be required.",
-                },
-                {
                   required: true,
-                  message: "Please input clinic's description!",
+                  whitespace: true,
+                  message: "Please input clinic's name!",
                 },
               ]}
             >
@@ -149,6 +137,7 @@ export function CreateClinicInfo() {
               name="equipmentImg"
               rules={[
                 {
+                  required: true,
                   whitespace: true,
                   message: "The field must be required.",
                 },
@@ -177,6 +166,7 @@ export function CreateClinicInfo() {
               name="locationImg"
               rules={[
                 {
+                  required: true,
                   whitespace: true,
                   message: "The field must be required.",
                 },
@@ -194,6 +184,7 @@ export function CreateClinicInfo() {
               name="image"
               rules={[
                 {
+                  required: true,
                   whitespace: true,
                   message: "The field must be required.",
                 },
@@ -211,6 +202,7 @@ export function CreateClinicInfo() {
               name="avatar"
               rules={[
                 {
+                  required: true,
                   whitespace: true,
                   message: "The field must be required.",
                 },

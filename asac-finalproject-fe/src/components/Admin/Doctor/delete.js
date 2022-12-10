@@ -12,8 +12,6 @@ function DeleteADoctor({ doctorId }) {
     mutationFn: deleteUser,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["doctors"] });
-    },
-    onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["supporters"] });
     },
   });

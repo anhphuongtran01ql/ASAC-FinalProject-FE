@@ -14,7 +14,6 @@ function ListOfPatients() {
     queryKey: ["patients"],
     queryFn: () => fetchAllPatients(),
   });
-  console.log("data", data);
 
   return (
     <>

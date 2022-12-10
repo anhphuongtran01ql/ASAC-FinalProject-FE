@@ -2,6 +2,7 @@ import { Row, Avatar, Image } from "antd";
 import React from "react";
 
 function HomepageComponent() {
+  let user = JSON.parse(localStorage.getItem("userDetails"));
   return (
     <>
       <div className="homepage-container">
@@ -11,7 +12,7 @@ function HomepageComponent() {
               style={{ width: 200, height: 200 }}
               src={
                 <Image
-                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKQjHBxsISedmv1EQpRfgK71NjXMCMkfcBWZD6ntv095Cg2TsMN6Nvsku_csZc5rgP7Nk&usqp=CAU"
+                  src={user.avatar}
                   style={{
                     width: 200,
                     height: 200,
@@ -21,11 +22,33 @@ function HomepageComponent() {
             />
           </Row>
           <Row className="homepage-text">
-            Hello <b style={{ paddingLeft: "10px" }}>Name</b>
+            Hello <b style={{ paddingLeft: "10px" }}>{user.name}</b>
           </Row>
           <Row className="homepage-text-detail">
             Welcome to the ASAC web application
           </Row>
+          {user.roleId === 1 ? (
+            <>
+              <Row className="homepage-text-detail">
+                You log in with role
+                <b style={{ paddingLeft: "10px" }}>Admin</b>
+              </Row>
+            </>
+          ) : user.roleId === 2 ? (
+            <>
+              <Row className="homepage-text-detail">
+                You log in with role
+                <b style={{ paddingLeft: "10px" }}>Supporter</b>
+              </Row>
+            </>
+          ) : (
+            <>
+              <Row className="homepage-text-detail">
+                You log in with role
+                <b style={{ paddingLeft: "10px" }}>Doctor</b>
+              </Row>
+            </>
+          )}
         </div>
       </div>
     </>

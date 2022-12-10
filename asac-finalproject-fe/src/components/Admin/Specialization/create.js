@@ -81,6 +81,7 @@ export function CreateSpecializationInfo() {
               name="image"
               rules={[
                 {
+                  required: true,
                   whitespace: true,
                   message: "The field must be required.",
                 },

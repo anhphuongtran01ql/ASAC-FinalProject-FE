@@ -78,6 +78,7 @@ export function EditClinicInfo() {
                 rules={[
                   {
                     required: true,
+                    whitespace: true,
                     message: "Please input clinic's name!",
                   },
                 ]}
@@ -90,6 +91,7 @@ export function EditClinicInfo() {
                 rules={[
                   {
                     required: true,
+                    whitespace: true,
                     message: "Please input clinic's phone number!",
                   },
                 ]}
@@ -102,6 +104,7 @@ export function EditClinicInfo() {
                 rules={[
                   {
                     required: true,
+                    whitespace: true,
                     message: "Please input clinic's address!",
                   },
                 ]}
@@ -115,6 +118,7 @@ export function EditClinicInfo() {
                 rules={[
                   {
                     required: true,
+                    whitespace: true,
                     message: "Please input clinic's description!",
                   },
                 ]}
@@ -151,6 +155,7 @@ export function EditClinicInfo() {
                 name="equipmentImg"
                 rules={[
                   {
+                    required: true,
                     whitespace: true,
                     message: "The field must be required.",
                   },
@@ -179,6 +184,7 @@ export function EditClinicInfo() {
                 name="locationImg"
                 rules={[
                   {
+                    required: true,
                     whitespace: true,
                     message: "The field must be required.",
                   },
@@ -196,6 +202,7 @@ export function EditClinicInfo() {
                 name="image"
                 rules={[
                   {
+                    required: true,
                     whitespace: true,
                     message: "The field must be required.",
                   },
@@ -213,6 +220,7 @@ export function EditClinicInfo() {
                 name="avatar"
                 rules={[
                   {
+                    required: true,
                     whitespace: true,
                     message: "The field must be required.",
                   },

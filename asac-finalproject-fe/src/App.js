@@ -1,6 +1,5 @@
 import "./App.css";
 import {Route, Navigate, Routes} from "react-router-dom";
-// import {Routes} from "react-router";
 import {createBrowserHistory} from "history";
 
 import HomePage from "./components/Homepage/homepage";
@@ -11,7 +10,7 @@ import Booking from "./components/Booking/booking";
 import Clinic from "./components/Clinic/cliinic";
 import Specialization from "./components/Specialization/specialization";
 import SpecializationDetail from "./components/Specialization/specializationDetail";
-import React, {Fragment} from "react";
+import React, { Fragment } from "react";
 import ClinicDetail from "./components/Clinic/clinicDetail";
 import Login from "./components/Auth/login";
 import {BookingSuccess} from "./components/Booking/bookingSuccess";
@@ -35,26 +34,29 @@ import {EditScheduleInfo} from "./components/Admin/Schedule/edit";
 import ListOfPatients from "./components/Supporter/listPatients";
 import {PatientInfo} from "./components/Supporter/detail";
 import ListOfPatientsSuccess from "./components/Doctor/appointment";
+import AboutUs from "./components/Layout/AboutUs";
+import ClientLayout from "./components/ClientLayout/ClientLayout";
 
 function App() {
     const history = createBrowserHistory();
     return (
         <>
             <Routes>
-                <Route path="/" element={<HomePage/>}/>
-                <Route path="/specializations" element={<Specialization/>}/>
-                <Route path="/specializations/:id" element={<SpecializationDetail/>}/>
-                <Route path="/doctors" element={<Doctor/>}/>
-                <Route path="/doctors/:id" element={<DoctorDetail/>}/>
-                <Route path="/bookings/:id" element={<Booking/>}/>
-                <Route path="/clinics" element={<Clinic/>}/>
-                <Route path="/clinics/:id" element={<ClinicDetail/>}/>
-                <Route path="/specializations" element={<Specialization/>}/>
-                <Route path="/specializations/:id" element={<SpecializationDetail/>}/>
-                <Route path="/booking/:id" element={<Booking/>}/>
-                <Route path="/booking-success/:id" element={<BookingSuccess/>}/>
+                <Route path="/" element={<ClientLayout/>}>
+                    <Route path="" element={<HomePage/>}/>
+                    <Route path="doctors" element={<Doctor/>}/>
+                    <Route path="doctors/:id" element={<DoctorDetail/>}/>
+                    <Route path="bookings/:id" element={<Booking/>}/>
+                    <Route path="clinics" element={<Clinic/>}/>
+                    <Route path="clinics/:id" element={<ClinicDetail/>}/>
+                    <Route path="specializations" element={<Specialization/>}/>
+                    <Route path="specializations/:id" element={<SpecializationDetail/>}/>
+                    <Route path="booking/:id" element={<Booking/>}/>
+                    <Route path="booking-success/:id" element={<BookingSuccess/>}/>
+                </Route>
+
                 <Route path="/login" element={<Login/>}/>
-                {/*<Route path="/*" element={<AdminLayout/>}/>*/}
+                <Route path="/aboutUs" element={<AboutUs />} />
 
                 <Route exact path="/" element={<PrivateRoute/>}>
                     <Route path="/admin" element={<AdminLayout/>}>
@@ -104,6 +106,8 @@ function App() {
                           path="list-patients"
                           element={<ListOfPatientsSuccess />}
                         ></Route>
+
+                        <Route path="list-patients/:id" element={<PatientInfo />}></Route>
                     </Route>
                 </Route>
                 <Route path="*" element={<NotFoundPage/>}/>

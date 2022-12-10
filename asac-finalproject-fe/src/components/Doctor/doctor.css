@@ -54,7 +54,7 @@
     width: calc(25% - 5px);
 }
 
-.link > Button {
+.link>Button {
     width: 100%;
 }
 
@@ -63,7 +63,7 @@
     font-size: 14px;
 }
 
-.address-title > span {
+.address-title>span {
     font-weight: normal;
     font-size: 14px;
 }
@@ -213,14 +213,14 @@
 }
 
 .clinic-img {
-    height : 500px;
-    margin : 0 auto;
+    height: 500px;
+    margin: 0 auto;
 }
 
-.justify-content-center{
+.justify-content-center {
     justify-content: center;
 }
-.padding-bottom-footer{
+
+.padding-bottom-footer {
     padding-bottom: 30px;
 }
-

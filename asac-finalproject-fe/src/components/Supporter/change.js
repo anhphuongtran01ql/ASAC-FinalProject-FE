@@ -5,12 +5,10 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 import { fetchPatientById } from "../Services/Supporter/patientService";
 import Loading from "../General/Loading";
-// import { statusData } from "../DATA/general/generalData";
 import { updateStatusPatient } from "../Services/Supporter/supporterService";
 
 const ChangeStatusForm = ({ visible, onEdit, onCancel, data }) => {
   const [form] = Form.useForm();
-  console.log("data", data);
 
   return (
     <Modal
@@ -27,16 +25,7 @@ const ChangeStatusForm = ({ visible, onEdit, onCancel, data }) => {
         });
       }}
     >
-      <Form
-        // initialValues={{
-        //   statusId: statusData.find((item) => {
-        //     return item.id === data.statusId;
-        //   })?.name,
-        // }}
-        form={form}
-        layout="vertical"
-        name="form_in_modal"
-      >
+      <Form form={form} layout="vertical" name="form_in_modal">
         <Form.Item
           name="statusId"
           label="Status"
@@ -62,6 +51,7 @@ const ChangeStatusForm = ({ visible, onEdit, onCancel, data }) => {
 };
 
 function ChangeStatusPatients({ patientId }) {
+  let user = JSON.parse(localStorage.getItem("userDetails"));
   const [openModal, setOpenModal] = useState(false);
 
   const { data, isLoading, isFetching } = useQuery({
@@ -79,7 +69,7 @@ function ChangeStatusPatients({ patientId }) {
   });
 
   const onEdit = (values) => {
-    const data = { ...values, userId: 4, patientId: patientId };
+    const data = { ...values, userId: user.id, patientId: patientId };
     mutation.mutate(data, {
       onSuccess: () => {
         notification["success"]({

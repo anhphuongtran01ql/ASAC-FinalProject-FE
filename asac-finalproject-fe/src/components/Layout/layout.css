@@ -5,15 +5,23 @@
     height: 70px;
 }
 
-.header-logo {
-    width: 50px;
-    margin-left: 10px;
+.ant-row.row-text-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+p.header-text {
+    margin: 0 0 0 10px;
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
 }
 
 /* css for content component */
 .content-layout {
     padding: 25px 20px 5px;
-    /*min-height: 100vh;*/
+    min-height: 100vh;
     height: calc(100vh - 140px);
     padding-bottom: 80px;
     overflow-y: scroll;
@@ -198,5 +206,11 @@ ul.ant-menu.ant-menu-root.ant-menu-vertical.ant-menu-dark.menu-layout {
     .ant-row.homepage-text-detail {
         font-size: 12px;
         padding-top: 10px
+    }
+
+    p.header-text {
+        margin: 0 0 0 10px;
+        font-size: 15px;
+        font-weight: bold;
     }
 }

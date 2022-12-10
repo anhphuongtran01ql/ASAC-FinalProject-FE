@@ -1,4 +1,5 @@
 import axios from "axios";
+import { authHeader } from "../../../Helper/authHeader";
 
 const fetchClinics = async (name = "") => {
   let url = "http://localhost:3000/clinics";
@@ -20,15 +21,19 @@ const fetchClinicById = async (id) => {
 };
 
 const createAClinic = async (data) => {
-  await axios.post(`http://localhost:3000/clinic`, data);
+  await axios.post(`http://localhost:3000/clinic`, data, authHeader());
 };
 
 const editAClinic = async (clinicId, data) => {
-  await axios.put(`http://localhost:3000/clinics/${clinicId}`, data);
+  await axios.put(
+    `http://localhost:3000/clinics/${clinicId}`,
+    data,
+    authHeader()
+  );
 };
 
 const deleteAClinic = async (id) => {
-  await axios.delete(`http://localhost:3000/clinics/${id}`);
+  await axios.delete(`http://localhost:3000/clinics/${id}`, authHeader());
 };
 
 export {
