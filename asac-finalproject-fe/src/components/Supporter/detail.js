@@ -84,7 +84,7 @@ export function PatientInfo() {
 function PatientDetailInfo({ patientId }) {
   return (
     <>
-      <Link to={`/list-patients/${patientId}`}>
+      <Link to={`${patientId}`}>
         <Button
           className="button-detail"
           type="link"

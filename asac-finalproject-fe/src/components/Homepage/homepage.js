@@ -14,7 +14,6 @@ import Loading from "../General/Loading";
 import { fetchClinics } from "../Services/Clinic/clinicService";
 import { fetchDoctors } from "../Services/Doctor/doctorService";
 import { Link, useNavigate } from "react-router-dom";
-import ChatbotComponent from "../../Chatbot/ChatbotComponent";
 import FooterComponent from "../Layout/FooterComponent";
 
 const HomePage = () => {
@@ -43,7 +42,6 @@ const HomePage = () => {
   return (
     <>
       <div>
-        <ChatbotComponent />
         <HeaderHomePage />
         <div className="banner"></div>
 

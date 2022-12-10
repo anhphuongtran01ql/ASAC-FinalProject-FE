@@ -57,17 +57,6 @@ const DoctorDetail = () => {
                 <Loading/>
                 :
                 <div className="container-doctor-detail">
-                    <Breadcrumb>
-                        <Breadcrumb.Item href="/">
-                            <HomeOutlined/>
-                        </Breadcrumb.Item>
-                        <Breadcrumb.Item href="/specializations">
-                            <span>Specialist examination</span>
-                        </Breadcrumb.Item>
-                        <Breadcrumb.Item href={`/specializations/${doctor.specializationId}`}>
-                            {doctor.specializationName}
-                        </Breadcrumb.Item>
-                    </Breadcrumb>
                     <div className="content-container">
                         <div className="avatar-container">
                             <Avatar

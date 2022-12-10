@@ -4,7 +4,7 @@ import "../Homepage/home.css";
 
 import { Collapse } from "antd";
 import HeaderHomePage from "../Homepage/headerHomePage";
-import ChatbotComponent from "../../Chatbot/ChatbotComponent";
+import ChatbotComponent from "../../chatbot/ChatbotComponent";
 import FooterComponent from "../Layout/FooterComponent";
 
 const { Panel } = Collapse;

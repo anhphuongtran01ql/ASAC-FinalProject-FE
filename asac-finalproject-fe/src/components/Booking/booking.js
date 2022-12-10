@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {useParams} from 'react-router-dom';
 import {Input, Radio, Layout, InputNumber, Avatar, notification} from 'antd';
 import {doctor} from '../DATA/doctor/doctorData';
@@ -26,6 +26,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import yup from '../Utils/YupGlobal';
 import bookingSchema from "./validateBooking";
 import { useNavigate } from "react-router-dom";
+import NotFoundPage from "../Auth/notFound";
 
 const {Content} = Layout;
 
@@ -34,6 +35,7 @@ const Booking = () => {
     const query = useQueryParams();
     const navigate = useNavigate();
     const date = JSON.parse(`${localStorage.getItem(`booking_${id}`)}`);
+
     const {
         data: doctor,
         isLoading: isDoctorDataLoading,
@@ -95,181 +97,183 @@ const Booking = () => {
     return (
         <>
             <Back title="Booking"/>
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <div className="container-booking-detail white-background">
-                    <Content
-                        className="site-layout-background"
-                        style={{
-                            padding: 24,
-                            margin: 0,
-                            maxHeight: '150px',
-                            background: '#eee',
-                            width: '100%'
-                        }}
-                    >
-                        {isDoctorDataLoading ?
-                            <Loading/>
-                            :
-                            <div className="doctor-info">
-                                <Avatar style={{height: '120px', width: "120px"}}
-                                        size={{xs: 24, sm: 32, md: 40, lg: 64, xl: 80, xxl: 100}}
-                                        icon={<img src={doctor.avatar} alt="avatar-doctor"/>}
-                                />
-                                <div>
+            { query.get("time") ? <form onSubmit={handleSubmit(onSubmit)}>
+                    <div className="container-booking-detail white-background">
+                        <Content
+                            className="site-layout-background"
+                            style={{
+                                padding: 24,
+                                margin: 0,
+                                maxHeight: '150px',
+                                background: '#eee',
+                                width: '100%'
+                            }}
+                        >
+                            {isDoctorDataLoading ?
+                                <Loading/>
+                                :
+                                <div className="doctor-info">
+                                    <Avatar style={{height: '120px', width: "120px"}}
+                                            size={{xs: 24, sm: 32, md: 40, lg: 64, xl: 80, xxl: 100}}
+                                            icon={<img src={doctor.avatar} alt="avatar-doctor"/>}
+                                    />
                                     <div>
-                                        BOOK YOUR SCHEDULE
-                                    </div>
-                                    <div className="booking-doctor-title">
-                                        {doctor.name}
-                                    </div>
-                                    <div>
-                                        {query.get("time")} - {date.scheduleDate}
+                                        <div>
+                                            BOOK YOUR SCHEDULE
+                                        </div>
+                                        <div className="booking-doctor-title">
+                                            {doctor.name}
+                                        </div>
+                                        <div>
+                                            {query.get("time")} - {date.scheduleDate}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        }
-                    </Content>
-                    <div className="booking-create-container">
-                        <Content
-                            className="site-layout-background"
-                            style={{
-                                padding: '10px',
-                                borderRadius: '5px',
-                                border: '1px solid #f89008',
-                                boxShadow: '0 2px 3px 0 rgb(0 0 0 / 15%)',
-
-                            }}
-                        >
-                            <Radio.Group value={1}>
-                                <Radio value={1}>examination price</Radio>
-                            </Radio.Group>
-                            <div>{priceData.price}</div>
+                            }
                         </Content>
-                        <Controller
-                            control={control}
-                            name="name"
-                            defaultValue={defaultValue.name}
-                            render={({field: {onChange, onBlur, value, ref}}) => (
-                                <Input className="input-style" onChange={onChange} value={value} placeholder="Name"
-                                       prefix={<UserOutlined/>}/>
-                            )}
-                        />
-                        {errors.name && <p className="error-yup">{errors.name.message}</p>}
+                        <div className="booking-create-container">
+                            <Content
+                                className="site-layout-background"
+                                style={{
+                                    padding: '10px',
+                                    borderRadius: '5px',
+                                    border: '1px solid #f89008',
+                                    boxShadow: '0 2px 3px 0 rgb(0 0 0 / 15%)',
 
-                        <Controller
-                            control={control}
-                            name="gender"
-                            defaultValue={defaultValue.gender}
-                            render={({field: {onChange, onBlur, value, ref}}) => (
-                                <Radio.Group onChange={onChange} value={value}>
-                                    {genderData.map((item, index) =>
-                                        <Radio key={index} value={item.value}>{item.name}</Radio>)
-                                    }
+                                }}
+                            >
+                                <Radio.Group value={1}>
+                                    <Radio value={1}>examination price</Radio>
                                 </Radio.Group>
-                            )}
-                        />
+                                <div>{priceData.price}</div>
+                            </Content>
+                            <Controller
+                                control={control}
+                                name="name"
+                                defaultValue={defaultValue.name}
+                                render={({field: {onChange, onBlur, value, ref}}) => (
+                                    <Input className="input-style" onChange={onChange} value={value} placeholder="Name"
+                                           prefix={<UserOutlined/>}/>
+                                )}
+                            />
+                            {errors.name && <p className="error-yup">{errors.name.message}</p>}
 
-                        <Controller
-                            control={control}
-                            name="email"
-                            defaultValue={defaultValue.email}
-                            render={({field: {onChange, onBlur, value, ref}}) => (
-                                <Input className="input-style" onChange={onChange} value={value}
-                                       prefix={<MailOutlined/>}
-                                       placeholder="Email"
-                                />
-                            )}
-                        />
-                        {errors.email && <p className="error-yup">{errors.email.message}</p>}
-                        <Controller
-                            control={control}
-                            name="phone"
-                            defaultValue={defaultValue.phone}
-                            render={({field: {onChange, onBlur, value, ref}}) => (
-                                <Input className="input-style" onChange={onChange} value={value} placeholder="Phone"
-                                       prefix={<PhoneOutlined/>}/>
-                            )}
-                        />
-                        {errors.phone && <p className="error-yup">{errors.phone.message}</p>}
-                        <Controller
-                            control={control}
-                            name="year"
-                            defaultValue={defaultValue.year}
-                            render={({field: {onChange, onBlur, value, ref}}) => (
-                                <InputNumber className="input-style"
-                                             style={{width: '100%'}} value={value}
-                                             min={1}
-                                             placeholder="Year of Birth"
-                                             onChange={onChange} prefix={<CalendarOutlined/>}/>
-                            )}
-                        />
-                        {errors.year && <p className="error-yup">{errors.year.message}</p>}
-                        <Controller
-                            control={control}
-                            name="address"
-                            defaultValue={defaultValue.address}
-                            render={({field: {onChange, onBlur, value, ref}}) => (
-                                <Input className="input-style" onChange={onChange} value={value} placeholder="Address"
-                                       prefix={<EnvironmentOutlined/>}/>
-                            )}
-                        />
-                        <Controller
-                            control={control}
-                            name="description"
-                            defaultValue={defaultValue.reason}
-                            render={({field: {onChange, onBlur, value, ref}}) => (
-                                <Input className="input-style-reason" onChange={onChange} value={value} placeholder="Reason"
-                                       prefix={<PlusCircleOutlined/>}/>
-                            )}
-                        />
-                        <Radio.Group value={1}>
-                            <Radio value={1}> Pay later at the medical facility</Radio>)
-                        </Radio.Group>
-                        <Content
-                            className="site-layout-background"
-                            style={{
-                                padding: '10px',
-                                borderRadius: '5px',
-                                width: '100%',
-                                boxShadow: '0 2px 3px 0 rgb(0 0 0 / 15%)',
+                            <Controller
+                                control={control}
+                                name="gender"
+                                defaultValue={defaultValue.gender}
+                                render={({field: {onChange, onBlur, value, ref}}) => (
+                                    <Radio.Group onChange={onChange} value={value}>
+                                        {genderData.map((item, index) =>
+                                            <Radio key={index} value={item.value}>{item.name}</Radio>)
+                                        }
+                                    </Radio.Group>
+                                )}
+                            />
 
-                            }}
-                        >
-                            <div className="price-detail">
-                                <div>Examination price</div>
-                                <div>{priceData.price} VND</div>
+                            <Controller
+                                control={control}
+                                name="email"
+                                defaultValue={defaultValue.email}
+                                render={({field: {onChange, onBlur, value, ref}}) => (
+                                    <Input className="input-style" onChange={onChange} value={value}
+                                           prefix={<MailOutlined/>}
+                                           placeholder="Email"
+                                    />
+                                )}
+                            />
+                            {errors.email && <p className="error-yup">{errors.email.message}</p>}
+                            <Controller
+                                control={control}
+                                name="phone"
+                                defaultValue={defaultValue.phone}
+                                render={({field: {onChange, onBlur, value, ref}}) => (
+                                    <Input className="input-style" onChange={onChange} value={value} placeholder="Phone"
+                                           prefix={<PhoneOutlined/>}/>
+                                )}
+                            />
+                            {errors.phone && <p className="error-yup">{errors.phone.message}</p>}
+                            <Controller
+                                control={control}
+                                name="year"
+                                defaultValue={defaultValue.year}
+                                render={({field: {onChange, onBlur, value, ref}}) => (
+                                    <InputNumber className="input-style"
+                                                 style={{width: '100%'}} value={value}
+                                                 min={1}
+                                                 placeholder="Year of Birth"
+                                                 onChange={onChange} prefix={<CalendarOutlined/>}/>
+                                )}
+                            />
+                            {errors.year && <p className="error-yup">{errors.year.message}</p>}
+                            <Controller
+                                control={control}
+                                name="address"
+                                defaultValue={defaultValue.address}
+                                render={({field: {onChange, onBlur, value, ref}}) => (
+                                    <Input className="input-style" onChange={onChange} value={value} placeholder="Address"
+                                           prefix={<EnvironmentOutlined/>}/>
+                                )}
+                            />
+                            <Controller
+                                control={control}
+                                name="description"
+                                defaultValue={defaultValue.reason}
+                                render={({field: {onChange, onBlur, value, ref}}) => (
+                                    <Input className="input-style-reason" onChange={onChange} value={value} placeholder="Reason"
+                                           prefix={<PlusCircleOutlined/>}/>
+                                )}
+                            />
+                            <Radio.Group value={1}>
+                                <Radio value={1}> Pay later at the medical facility</Radio>)
+                            </Radio.Group>
+                            <Content
+                                className="site-layout-background"
+                                style={{
+                                    padding: '10px',
+                                    borderRadius: '5px',
+                                    width: '100%',
+                                    boxShadow: '0 2px 3px 0 rgb(0 0 0 / 15%)',
+
+                                }}
+                            >
+                                <div className="price-detail">
+                                    <div>Examination price</div>
+                                    <div>{priceData.price} VND</div>
+                                </div>
+                                <div className="price-detail margin-bottom">
+                                    <div>Booking fee</div>
+                                    <div>Free</div>
+                                </div>
+                                <div className="price-detail divider">
+                                    <div>Total</div>
+                                    <div style={{color: 'red'}}>{priceData.price} VND</div>
+                                </div>
+                            </Content>
+                            <div style={{color: '#666',textAlign:"center"}}>Please fill in the information completely to save time for
+                                examination
+                                procedures
                             </div>
-                            <div className="price-detail margin-bottom">
-                                <div>Booking fee</div>
-                                <div>Free</div>
+                            <Content
+                                className="site-layout-background"
+                                style={{
+                                    padding: '10px',
+                                    borderRadius: '5px',
+                                    width: '100%  ',
+                                    boxShadow: '0 2px 3px 0 rgb(0 0 0 / 15%)',
+                                    background:"rgb(238, 238, 238)"
+                                }}
+                            >
+                                <div dangerouslySetInnerHTML={{__html: NOTICE}}/>
+                            </Content>
+                            <Input type="submit" className="button-confirm-booking" value="Confirm"/>
+                            <div>By confirming your booking, you fully agree to our <span style={{color: '#45c3d2'}}>Terms of Service</span>.
                             </div>
-                            <div className="price-detail divider">
-                                <div>Total</div>
-                                <div style={{color: 'red'}}>{priceData.price} VND</div>
-                            </div>
-                        </Content>
-                        <div style={{color: '#666',textAlign:"center"}}>Please fill in the information completely to save time for
-                            examination
-                            procedures
-                        </div>
-                        <Content
-                            className="site-layout-background"
-                            style={{
-                                padding: '10px',
-                                borderRadius: '5px',
-                                width: '100%  ',
-                                boxShadow: '0 2px 3px 0 rgb(0 0 0 / 15%)',
-                                background:"rgb(238, 238, 238)"
-                            }}
-                        >
-                            <div dangerouslySetInnerHTML={{__html: NOTICE}}/>
-                        </Content>
-                        <Input type="submit" className="button-confirm-booking" value="Confirm"/>
-                        <div>By confirming your booking, you fully agree to our <span style={{color: '#45c3d2'}}>Terms of Service</span>.
                         </div>
                     </div>
-                </div>
-            </form>
+                </form>
+                : <NotFoundPage/>
+            }
         </>
     );
 }
