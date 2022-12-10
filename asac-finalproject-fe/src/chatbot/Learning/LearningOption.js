@@ -1,6 +1,6 @@
 import "./learningOptions.css"
 const LearningOptions = (props) => {
-    console.log('props',props)
+    console.log("props", props)
     const options = [
         { text: "About us",
             handler: props.actionProvider.handleAboutUs,

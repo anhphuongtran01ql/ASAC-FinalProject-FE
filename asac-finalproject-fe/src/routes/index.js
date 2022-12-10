@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Outlet } from "react-router-dom";
 import { DoctorInfo } from "../components/Admin/Doctor/detail";
 import ListOfDoctors from "../components/Admin/Doctor/listDoctors";
 import ListOfSpecializations from "../components/Admin/Specialization/listSpecializations";
@@ -23,50 +23,51 @@ function RouteComponent() {
 
   return (
     <>
-      <Routes>
-        <Route exact path='/' element={<PrivateRoute/>}>
-        <Route path="/admin" element={<HomepageComponent />} />
-        <Route path="/admin/list-users" element={<ListOfDoctors />} />
-        <Route path="/admin/list-doctors/:id" element={<DoctorInfo />} />
+      <Outlet/>
+      {/*<Routes>*/}
+        {/*<Route exact path='/' element={<PrivateRoute/>}>*/}
+        {/*<Route path="/admin" element={<HomepageComponent />} />*/}
+        {/*<Route path="/admin/list-users" element={<ListOfDoctors />} />*/}
+        {/*<Route path="/admin/list-doctors/:id" element={<DoctorInfo />} />*/}
 
-          <Route
-              path="/admin/list-specializations"
-              element={<ListOfSpecializations />}
-          />
-          <Route
-              path="/admin/list-specializations/:id"
-              element={<SpecializationInfo />}
-          />
-          <Route
-              path="/admin/specialization"
-              element={<CreateSpecializationInfo />}
-          />
-          <Route
-              path="/admin/specialization/:id"
-              element={<EditSpecializationInfo />}
-          />
+        {/*  <Route*/}
+        {/*      path="/admin/list-specializations"*/}
+        {/*      element={<ListOfSpecializations />}*/}
+        {/*  />*/}
+        {/*  <Route*/}
+        {/*      path="/admin/list-specializations/:id"*/}
+        {/*      element={<SpecializationInfo />}*/}
+        {/*  />*/}
+        {/*  <Route*/}
+        {/*      path="/admin/specialization"*/}
+        {/*      element={<CreateSpecializationInfo />}*/}
+        {/*  />*/}
+        {/*  <Route*/}
+        {/*      path="/admin/specialization/:id"*/}
+        {/*      element={<EditSpecializationInfo />}*/}
+        {/*  />*/}
 
-          <Route path="/admin/list-clinics" element={<ListOfClinics />} />
-          <Route path="/admin/list-clinics/:id" element={<ClinicInfo />} />
-          <Route path="/admin/clinic" element={<CreateClinicInfo />} />
-          <Route path="/admin/clinic/:id" element={<EditClinicInfo />} />
+        {/*  <Route path="/admin/list-clinics" element={<ListOfClinics />} />*/}
+        {/*  <Route path="/admin/list-clinics/:id" element={<ClinicInfo />} />*/}
+        {/*  <Route path="/admin/clinic" element={<CreateClinicInfo />} />*/}
+        {/*  <Route path="/admin/clinic/:id" element={<EditClinicInfo />} />*/}
 
-        <Route path="/admin/list-schedules" element={<ListOfSchedules />} />
-        <Route path="/admin/schedule" element={<CreateScheduleInfo />} />
-        <Route path="/admin/schedule/:id" element={<EditScheduleInfo />} />
+        {/*<Route path="/admin/list-schedules" element={<ListOfSchedules />} />*/}
+        {/*<Route path="/admin/schedule" element={<CreateScheduleInfo />} />*/}
+        {/*<Route path="/admin/schedule/:id" element={<EditScheduleInfo />} />*/}
 
-        <Route
-          path="/supporter/list-patients"
-          element={<ListOfPatients />}
-        ></Route>
-        <Route path="/list-patients/:id" element={<PatientInfo />}></Route>
+        {/*<Route*/}
+        {/*  path="/supporter/list-patients"*/}
+        {/*  element={<ListOfPatients />}*/}
+        {/*></Route>*/}
+        {/*<Route path="/list-patients/:id" element={<PatientInfo />}></Route>*/}
 
-        <Route
-          path="/doctor/list-patients"
-          element={<ListOfPatientsSuccess />}
-        ></Route>
-        </Route>
-      </Routes>
+        {/*<Route*/}
+        {/*  path="/doctor/list-patients"*/}
+        {/*  element={<ListOfPatientsSuccess />}*/}
+        {/*></Route>*/}
+        {/*</Route>*/}
+      {/*</Routes>*/}
     </>
   );
 }

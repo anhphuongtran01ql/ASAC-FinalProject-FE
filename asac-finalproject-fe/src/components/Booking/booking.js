@@ -72,11 +72,11 @@ const Booking = () => {
         const additionalData = {
             doctorId: id,
             dateBooking: date.scheduleDate,
+            clinicAddress: date?.clinicAddress,
             timeBooking: query.get("time")
         }
         mutate({...data, ...additionalData},{
             onSuccess: (data) => {
-                console.log('data',data)
                 notification["success"]({
                     message: `Success`,
                     description: `Create successfully!`,
