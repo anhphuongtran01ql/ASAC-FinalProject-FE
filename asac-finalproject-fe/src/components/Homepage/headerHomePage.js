@@ -1,18 +1,19 @@
-import { DATA } from "../DATA/home/HomeConstant";
-import { Link } from "react-router-dom";
-import { QuestionCircleOutlined } from "@ant-design/icons";
+import {DATA} from "../DATA/home/HomeConstant";
+import {Link, useNavigate} from "react-router-dom";
+import {QuestionCircleOutlined} from "@ant-design/icons";
 import React from "react";
 import Logo from "../../../src/assets/images/Logo.png";
 import { Row } from "antd";
 import "./home.css";
 
 const HeaderHomePage = () => {
+    const navigate = useNavigate();
   return (
     <header className="header-homepage">
       <div className="container-home header">
         <div className="logo">
           <Row className="homepage-row">
-            <img className="homepage-logo" src={Logo} alt="ASAC" />
+            <img className="homepage-logo" onClick={() => navigate("/") } src={Logo} alt="ASAC" />
             <p className="homepage-paragraph">ASAC web application</p>
           </Row>
         </div>

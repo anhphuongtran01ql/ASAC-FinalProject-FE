@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Outlet } from "react-router-dom";
 import { DoctorInfo } from "../components/Admin/Doctor/detail";
 import ListOfDoctors from "../components/Admin/Doctor/listDoctors";
 import ListOfSpecializations from "../components/Admin/Specialization/listSpecializations";
@@ -22,6 +22,7 @@ import { PrivateRoute } from "./privateRoute";
 function RouteComponent() {
   return (
     <>
+      <Outlet/>
       <Routes>
         <Route exact path="/" element={<PrivateRoute />}>
           <Route path="/admin" element={<HomepageComponent />} />

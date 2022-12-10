@@ -44,6 +44,7 @@ const DoctorDetail = () => {
         return (() => {
             const bookingData = {
                 scheduleDate: scheduleValue,
+                clinicAddress: doctor?.clinicAddress
             }
             localStorage.setItem(`booking_${id}`, JSON.stringify(bookingData));
         })
